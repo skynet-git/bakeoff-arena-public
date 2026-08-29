@@ -19,6 +19,14 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* v14.19.30: mobile foundation.
+   - height: 100svh — small-viewport height, matches iOS Safari with URL bar
+     visible; avoids the "layout jumps when address bar hides" jank. Fallback
+     to 100vh for browsers without svh support (Baseline June 2025).
+   - -webkit-text-size-adjust prevents iOS from auto-inflating fonts in
+     landscape rotate.
+   - overscroll-behavior stops the whole page from rubber-banding when a
+     scroll container hits its edge on iOS. */
 html, body {
     background: var(--bg);
     color: var(--text);
@@ -26,12 +34,34 @@ html, body {
     font-size: 12px;
     line-height: 1.4;
     height: 100vh;
+    height: 100svh;
     overflow: hidden;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    overscroll-behavior: none;
 }
 
 body {
     display: flex;
     flex-direction: column;
+    /* Give the bottom of the layout air to clear the iOS home-indicator on
+       notched devices. Combined with viewport-fit=cover in the meta tag. */
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* v14.19.30: replace the deleted -webkit-tap-highlight-color (transparent
+   by default across many resets) with an explicit :active feedback state.
+   Otherwise users tap and see NO confirmation the touch registered. */
+button, .chip, .toggle, .nav-btn, .filter-chip, .legend-row,
+tbody tr, thead th[data-sort], a {
+    -webkit-tap-highlight-color: rgba(56, 189, 248, 0.15);
+}
+
+input, select, textarea {
+    font-family: inherit;
+    /* Desktop keeps the compact 11px look; mobile bumps to 16px below to
+       prevent iOS Safari auto-zoom on focus (threshold is exactly 16px). */
+    font-size: 11px;
 }
 
 /* ============================ Top bar */
@@ -101,7 +131,7 @@ body {
 }
 .chart-panel        { grid-area: chart; }
 .feed-panel         { grid-area: feed; }
-.leaderboard-panel  { grid-area: leaderboard; max-height: 45vh; }
+.leaderboard-panel  { grid-area: leaderboard; max-height: 45vh; max-height: 45svh; }
 
 #view-models {
     grid-template-columns: 1.2fr 1fr;
@@ -402,18 +432,74 @@ tbody tr:hover .drill-cue { opacity: 0.8; }
     .chart-legend { max-width: 160px; font-size: 10px; }
 }
 @media (max-width: 720px) {
-    /* Below phone-portrait width, layout gets brittle. Show a hint.
-       Sidecar dashboards are inherently dense; a full mobile rework is
-       out of scope. */
-    body::before {
-        content: "📱 Dashboard is best viewed on a desktop or tablet in landscape.";
-        display: block;
-        background: rgba(251, 191, 36, 0.15);
-        color: #fbbf24;
-        padding: 8px 12px;
-        text-align: center;
-        font-size: 12px;
-        border-bottom: 1px solid #fbbf24;
+    /* v14.19.30: legacy "view on desktop" banner deleted — mobile is now
+       first-class. See @media (max-width: 767px) block below for the
+       actual mobile transformation (Ship B). */
+}
+
+/* ============================================================================
+ * v14.19.30: TOUCH-DEVICE TAP TARGET SIZING
+ *
+ * Scope: pointer:coarse means "the primary input is imprecise (finger)."
+ * True on phones + tablets, false on desktops (mouse) + laptops (trackpad).
+ * Even on a phone plugged into a mouse, pointer:coarse stays true (Safari)
+ * or matches primary input (Chrome). Good enough for our purposes.
+ *
+ * Why not @media (max-width: 767px)?
+ * Because a tablet in landscape at 1024px still has fingers; we want
+ * larger tap targets there too. Scoping by INPUT TYPE not viewport is the
+ * modern correct answer.
+ *
+ * Apple HIG: 44×44 pt minimum. Material Design: 48×48 dp. We aim for 44px.
+ * We add MIN-HEIGHT (not padding) so the visual chip/button doesn't grow;
+ * the tap surface expands invisibly via the element's box.
+ * ---------------------------------------------------------------------- */
+@media (pointer: coarse) {
+    /* Bump inputs to 16px to block iOS Safari auto-zoom on focus. */
+    input, select, textarea {
+        font-size: 16px;
+    }
+
+    /* Chips, toggles, nav buttons, small buttons — all pill-shaped
+       interactive elements. min-height creates a tall tap surface without
+       inflating the visual pill. */
+    .chip, .toggle, .nav-btn, .filter-chip,
+    .obfuscate-btn, button:not(.rank-badge) {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Selects + inputs need vertical padding to reach 44px given native
+       chrome. iOS renders date inputs at a fixed height regardless of
+       CSS — nothing we can do; they're compliant. */
+    input:not([type="date"]), select {
+        min-height: 44px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    /* Table rows: hit surface = the row itself. min-height on the row
+       via padding on td. */
+    tbody tr td { padding-top: 10px; padding-bottom: 10px; }
+
+    /* Legend rows on the equity chart — click to toggle series visibility.
+       Bump for finger-tap without hiding under content. */
+    .legend-row { padding-top: 8px; padding-bottom: 8px; }
+
+    /* Sort-header cells reuse the same rule via padding above. Nothing
+       extra needed — thead th shares the tbody td padding via inheritance. */
+    thead th[data-sort] {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    /* Filter-chip × close glyph — was a bare span, unreachable at 12×12.
+       Padding it to a real 24×24 hit area (WithIn the 44px chip's tail). */
+    .filter-chip-x {
+        padding: 4px 6px;
+        margin-right: -6px;  /* keep chip visual width identical */
     }
 }
 
@@ -573,13 +659,19 @@ tbody tr:hover .drill-cue { opacity: 0.8; }
     position: fixed;
     top: 0; right: 0;
     width: 440px;
-    height: 100vh;
+    height: 100vh;   /* fallback for pre-Baseline browsers */
+    height: 100svh;  /* iOS Safari address-bar-safe */
     background: var(--panel);
     border-left: 1px dashed var(--border-strong);
     display: flex;
     flex-direction: column;
     z-index: 100;
     box-shadow: -8px 0 24px rgba(0,0,0,0.4);
+    /* Notch/rounded-corner safe area — pushes drawer content inward on
+       devices where the top/bottom edges are occupied by system UI. */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-right: env(safe-area-inset-right);
 }
 .drawer.hidden { display: none; }
 .drawer-header {
@@ -640,3 +732,369 @@ tbody tr:hover .drill-cue { opacity: 0.8; }
 
 .halt-yes { color: var(--red); font-weight: 700; }
 .halt-no  { color: var(--green); }
+
+/* ============================================================================
+ * v14.19.31 — MOBILE-FIRST RESHAPING (below md: 768px)
+ *
+ * Everything above this block is unchanged desktop layout. Everything below
+ * only applies at phone widths. Two-line summary of the reshape:
+ *
+ *   1. Topbar shrinks to brand line only; nav moves to a bottom-tab bar
+ *      pinned to the bottom of the viewport (thumb-reachable).
+ *   2. Every table becomes cards: leaderboard = per-model summary card;
+ *      Models tab stacks vertically with the chart taking full width.
+ *   3. Drawer slides UP from the bottom, full-width, 90% viewport tall.
+ *   4. All filter/chip rows wrap; long banners collapse to compact.
+ *
+ * Design source: parallel research + audit subagents 2026-08-29. Follows
+ * P0/P1 priorities from the research synthesis (skipping P2/nice-to-have).
+ * ---------------------------------------------------------------------- */
+@media (max-width: 767px) {
+
+    /* ---- topbar: brand + obfuscate button + hamburger-hint icon only ---- */
+    .topbar {
+        padding: 8px 12px;
+        gap: 8px;
+        /* Notched-device safe area */
+        padding-top: max(8px, env(safe-area-inset-top));
+        padding-left: max(12px, env(safe-area-inset-left));
+        padding-right: max(12px, env(safe-area-inset-right));
+    }
+    .brand { min-width: 0; }
+    .brand-name { font-size: 13px; }
+    .brand-sub { font-size: 9px; }
+    /* Move the top nav to the bottom of the viewport (see bottom-nav block
+       below). Hide the desktop nav-in-topbar rendering. */
+    .topbar .nav { display: none; }
+    /* Squish HIGH/LOW into a single line at 10px so we don't need to hide
+       it entirely — glance-visibility for the tournament leader is P0. */
+    .highlow {
+        display: flex;
+        gap: 8px;
+        min-width: 0;
+        flex: 1;
+        justify-content: flex-end;
+        font-size: 9px;
+        letter-spacing: 0;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    .highlow .label { display: none; }  /* Just show model + delta */
+    .kbd-hint { display: none; }  /* No keyboard on mobile */
+
+    /* ---- bottom-tab nav (mobile only) ---- */
+    .mobile-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--panel);
+        border-top: 1px solid var(--border-strong);
+        z-index: 50;
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
+    .mobile-nav-btn {
+        flex: 1;
+        background: none;
+        border: none;
+        color: var(--text-dim);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        padding: 8px 4px;
+        font-size: 10px;
+        letter-spacing: 0.05em;
+        min-height: 56px;
+        cursor: pointer;
+        border-top: 2px solid transparent;
+        margin-top: -1px;  /* overlap the .mobile-nav border */
+    }
+    .mobile-nav-btn .mnav-icon { font-size: 18px; line-height: 1; }
+    .mobile-nav-btn.active {
+        color: var(--accent);
+        border-top-color: var(--accent);
+        background: rgba(56, 189, 248, 0.06);
+    }
+
+    /* Bottom padding on body so bottom-nav doesn't cover last row of content */
+    body { padding-bottom: calc(56px + env(safe-area-inset-bottom)); }
+
+    /* ---- market context bar: keep visible but compact ---- */
+    .market-context {
+        padding: 4px 10px;
+        gap: 10px;
+        font-size: 10px;
+        overflow-x: auto;
+        white-space: nowrap;
+        /* Hide the "MARKET:" label — the 3 ticker chips speak for themselves */
+    }
+    .market-context .mc-label { display: none; }
+    .market-context .mc-stale { display: none; }
+
+    /* ---- public banner: compact ---- */
+    .public-banner {
+        font-size: 9px !important;
+        padding: 4px 10px !important;
+        letter-spacing: 0.03em !important;
+    }
+    .public-banner .updated { display: block; margin-top: 1px; }
+
+    /* ---- overview: chart on top full-width, leaderboard below, feed collapsed ---- */
+    .view { padding: 8px; gap: 8px; }
+    #view-overview {
+        grid-template-columns: 1fr;
+        grid-template-rows: 220px 1fr auto;
+        grid-template-areas:
+            "chart"
+            "leaderboard"
+            "feed";
+    }
+    .chart-panel .panel-header {
+        flex-wrap: wrap;
+        gap: 6px;
+        padding: 6px 10px;
+    }
+    /* Range + $/% toggles push down onto their own line when they don't fit */
+    .chart-panel .panel-header .toggles { flex-shrink: 0; }
+    /* Chart legend on mobile: sits at TOP-LEFT overlay but tighter + no
+       benchmark section (SPY/QQQ/IWM overlay is desktop-only) */
+    .chart-legend {
+        max-width: 55vw;
+        font-size: 10px;
+        padding: 2px 0;
+        top: 4px; left: 4px;
+    }
+    .legend-row { padding: 2px 6px; grid-template-columns: 10px 1fr auto; gap: 4px; }
+    .legend-index { display: none; }  /* SPY/QQQ/IWM overlays hidden on mobile */
+    .legend-divider { display: none; }
+
+    .leaderboard-panel { max-height: none; }
+    .leaderboard-panel .panel-header { padding: 6px 10px; font-size: 10px; }
+
+    /* ---- leaderboard: CARDS instead of the 18-column table ---- */
+    /* Hide the desktop table; show the .mobile-leaderboard container. */
+    #leaderboard { display: none; }
+    .mobile-leaderboard {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 6px;
+        overflow-y: auto;
+    }
+    .m-lb-card {
+        background: var(--panel-alt);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 10px 12px;
+        display: grid;
+        grid-template-columns: 28px 1fr auto;
+        grid-template-rows: auto auto;
+        column-gap: 10px;
+        row-gap: 2px;
+        align-items: center;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(56, 189, 248, 0.15);
+    }
+    .m-lb-card:active { background: rgba(56, 189, 248, 0.06); }
+    .m-lb-rank {
+        grid-row: 1 / span 2;
+        font-size: 20px;
+        font-weight: 800;
+        text-align: center;
+        line-height: 1;
+    }
+    .m-lb-name {
+        display: flex; align-items: center; gap: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-bright);
+    }
+    .m-lb-name .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .m-lb-equity {
+        text-align: right;
+        font-size: 14px;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+    }
+    .m-lb-meta {
+        grid-column: 2;
+        font-size: 10px;
+        color: var(--text-dim);
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    .m-lb-delta {
+        grid-column: 3;
+        text-align: right;
+        font-size: 11px;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+    }
+    .m-lb-halt {
+        grid-column: 1 / -1;
+        text-align: center;
+        color: var(--red);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        padding-top: 4px;
+        border-top: 1px dashed var(--red);
+        margin-top: 2px;
+    }
+
+    /* ---- feed on overview: compact ---- */
+    .feed-panel .panel-header {
+        flex-wrap: wrap;
+        gap: 6px;
+        padding: 6px 10px;
+        font-size: 10px;
+    }
+    .feed-panel #feed-filter-chips { flex-wrap: wrap; }
+    .feed-row {
+        padding: 8px 10px;
+        gap: 3px;
+    }
+    .feed-r1 { flex-wrap: wrap; gap: 6px; }
+    .feed-r1 span:first-child { min-width: 0; flex: 1; }
+    .feed-r2 { font-size: 10px; flex-wrap: wrap; gap: 8px; }
+    .feed-r3 {
+        font-size: 11px;
+        line-height: 1.4;
+        /* v14.19.31: 2-line clamp — spectator doesn't need the full LLM
+           essay in the feed. Full rationale still available via drawer. */
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* ---- Models tab: single column, chart full-width ---- */
+    #view-models {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto 1fr;
+        grid-template-areas:
+            "header"
+            "positions"
+            "trades"
+            "feed";
+    }
+    .model-header-panel .panel-header {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 6px 10px;
+    }
+    .model-header-panel .date-chips { margin-left: 0 !important; flex-wrap: wrap; }
+    #model-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+        padding: 6px 10px;
+    }
+    .stat-card { padding: 6px 8px; }
+    .stat-label { font-size: 8px; }
+    .stat-value { font-size: 13px; }
+    /* Hide the trade log's leading chart icon column on mobile — the whole
+       row is tap-to-open, the icon is redundant and eats width */
+    #model-trades th:first-child, #model-trades td.row-icon { display: none; }
+    /* On mobile the Trade Log panel scroll wrapper max-height should be
+       taller than the desktop 400px — we have the whole viewport now */
+    .model-trades-panel .table-scroll,
+    .model-positions-panel .table-scroll {
+        max-height: 40vh !important;
+        max-height: 40svh !important;
+    }
+    /* Chart-state (when a trade is clicked): stack chart above symbol feed */
+    #chart-state > div { flex: none !important; }
+    #chart-state > div:first-of-type { height: 40vh; height: 40svh; }
+    #chart-state > div:last-of-type  { flex: 1 !important; min-height: 200px; }
+
+    /* ---- Decisions tab: filter bar wraps ---- */
+    .filter-panel .panel-header { flex-wrap: wrap; gap: 6px; padding: 6px 10px; }
+    .filters { flex-wrap: wrap; gap: 6px; width: 100%; }
+    .filters select, .filters input, .filters button { flex: 1; min-width: 44%; }
+    .date-chips { flex-wrap: wrap; gap: 4px; width: 100%; }
+    .custom-range { flex-wrap: wrap; gap: 4px; width: 100%; }
+    .custom-range input[type="date"] { flex: 1; }
+    #active-filters { padding: 0 10px; }
+
+    /* ---- Drawer: full-width bottom-sheet slide-up ---- */
+    .drawer {
+        width: 100vw !important;
+        height: 90vh !important;
+        height: 90svh !important;
+        top: auto !important;
+        bottom: 0 !important;
+        right: 0 !important;
+        border-left: none;
+        border-top: 1px solid var(--accent);
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        box-shadow: 0 -8px 24px rgba(0,0,0,0.6);
+        padding-top: 0;  /* the header itself is the top */
+    }
+    .drawer-header {
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        background: var(--panel);
+    }
+    #close-drawer {
+        min-height: 44px !important;
+        min-width: 44px !important;
+        font-size: 20px !important;
+    }
+    #drawer-body { padding: 12px 16px 40px 16px; }
+    #drawer-body pre.raw {
+        max-height: none;
+        font-size: 10px;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+    /* Drawer 2-col layout: force single column on mobile */
+    .drawer-two-col { grid-template-columns: 1fr !important; }
+
+    /* ---- Trade chart drill-down: chart footer wraps ---- */
+    .chart-footer { flex-wrap: wrap !important; gap: 6px !important; }
+    #chart-title { flex-wrap: wrap; }
+    #chart-title span { font-size: 11px !important; }
+    /* Chart expand button hidden on mobile — chart is already full-width */
+    #chart-expand { display: none !important; }
+
+    /* ---- Panel-header text scale ---- */
+    .panel-header { font-size: 10px; padding: 6px 10px; }
+    .hint-chip { font-size: 9px; }
+
+    /* ---- Table generic: allow horizontal scroll for any remaining tables
+       (e.g., #model-trades on Models tab) with a subtle right-edge fade to
+       signal "there's more" */
+    .table-scroll {
+        position: relative;
+        -webkit-overflow-scrolling: touch;
+    }
+    .table-scroll::after {
+        content: "";
+        position: absolute;
+        top: 0; right: 0; bottom: 0;
+        width: 20px;
+        background: linear-gradient(to right, transparent, rgba(10, 14, 20, 0.8));
+        pointer-events: none;
+    }
+    /* Only show fade when actually scrollable */
+    .table-scroll:not(:hover)::after { opacity: 0.6; }
+}
+
+/* ============================================================================
+ * v14.19.31 — MOBILE NAV VISIBILITY
+ * The .mobile-nav element lives in every view (see index.html). On desktop
+ * it's hidden; on mobile the desktop .nav (in topbar) is hidden and .mobile-
+ * nav (at the bottom) takes over. The corresponding .mobile-leaderboard is
+ * also desktop-hidden.
+ * ---------------------------------------------------------------------- */
+.mobile-nav { display: none; }
+.mobile-leaderboard { display: none; }

@@ -257,6 +257,20 @@ function initChart() {
             timeFormatter: (unix) => fmtDateTimeET(unix),
         },
         crosshair: { mode: 0 },
+        // v14.19.31: mobile touch handling. vertTouchDrag: false lets a
+        // vertical finger-swipe scroll the PAGE instead of dragging the
+        // chart's price scale — the #1 Lightweight-Charts-on-mobile gotcha.
+        // pinch-zoom on the time axis stays on so users can zoom into a
+        // specific window with two fingers.
+        handleScroll: {
+            vertTouchDrag: false,
+        },
+        handleScale: {
+            axisPressedMouseMove: {
+                time: true,
+                price: false,   // don't hijack vertical pan on mobile
+            },
+        },
     });
     // Chart-sizing bug 2026-08-25: window.resize + container.clientHeight
     // fired ONCE at initChart before flex layout finished, so chart rendered
@@ -467,7 +481,10 @@ function populateProviderFilter() {
 // ============================================================================
 
 function wireNav() {
-    document.querySelectorAll(".nav-btn").forEach(btn => {
+    // v14.19.31: BOTH the desktop nav (.nav-btn) and the mobile bottom-tab
+    // nav (.mobile-nav-btn) share data-view attributes and route through
+    // showView(). Each has its own .active class kept in sync.
+    document.querySelectorAll(".nav-btn, .mobile-nav-btn").forEach(btn => {
         btn.addEventListener("click", () => showView(btn.dataset.view));
     });
 }
@@ -511,11 +528,12 @@ let _modelRestoreDone = false;
 
 function showView(name) {
     currentView = name;
-    // Reset the trade-chart-restore latch each time the user re-enters
-    // Models (or leaves it) so the resume-last-chart flow re-fires.
     if (name !== "models") _modelRestoreDone = false;
     else _modelRestoreDone = false;
-    document.querySelectorAll(".nav-btn").forEach(b => b.classList.toggle("active", b.dataset.view === name));
+    // v14.19.31: keep BOTH nav surfaces in sync (desktop topbar + mobile
+    // bottom-tab). Same data-view attributes on both.
+    document.querySelectorAll(".nav-btn, .mobile-nav-btn").forEach(
+        b => b.classList.toggle("active", b.dataset.view === name));
     document.querySelectorAll(".view").forEach(v => v.classList.add("hidden"));
     document.getElementById(`view-${name}`).classList.remove("hidden");
     if (pollTimer) { clearInterval(pollTimer); pollTimer = null; }
@@ -552,8 +570,9 @@ async function refreshOverview() {
         document.getElementById("refresh-info").textContent = "⚠ Fetch error";
         return;
     }
-    safe("leaderboard", () => renderLeaderboard(state.leaderboard));
-    safe("highLow",     () => renderHighLow(state.leaderboard));
+    safe("leaderboard",       () => renderLeaderboard(state.leaderboard));
+    safe("mobileLeaderboard", () => renderMobileLeaderboard(state.leaderboard));
+    safe("highLow",           () => renderHighLow(state.leaderboard));
     safe("feed",        () => {
         // Client-side chip filter — cheap and keeps the API query wide
         // so switching chips is instant (no round-trip).
@@ -758,6 +777,59 @@ function renderEquity(series) {
     }
 }
 let _indexInitialLoadDone = false;
+
+// v14.19.31: mobile leaderboard cards. One card per model, glance-scannable
+// at 375px width. Fields:
+//   [rank] [color-dot MODEL NAME]            [equity $]
+//          [W%  trades  cost]                 [delta +/-%]
+//   [HALTED banner (only if halted)]
+// Tap → drill into the Models view for that model (same as desktop rows).
+function renderMobileLeaderboard(rows) {
+    const el = document.getElementById("mobile-leaderboard");
+    if (!el) return;
+    // Reuse the desktop sort state so a user who sorted on desktop and
+    // resized to mobile keeps that ordering.
+    _lastLeaderboardRows = rows;
+    rows.forEach(r => {
+        r.cost_per_trade = (r.n_trades_total > 0 && r.cost_total_usd != null)
+            ? (r.cost_total_usd / r.n_trades_total)
+            : null;
+    });
+    const sorted = _sortedRows(rows);
+    el.innerHTML = "";
+    sorted.forEach((r, i) => {
+        const rank = i + 1;
+        const equity = r.equity;
+        const deltaPct = ((equity / config.starting_capital) - 1) * 100;
+        const deltaCls = deltaPct >= 0 ? "pnl-pos" : "pnl-neg";
+        const rankCls = rank <= 3 ? `rank-${rank}` : "";
+        const winPct = (r.win_rate_day * 100).toFixed(0);
+        const card = document.createElement("div");
+        card.className = "m-lb-card";
+        card.innerHTML = `
+            <div class="m-lb-rank ${rankCls}">${rank}</div>
+            <div class="m-lb-name">
+                <span class="dot" style="background:${r.color}"></span>
+                <span>${displayModel(r.display_name)}</span>
+            </div>
+            <div class="m-lb-equity">${money(equity)}</div>
+            <div class="m-lb-meta">
+                <span>W ${winPct}%</span>
+                <span>T ${r.n_trades_day}/${r.n_trades_total}</span>
+                <span>Cost ${money(r.cost_total_usd)}</span>
+            </div>
+            <div class="m-lb-delta ${deltaCls}">${fmtPct(deltaPct, true)}</div>
+            ${r.halted ? '<div class="m-lb-halt">⛔ HALTED</div>' : ''}
+        `;
+        card.addEventListener("click", () => {
+            const sel = document.getElementById("model-selector");
+            if (sel) sel.value = r.provider;
+            currentModel = r.provider;
+            showView("models");
+        });
+        el.appendChild(card);
+    });
+}
 
 function renderHighLow(rows) {
     if (!rows.length) return;
@@ -1146,6 +1218,13 @@ async function loadTradeChart() {
                 },
             },
             crosshair: { mode: 0 },
+            // v14.19.31: same mobile touch tuning as the equity chart.
+            // Vertical finger-drag scrolls the surrounding view; only
+            // horizontal (time-axis) drag moves the chart.
+            handleScroll: { vertTouchDrag: false },
+            handleScale: {
+                axisPressedMouseMove: { time: true, price: false },
+            },
         });
         const resize = () => {
             const r = el.getBoundingClientRect();

@@ -2,13 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- v14.19.30: viewport-fit=cover lets us draw INTO the notch/home-indicator safe
+         area (we then use env(safe-area-inset-*) padding to keep content clear).
+         maximum-scale=1 removed on purpose — accessibility (user zoom must work). -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <!-- Dark-mode chrome colors for the browser UI (Android Chrome, Safari Home Screen). -->
+    <meta name="theme-color" content="#0a1119" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#0a1119">
+    <!-- iOS: use dark status-bar text over dark app background when added to Home Screen. -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Bakeoff">
     <title>Bakeoff Arena</title>
     <link rel="stylesheet" href="./styles.css">
 
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TJNL6CBX');</script>
 <!-- End Google Tag Manager -->
+
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
 
 <script>window.BAKEOFF_PUBLIC = true;</script>
 <style>.public-banner{background:#0b1626;border-bottom:1px solid #38bdf8;color:#38bdf8;padding:5px 20px;font-size:12px;letter-spacing:0.08em;text-align:center;font-weight:600}.public-banner .updated{color:#94a3b8;font-weight:400;margin-left:8px}</style>
@@ -56,6 +71,21 @@ Esc      = close drawer or chart
         <span class="mc-slot" data-sym="IWM">IWM —</span>
         <span class="mc-stale" id="mc-stale"></span>
     </div>
+
+    <!-- v14.19.31: bottom-tab nav for mobile. Hidden on desktop; the
+         topbar's .nav takes over. Both share currentView state via
+         data-view attributes so showView() wires them the same way. -->
+    <nav class="mobile-nav" aria-label="Mobile primary navigation">
+        <button class="mobile-nav-btn active" data-view="overview">
+            <span class="mnav-icon" aria-hidden="true">📊</span><span>OVERVIEW</span>
+        </button>
+        <button class="mobile-nav-btn" data-view="models">
+            <span class="mnav-icon" aria-hidden="true">🤖</span><span>MODELS</span>
+        </button>
+        <button class="mobile-nav-btn" data-view="decisions">
+            <span class="mnav-icon" aria-hidden="true">💬</span><span>DECISIONS</span>
+        </button>
+    </nav>
 
     <!-- ============================================================ OVERVIEW -->
     <main id="view-overview" class="view">
@@ -108,6 +138,10 @@ Esc      = close drawer or chart
                     <tbody id="leaderboard-body"></tbody>
                 </table>
             </div>
+            <!-- v14.19.31: mobile leaderboard cards. Populated by
+                 renderMobileLeaderboard(). Hidden on desktop; @media
+                 (max-width:767px) also hides the desktop #leaderboard. -->
+            <div id="mobile-leaderboard" class="mobile-leaderboard"></div>
         </section>
 
         <section class="feed-panel">
