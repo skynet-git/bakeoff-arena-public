@@ -761,6 +761,34 @@ tbody tr:hover .drill-cue { opacity: 0.8; }
  * ---------------------------------------------------------------------- */
 @media (max-width: 767px) {
 
+    /* v14.19.34: on mobile, let the ENTIRE PAGE scroll naturally instead
+       of trapping content inside a 100svh viewport with per-panel
+       overflow. Desktop uses a fixed-viewport dashboard model (everything
+       fits in the visible area); mobile can't fit everything, so scrolling
+       is the answer. Standard mobile pattern.
+       Bottom-tab nav stays fixed on top of the scroll — see .mobile-nav. */
+    html, body {
+        height: auto;
+        overflow: visible;
+        overscroll-behavior: auto;  /* allow pull-to-refresh */
+    }
+    body { min-height: 100svh; }
+    .view {
+        overflow: visible;
+        min-height: 0;
+    }
+    /* Panels: natural height, no max-height cap that would cause internal
+       scrollbars fighting the page scroll. */
+    .leaderboard-panel { max-height: none !important; }
+    .feed-panel, .chart-panel { min-height: 0; }
+    /* Table-scroll wrappers on mobile: let content grow (no max-height)
+       and remove horizontal-scroll fade since the whole page scrolls. */
+    .model-trades-panel .table-scroll,
+    .model-positions-panel .table-scroll {
+        max-height: none !important;
+    }
+    .table-scroll::after { display: none; }
+
     /* ---- topbar: brand + obfuscate button + hamburger-hint icon only ---- */
     .topbar {
         padding: 8px 12px;

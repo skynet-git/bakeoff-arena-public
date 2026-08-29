@@ -1090,25 +1090,30 @@ const prettyReason = (reason, tpTrailingPct) => {
 
 async function openTradeChart(fillId, symbol) {
     _tradeChartFillId = fillId;
-    // 2026-08-28: remember last-viewed trade per model so switching tabs
-    // and coming back restores the chart instead of dumping the user
-    // back at the feed. Symbol stored alongside so we can reopen without
-    // a table round-trip.
     try {
         if (currentModel) localStorage.setItem(
             `bakeoff_last_trade_${currentModel}`,
             JSON.stringify({ fillId, symbol, ts: Date.now() })
         );
     } catch (e) { /* private-window / storage disabled */ }
-    // Toggle panel state
     document.getElementById("feed-state").style.display = "none";
     const cs = document.getElementById("chart-state");
     cs.style.display = "flex";
-    // Highlight selected row across both tables
     document.querySelectorAll("#model-trades tbody tr.selected, #model-positions tbody tr.selected")
         .forEach(x => x.classList.remove("selected"));
     document.querySelectorAll(`tr[data-fill-id="${fillId}"]`).forEach(x => x.classList.add("selected"));
     document.getElementById("chart-sym-label").textContent = symbol;
+    // v14.19.34: on narrow (mobile) viewports the chart panel appears
+    // BELOW the trade log in the vertical stack. Users tap a trade but
+    // don't see anything happen because the chart is off-screen. Scroll
+    // to bring it into view. Desktop chart is always visible so this is
+    // scoped to narrow widths only.
+    if (window.matchMedia("(max-width: 767px)").matches) {
+        // rAF so the display: flex takes effect before we measure position
+        requestAnimationFrame(() => {
+            cs.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+    }
     await loadTradeChart();
     await loadSymFeed(symbol);
 }
