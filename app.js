@@ -1084,7 +1084,15 @@ async function loadTradeChart() {
     try {
         data = await fetchJson(`/api/trade/${_tradeChartFillId}/bars?tf=${_tradeChartTF}&range=${_tradeChartRange}`);
     } catch (e) {
-        document.getElementById("chart-title").innerHTML = `<span style="color:var(--text-dim)">Failed to load: ${e.message || e}</span>`;
+        // v14.19.28: public-mode 404 means "this specific trade hasn't been
+        // snapshotted yet." Publisher backfills 40 new bar-files per 5-min
+        // tick (newest first), so older trades take a bit to reach.
+        // Friendlier message than "Failed to load: 404".
+        const is404 = /\b404\b/.test(String(e.message || e));
+        const msg = (window.BAKEOFF_PUBLIC && is404)
+            ? "Chart snapshot for this trade is still backfilling — check back in a few minutes."
+            : `Failed to load: ${e.message || e}`;
+        document.getElementById("chart-title").innerHTML = `<span style="color:var(--text-dim)">${msg}</span>`;
         return;
     }
     if (data.error) {
@@ -1671,6 +1679,21 @@ async function _fetchStatic(url) {
     else if (path.startsWith("/api/reasoning/")) {
         const id = path.split("/").pop();
         filePath = `data/reasoning/${id}.json`;
+    }
+    else if (path.startsWith("/api/symbol/")) {
+        // v14.19.28: no per-symbol snapshot file in the public repo (would
+        // bloat the tree with one file per ever-traded ticker). Reuse
+        // data/decisions.json and client-filter to the requested symbol.
+        // Shape must match private-mode /api/symbol/{ticker} which returns
+        // { symbol, decisions }.
+        const sym = decodeURIComponent(path.split("/").pop()).toUpperCase();
+        filePath = "data/decisions.json";
+        postFilter = (body) => {
+            const d = (body.decisions || []).filter(r =>
+                (r.symbol || "").toUpperCase() === sym);
+            const lim = parseInt(params.get("limit") || "50", 10);
+            return { symbol: sym, decisions: d.slice(0, lim) };
+        };
     }
     else if (path.startsWith("/api/trade/") && path.endsWith("/bars")) {
         const id = path.split("/")[3];
