@@ -1327,6 +1327,22 @@ async function loadTradeChart() {
         lineStyle: LightweightCharts.LineStyle.Dashed, axisLabelVisible: true, title: "TP",
     }));
     _tradeChart.timeScale().fitContent();
+    // v14.19.35: force a post-paint resize + fit. On mobile, the chart is
+    // created just after cs.style.display = "flex" but BEFORE the browser
+    // paints the new layout, so Lightweight Charts measures 0x0. Data + fit
+    // then have nothing to render. Two rAF cycles (browser paints between
+    // the two) then a re-measure + re-fit fixes it. Cheap; no visible flicker.
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+        try {
+            const el = document.getElementById("trade-chart");
+            if (!el || !_tradeChart) return;
+            const r = el.getBoundingClientRect();
+            if (r.width > 0 && r.height > 0) {
+                _tradeChart.applyOptions({ width: Math.floor(r.width), height: Math.floor(r.height) });
+                _tradeChart.timeScale().fitContent();
+            }
+        } catch (e) { /* chart destroyed between rAFs */ }
+    }));
 }
 
 function wireTradeChart() {
