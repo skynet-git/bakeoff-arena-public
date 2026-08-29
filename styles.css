@@ -1,0 +1,642 @@
+/* Bakeoff Arena — v2 (multi-view tournament + drill-down) */
+
+:root {
+    --bg: #0a0e14;
+    --panel: #111821;
+    --panel-alt: #0e1520;
+    --border: #1f2a37;
+    --border-strong: #2a3948;
+    --text: #cbd5e1;
+    --text-dim: #64748b;
+    --text-bright: #f1f5f9;
+    --green: #10b981;
+    --red: #ef4444;
+    --amber: #f59e0b;
+    --accent: #38bdf8;
+    --purple: #a78bfa;
+    --mono: 'JetBrains Mono', 'IBM Plex Mono', 'Fira Code', 'Menlo', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.4;
+    height: 100vh;
+    overflow: hidden;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============================ Top bar */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: var(--panel);
+    border-bottom: 1px dashed var(--border-strong);
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+.brand { display: flex; flex-direction: column; gap: 2px; min-width: 180px; }
+.brand-name { font-size: 16px; font-weight: 700; letter-spacing: 0.15em; color: var(--text-bright); }
+.brand-sub { color: var(--text-dim); font-size: 10px; letter-spacing: 0.1em; }
+
+.nav {
+    display: flex;
+    gap: 4px;
+    flex: 1;
+    justify-content: center;
+}
+
+.nav-btn {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--text-dim);
+    padding: 6px 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.nav-btn.active {
+    color: var(--text-bright);
+    border-color: var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+}
+
+.highlow { display: flex; gap: 20px; font-size: 11px; min-width: 260px; justify-content: flex-end; }
+.highlow .label { color: var(--text-dim); margin-right: 5px; }
+.highest { color: var(--green); }
+.lowest  { color: var(--red); }
+
+/* ============================ Views */
+.view {
+    flex: 1;
+    display: grid;
+    padding: 12px;
+    gap: 12px;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.view.hidden { display: none; }
+
+#view-overview {
+    grid-template-columns: 1.7fr 1fr;
+    grid-template-rows: 1fr auto;
+    grid-template-areas:
+        "chart feed"
+        "leaderboard leaderboard";
+}
+.chart-panel        { grid-area: chart; }
+.feed-panel         { grid-area: feed; }
+.leaderboard-panel  { grid-area: leaderboard; max-height: 45vh; }
+
+#view-models {
+    grid-template-columns: 1.2fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "header header"
+        "trades feed"
+        "positions feed";
+}
+.model-header-panel     { grid-area: header; }
+.model-trades-panel     { grid-area: trades; }
+.model-positions-panel  { grid-area: positions; max-height: 300px; }
+.model-decisions-panel  { grid-area: feed; }
+
+#view-symbols {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "search search"
+        "decisions matrix"
+        "decisions matrix";
+}
+.symbol-search-panel      { grid-area: search; }
+.symbol-decisions-panel   { grid-area: decisions; }
+.agreement-panel          { grid-area: matrix; max-height: 500px; }
+
+#view-decisions {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "filter"
+        "feed";
+}
+.filter-panel { grid-area: filter; }
+#view-decisions .feed-panel { grid-area: feed; }
+
+/* ============================ Panels */
+.chart-panel, .feed-panel, .leaderboard-panel,
+.model-header-panel, .model-trades-panel, .model-positions-panel, .model-decisions-panel,
+.symbol-search-panel, .symbol-decisions-panel, .agreement-panel,
+.filter-panel {
+    background: var(--panel);
+    border: 1px dashed var(--border-strong);
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    border-bottom: 1px dashed var(--border);
+    color: var(--text-dim);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    gap: 12px;
+}
+
+/* padding removed 2026-08-25: was 4px, but clientHeight includes padding →
+   TradingView chart height sized to container.clientHeight rendered its
+   time axis in the bottom padding zone, which got clipped by the parent
+   panel's overflow:hidden. Result: axis blank. Zero padding = axis visible. */
+.chart-canvas { flex: 1; min-height: 0; padding: 0; }
+
+/* Trade-chart split view (2026-08-26) */
+#feed-or-chart { display:flex; flex-direction:column; min-height:0; }
+#trade-chart { width:100%; height:100%; }
+.hint { color: var(--text-dim); font-size: 10px; }
+tbody tr.selected { background:#1a2635 !important; box-shadow: inset 3px 0 0 #38bdf8; }
+.feed .feed-item.compact { padding:6px 12px; }
+.feed .feed-item.compact .feed-r1 { margin-bottom:0; }
+.feed .feed-item.compact .feed-r2 { display:none; }
+.feed .feed-item.compact .feed-r3 { margin-top:2px; font-size:10px; color:var(--text-dim);
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.feed .feed-item.compact:hover .feed-r3 { color:var(--text); }
+/* Expanded chart mode — feed-or-chart panel takes the whole grid */
+#view-models.chart-expanded { grid-template-columns: 1fr; grid-template-rows: auto 1fr;
+    grid-template-areas: "header" "feed"; }
+#view-models.chart-expanded .model-header-panel { grid-area: header; }
+#view-models.chart-expanded .model-trades-panel,
+#view-models.chart-expanded .model-positions-panel { display:none; }
+#view-models.chart-expanded .model-decisions-panel { grid-area: feed; }
+
+.toggles { display: flex; gap: 4px; }
+.toggle {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--text-dim);
+    padding: 3px 10px;
+    font-family: var(--mono);
+    font-size: 10px;
+    cursor: pointer;
+}
+.toggle.active { color: var(--text-bright); border-color: var(--accent); background: rgba(56, 189, 248, 0.08); }
+
+/* ============================ Table helpers */
+.table-scroll { flex: 1; overflow: auto; min-height: 0; }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+}
+th, td {
+    text-align: left;
+    padding: 5px 8px;
+    border-bottom: 1px dashed var(--border);
+    white-space: nowrap;
+}
+th {
+    color: var(--text-dim);
+    text-transform: uppercase;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    background: var(--panel-alt);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+tbody tr { cursor: pointer; }
+tbody tr:hover { background: rgba(56, 189, 248, 0.04); }
+th.num, td.num { text-align: right; font-variant-numeric: tabular-nums; }
+/* 2026-08-28: click-to-sort headers */
+thead th[data-sort] { cursor: pointer; user-select: none; transition: color 0.15s; }
+thead th[data-sort]:hover { color: var(--accent, #38bdf8); }
+/* Sort direction indicator — separated visually so column label reads clean */
+.sort-ind { opacity: 0.55; font-size: 0.85em; margin-left: 4px; color: var(--accent, #38bdf8); }
+
+/* 2026-08-28: hint chip in panel headers — signals a discoverable action */
+.hint-chip {
+    font-size: 11px;
+    color: var(--text-dim, #94a3b8);
+    background: rgba(56, 189, 248, 0.06);
+    border: 1px dashed rgba(56, 189, 248, 0.25);
+    padding: 2px 8px;
+    border-radius: 10px;
+    letter-spacing: 0.02em;
+    margin-left: 12px;
+}
+/* Trade-log leading icon column — signals click-to-drill affordance */
+td.row-icon { text-align: center; opacity: 0.55; width: 24px; padding: 4px 0; }
+tbody tr:hover td.row-icon { opacity: 1; }
+
+/* 2026-08-28: chip-preset date picker (Today/Yesterday/7d/All/Custom…) */
+.date-chips, .chip-group { display: inline-flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+.chip {
+    background: transparent;
+    border: 1px solid var(--border, #2a3948);
+    color: var(--text-dim, #94a3b8);
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: all 0.12s ease;
+}
+.chip:hover { color: var(--text, #cbd5e1); border-color: var(--accent, #38bdf8); }
+.chip.active {
+    background: rgba(56, 189, 248, 0.15);
+    border-color: var(--accent, #38bdf8);
+    color: var(--accent, #38bdf8);
+}
+.custom-range { display: inline-flex; gap: 6px; align-items: center; margin-left: 6px; }
+.custom-range.hidden { display: none !important; }
+
+/* Active-filter chips row (shown above the Decisions feed after Apply) */
+.active-filters {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    margin-top: 8px; padding: 0 12px;
+}
+.filter-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    color: var(--text, #cbd5e1);
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.12s;
+}
+.filter-chip:hover { background: rgba(239, 68, 68, 0.15); border-color: #ef4444; }
+.filter-chip-x { color: var(--text-dim); font-weight: bold; line-height: 1; }
+.filter-chip:hover .filter-chip-x { color: #ef4444; }
+
+/* Leaderboard drill-down chevron — appears on hover to signal clickable row */
+.drill-cue {
+    opacity: 0;
+    color: var(--accent, #38bdf8);
+    margin-left: 4px;
+    font-size: 14px;
+    transition: opacity 0.15s;
+}
+tbody tr:hover .drill-cue { opacity: 0.8; }
+
+/* 2026-08-28: feed rationale "+N more" badge — reveals truncated content
+   lives in the drawer. Compact, non-competitive with the rationale text. */
+.more-badge {
+    display: inline-block;
+    font-size: 10px;
+    padding: 1px 6px;
+    border: 1px dashed var(--border, #2a3948);
+    border-radius: 8px;
+    color: var(--text-dim, #94a3b8);
+    margin-left: 4px;
+    letter-spacing: 0.02em;
+}
+
+/* Reasoning drawer: rationale + raw response side-by-side on wide viewports,
+   stacked on narrow. Prior stacked-only layout wasted the wide side panel
+   and made it hard to spot LLMs copying raw text verbatim into rationale. */
+.drawer-two-col {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+@media (min-width: 900px) {
+    .drawer-two-col { grid-template-columns: 1fr 1fr; }
+}
+
+/* 2026-08-28: fade-in for newly-arrived decision feed rows. Keeps the
+   whole list from strobing on cold-start (see isColdStart in renderFeed). */
+@keyframes feedRowFlash {
+    0%   { background: rgba(56, 189, 248, 0.18); }
+    100% { background: transparent; }
+}
+.feed-row-new {
+    animation: feedRowFlash 1.6s ease-out;
+}
+
+/* 2026-08-28: equity chart legend overlay. Replaces Lightweight Charts'
+   built-in series title labels which crashed into each other when 6
+   providers were spread across a wide y-range. Absolute-positioned card
+   in the top-right of the chart canvas, click a row to toggle series. */
+.chart-with-legend { position: relative; flex: 1; min-height: 0; display: flex; }
+.chart-with-legend .chart-canvas { flex: 1; min-height: 0; }
+.chart-legend {
+    /* 2026-08-28 v14.19.20: moved from top-right → top-LEFT so it no longer
+       overlaps the highest-ranked model's line (which typically sits at the
+       top-right of the chart area). Left edge clears the price-scale gutter
+       on the LEFT (none — price scale is on the right by default). */
+    position: absolute;
+    top: 8px; left: 12px;
+    background: rgba(10, 17, 25, 0.85);
+    border: 1px solid var(--border, #2a3948);
+    border-radius: 6px;
+    padding: 4px 0;
+    font-size: 11px;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+    max-width: 240px;
+    pointer-events: auto;
+}
+.legend-row {
+    display: grid;
+    grid-template-columns: 12px 1fr auto;
+    gap: 8px;
+    align-items: center;
+    padding: 3px 10px;
+    cursor: pointer;
+    transition: background 0.15s, opacity 0.15s;
+}
+.legend-row:hover { background: rgba(56, 189, 248, 0.08); }
+.legend-row.hidden { opacity: 0.35; text-decoration: line-through; }
+.legend-dot { width: 10px; height: 10px; border-radius: 2px; }
+.legend-label { color: var(--text, #cbd5e1); }
+.legend-val { color: var(--text-dim, #94a3b8); font-variant-numeric: tabular-nums; }
+/* v14.19.21: benchmark index overlay rows — visually subordinate to model
+   rows (dashed dot border, italic label). Off state shows a "+" to prompt
+   click. */
+.legend-divider { height: 1px; background: var(--border, #2a3948); margin: 4px 8px; }
+.legend-row.legend-index { font-style: italic; }
+.legend-row.legend-index .legend-dot { border-radius: 0; }
+.legend-row.legend-index.off .legend-val { color: var(--accent, #38bdf8); font-weight: 700; font-style: normal; }
+.legend-row.legend-index.off { opacity: 0.6; }
+.legend-row.legend-index.off:hover { opacity: 1; }
+
+/* 2026-08-28: responsive breakpoint — dashboard was desktop-only. Below
+   1100px, hide secondary leaderboard columns so the primary ones stay
+   readable. Below 720px, add a "view on desktop" hint (rare use case;
+   most spectators will be on a phone via the shared public URL). */
+@media (max-width: 1100px) {
+    /* Hide secondary/derivative columns — keep the primary equity story. */
+    #leaderboard th:nth-child(8),  /* P&L (Total)  */
+    #leaderboard td:nth-child(8),
+    #leaderboard th:nth-child(9),  /* Cost (Day)   */
+    #leaderboard td:nth-child(9),
+    #leaderboard th:nth-child(14), /* Open         */
+    #leaderboard td:nth-child(14),
+    #leaderboard th:nth-child(15), /* BP Used      */
+    #leaderboard td:nth-child(15) { display: none; }
+    /* Chart legend can crowd narrow charts — pull it into a corner. */
+    .chart-legend { max-width: 160px; font-size: 10px; }
+}
+@media (max-width: 720px) {
+    /* Below phone-portrait width, layout gets brittle. Show a hint.
+       Sidecar dashboards are inherently dense; a full mobile rework is
+       out of scope. */
+    body::before {
+        content: "📱 Dashboard is best viewed on a desktop or tablet in landscape.";
+        display: block;
+        background: rgba(251, 191, 36, 0.15);
+        color: #fbbf24;
+        padding: 8px 12px;
+        text-align: center;
+        font-size: 12px;
+        border-bottom: 1px solid #fbbf24;
+    }
+}
+
+/* 2026-08-28: obfuscation eye toggle in topbar */
+.obfuscate-btn {
+    background: transparent;
+    border: 1px solid var(--border, #2a3948);
+    color: var(--text, #cbd5e1);
+    font-size: 16px;
+    line-height: 1;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: 12px;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.obfuscate-btn:hover {
+    background: rgba(56, 189, 248, 0.08);
+    color: var(--accent, #38bdf8);
+    border-color: var(--accent, #38bdf8);
+}
+.obfuscate-btn.obfuscate-on {
+    background: rgba(251, 191, 36, 0.12);
+    color: #fbbf24;
+    border-color: #fbbf24;
+}
+
+/* 2026-08-28: market-context bar — SPY / QQQ / IWM % change under topbar.
+   Reads at a glance so operators can distinguish "bad model" from "bad
+   day for everything." 60s poll cadence matches server-side Polygon cache. */
+.market-context {
+    display: flex; gap: 18px; align-items: center;
+    padding: 6px 20px;
+    background: rgba(10, 17, 25, 0.6);
+    border-bottom: 1px solid var(--border, #2a3948);
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    color: var(--text-dim, #94a3b8);
+}
+.mc-label { color: var(--text-dim, #94a3b8); font-weight: 600; font-size: 10px; letter-spacing: 0.15em; }
+.mc-slot { font-variant-numeric: tabular-nums; }
+.mc-stale { margin-left: auto; font-size: 10px; opacity: 0.7; }
+
+/* 2026-08-28: keyboard-shortcuts hint — hover to see the map */
+.kbd-hint {
+    display: inline-flex; align-items: center;
+    font-size: 14px;
+    color: var(--text-dim, #94a3b8);
+    margin-left: 8px;
+    cursor: help;
+    opacity: 0.6;
+    transition: opacity 0.15s;
+}
+.kbd-hint:hover { opacity: 1; }
+
+/* Leaderboard rank badges */
+.rank-badge { display: inline-block; width: 20px; text-align: center; font-weight: 700; }
+.rank-1 { color: gold; }
+.rank-2 { color: silver; }
+.rank-3 { color: #cd7f32; }
+
+/* P&L color */
+.pnl-pos { color: var(--green); }
+.pnl-neg { color: var(--red); }
+.pnl-zero { color: var(--text-dim); }
+
+/* Provider color dot */
+.dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+/* ============================ Decision feed */
+.feed { flex: 1; overflow-y: auto; padding: 8px 12px; min-height: 0; }
+.feed-row {
+    padding: 6px 4px;
+    border-bottom: 1px dashed var(--border);
+    cursor: pointer;
+    font-size: 11px;
+}
+.feed-row:hover { background: rgba(56, 189, 248, 0.05); }
+.feed-r1 { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.feed-r2 { display: flex; justify-content: space-between; font-size: 10px; color: var(--text-dim); margin-top: 3px; gap: 12px; }
+.feed-r3 { font-size: 10px; color: var(--text); margin-top: 3px; opacity: 0.75; }
+.feed-decision {
+    font-weight: 700;
+    padding: 1px 6px;
+    border: 1px solid;
+    border-radius: 2px;
+    font-size: 10px;
+}
+.dec-ENTER          { color: #34d399; border-color: #10b981; background: rgba(16,185,129,0.06); }
+.dec-SKIP           { color: var(--text-dim); border-color: var(--border-strong); }
+.dec-HOLD           { color: var(--accent); border-color: var(--accent); background: rgba(56,189,248,0.06); }
+.dec-CLOSE          { color: var(--amber); border-color: var(--amber); background: rgba(245,158,11,0.06); }
+.dec-FLIP_TO_LONG   { color: var(--purple); border-color: var(--purple); background: rgba(167,139,250,0.06); }
+.dec-FLIP_TO_SHORT  { color: var(--purple); border-color: var(--purple); background: rgba(167,139,250,0.06); }
+.dec-FAIL           { color: var(--red); border-color: var(--red); background: rgba(239,68,68,0.06); }
+
+.dir-LONG  { color: var(--green); }
+.dir-SHORT { color: var(--red); }
+
+/* ============================ Model view */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 8px;
+    padding: 12px;
+}
+.stat-card {
+    background: var(--panel-alt);
+    border: 1px dashed var(--border);
+    padding: 8px 10px;
+}
+.stat-label { font-size: 9px; text-transform: uppercase; color: var(--text-dim); letter-spacing: 0.1em; }
+.stat-value { font-size: 16px; margin-top: 4px; font-weight: 600; }
+
+#model-selector, #filter-provider, #filter-decision, #symbol-input, #filter-symbol {
+    background: var(--panel-alt);
+    border: 1px solid var(--border-strong);
+    color: var(--text-bright);
+    padding: 5px 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+}
+#symbol-go, #filter-apply {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 5px 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+.filters { display: flex; gap: 6px; }
+.filter-count { padding: 6px 12px; font-size: 10px; color: var(--text-dim); }
+
+.symbol-summary {
+    padding: 12px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px;
+}
+
+/* ============================ Agreement matrix */
+.matrix-table { border-collapse: collapse; font-size: 10px; margin: 12px; }
+.matrix-table td, .matrix-table th { padding: 6px 8px; text-align: center; border: 1px solid var(--border); }
+.matrix-table th { background: var(--panel-alt); color: var(--text-dim); }
+
+/* ============================ Reasoning drawer */
+.drawer {
+    position: fixed;
+    top: 0; right: 0;
+    width: 440px;
+    height: 100vh;
+    background: var(--panel);
+    border-left: 1px dashed var(--border-strong);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    box-shadow: -8px 0 24px rgba(0,0,0,0.4);
+}
+.drawer.hidden { display: none; }
+.drawer-header {
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed var(--border);
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 11px;
+}
+.drawer-header button {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+    padding: 3px 10px;
+    cursor: pointer;
+    font-family: var(--mono);
+}
+#drawer-body { flex: 1; overflow-y: auto; padding: 16px; }
+#drawer-body h4 { color: var(--text-dim); text-transform: uppercase; font-size: 10px; letter-spacing: 0.1em; margin: 12px 0 4px; }
+#drawer-body .rationale {
+    background: var(--panel-alt);
+    padding: 10px;
+    border-left: 3px solid var(--accent);
+    font-size: 12px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    margin: 6px 0;
+}
+#drawer-body pre.raw {
+    background: #000;
+    color: #a3e4a3;
+    font-size: 10px;
+    padding: 8px;
+    overflow-x: auto;
+    max-height: 220px;
+    white-space: pre-wrap;
+}
+#drawer-body dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; font-size: 11px; }
+#drawer-body dt { color: var(--text-dim); }
+
+/* ============================ Statusbar */
+.statusbar {
+    padding: 5px 20px;
+    background: var(--panel);
+    border-top: 1px dashed var(--border-strong);
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+.halt-yes { color: var(--red); font-weight: 700; }
+.halt-no  { color: var(--green); }

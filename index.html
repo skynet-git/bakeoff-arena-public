@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakeoff Arena</title>
+    <link rel="stylesheet" href="./styles.css">
+
+<script>window.BAKEOFF_PUBLIC = true;</script>
+<style>.public-banner{background:#0b1626;border-bottom:1px solid #38bdf8;color:#38bdf8;padding:5px 20px;font-size:12px;letter-spacing:0.08em;text-align:center;font-weight:600}.public-banner .updated{color:#94a3b8;font-weight:400;margin-left:8px}</style>
+</head>
+<body>
+<div class="public-banner">🌐 BAKEOFF ARENA · PUBLIC VIEW · MODEL IDENTITIES HIDDEN<span class="updated" id="pb-updated"></span></div>
+
+    <header class="topbar">
+        <div class="brand">
+            <span class="brand-name">BAKEOFF ARENA</span>
+            <span class="brand-sub" id="run-id">loading…</span>
+        </div>
+        <nav class="nav">
+            <button class="nav-btn active" data-view="overview">Overview</button>
+            <button class="nav-btn" data-view="models">Models</button>
+            <button class="nav-btn" data-view="decisions">Decisions</button>
+        </nav>
+        <div class="highlow" id="highlow">
+            <div class="highest"><span class="label">HIGHEST:</span> <span id="highest">—</span></div>
+            <div class="lowest"><span class="label">LOWEST:</span> <span id="lowest">—</span></div>
+        </div>
+        <button
+            id="obfuscate-toggle"
+            class="obfuscate-btn"
+            title="Hide model identities (Model 1, Model 2, …)"
+            aria-label="Toggle model identity obfuscation"
+        >👁</button>
+        <span
+            class="kbd-hint"
+            title="Keyboard shortcuts:
+1 / 2 / 3 = switch tabs
+Esc      = close drawer or chart
+/        = focus search (on Decisions view)"
+        >⌨</span>
+    </header>
+    <div id="market-context" class="market-context" title="Market context — helps read losses/gains against the broader tape">
+        <span class="mc-label">MARKET:</span>
+        <span class="mc-slot" data-sym="SPY">SPY —</span>
+        <span class="mc-slot" data-sym="QQQ">QQQ —</span>
+        <span class="mc-slot" data-sym="IWM">IWM —</span>
+        <span class="mc-stale" id="mc-stale"></span>
+    </div>
+
+    <!-- ============================================================ OVERVIEW -->
+    <main id="view-overview" class="view">
+        <section class="chart-panel">
+            <div class="panel-header">
+                <span>EQUITY (STARTING $10k)</span>
+                <div class="toggles" id="equity-range-toggles">
+                    <button class="toggle" data-range="1H">1H</button>
+                    <button class="toggle" data-range="1D">1D</button>
+                    <button class="toggle" data-range="1W">1W</button>
+                    <button class="toggle active" data-range="ALL">ALL</button>
+                </div>
+                <div class="toggles">
+                    <button class="toggle active" data-mode="dollar">$</button>
+                    <button class="toggle" data-mode="pct">%</button>
+                </div>
+            </div>
+            <div class="chart-with-legend">
+                <div id="equity-chart" class="chart-canvas"></div>
+                <div id="chart-legend" class="chart-legend" title="Click a row to hide/show that model"></div>
+            </div>
+        </section>
+
+        <section class="leaderboard-panel">
+            <div class="panel-header">LEADERBOARD (all-time)</div>
+            <div class="table-scroll">
+                <table id="leaderboard">
+                    <thead>
+                        <tr id="leaderboard-header">
+                            <th data-sort="rank">#</th>
+                            <th data-sort="display_name">Model</th>
+                            <th class="num" data-sort="ob_day">OB (Day)</th>
+                            <th class="num" data-sort="buying_power">BP</th>
+                            <th class="num" data-sort="realized_pnl_day">Real (Day)</th>
+                            <th class="num" data-sort="unrealized_pnl">Unreal</th>
+                            <th class="num" data-sort="pnl_day">P&amp;L (Day)</th>
+                            <th class="num" data-sort="pnl_total">P&amp;L (Total)</th>
+                            <th class="num" data-sort="cost_day_usd">Cost (Day)</th>
+                            <th class="num" data-sort="cost_total_usd">Cost (Total)</th>
+                            <th class="num" data-sort="cost_per_trade" title="Cost (Total) ÷ Trades (Total). Lower = more efficient use of LLM budget per trade decision.">$/Trade</th>
+                            <th class="num" data-sort="net_pnl_day">Net (Day)</th>
+                            <th class="num" data-sort="n_trades_total">Trades D/T</th>
+                            <th class="num" data-sort="win_rate_day">Win%</th>
+                            <th class="num" data-sort="n_open_positions">Open</th>
+                            <th class="num" data-sort="buying_power_used">BP Used</th>
+                            <th class="num" data-sort="equity">Equity</th>
+                            <th data-sort="halted">Halt</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-body"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="feed-panel">
+            <div class="panel-header">
+                <span>LIVE DECISION FEED (click for reasoning)</span>
+                <div class="chip-group" id="feed-filter-chips" style="margin-left:auto">
+                    <button class="chip active" data-feed-filter="all">All</button>
+                    <button class="chip" data-feed-filter="enters">Enters only</button>
+                    <button class="chip" data-feed-filter="exits">Exits only</button>
+                </div>
+            </div>
+            <div id="feed-overview" class="feed"></div>
+        </section>
+    </main>
+
+    <!-- ============================================================== MODELS -->
+    <main id="view-models" class="view hidden">
+        <section class="model-header-panel">
+            <div class="panel-header">
+                <span>MODEL DRILL-DOWN</span>
+                <select id="model-selector"></select>
+                <div class="date-chips" data-target="model" style="margin-left:auto">
+                    <button class="chip" data-preset="today">Today</button>
+                    <button class="chip" data-preset="yesterday">Yesterday</button>
+                    <button class="chip" data-preset="7d">7d</button>
+                    <button class="chip active" data-preset="all">All</button>
+                    <button class="chip" data-preset="custom">Custom…</button>
+                    <div class="custom-range hidden">
+                        <input id="model-filter-since" type="date" title="Start (inclusive)" />
+                        <span style="color:var(--text-dim);font-size:11px">→</span>
+                        <input id="model-filter-until" type="date" title="End (inclusive)" />
+                        <button id="model-filter-apply" class="chip">Apply</button>
+                    </div>
+                </div>
+            </div>
+            <div id="model-stats" class="stats-grid"></div>
+        </section>
+
+        <section class="model-positions-panel">
+            <div class="panel-header">OPEN POSITIONS</div>
+            <div class="table-scroll" style="max-height: 260px">
+                <table id="model-positions">
+                    <thead>
+                        <tr><th>Entry</th><th>Sym</th><th>Dir</th><th class="num">Shares</th>
+                            <th class="num">Entry $</th><th class="num">Notional</th>
+                            <th class="num">Stop</th><th class="num">TP</th></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="model-trades-panel">
+            <div class="panel-header">
+                <span>TRADE LOG (closed)</span>
+                <span class="hint-chip" title="Click any row to see the price chart with entry/exit markers">💡 Click a row to view its chart →</span>
+            </div>
+            <div class="table-scroll" style="max-height: 400px">
+                <table id="model-trades">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Exit ts</th><th>Sym</th><th>Dir</th>
+                            <th class="num">Shares</th><th class="num">Entry</th><th class="num">Exit</th>
+                            <th>Reason</th><th class="num">P&amp;L $</th><th class="num">P&amp;L %</th><th class="num">Hold</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="model-decisions-panel" id="feed-or-chart">
+            <!-- Default state: MODEL DECISION FEED -->
+            <div id="feed-state" style="display:flex; flex-direction:column; flex:1; min-height:0;">
+                <div class="panel-header">MODEL DECISION FEED (all types)</div>
+                <div id="feed-model" class="feed"></div>
+            </div>
+            <!-- Chart state (shown when a trade/position row is clicked) -->
+            <div id="chart-state" style="display:none; flex-direction:column; flex:1; min-height:0;">
+                <div class="panel-header" style="align-items:center">
+                    <div id="chart-title" style="display:flex; gap:12px; align-items:baseline; flex-wrap:wrap; flex:1;"></div>
+                    <div style="display:flex; gap:6px;">
+                        <button id="chart-expand" class="toggle" title="Expand to full view">⛶</button>
+                        <button id="chart-close" class="toggle" title="Close chart">✕</button>
+                    </div>
+                </div>
+                <div style="flex:1.4; display:flex; flex-direction:column; min-height:0; border-bottom:1px dashed var(--border);">
+                    <div id="trade-chart" style="flex:1; min-height:0;"></div>
+                    <div class="chart-footer" style="display:flex; justify-content:space-between; align-items:center; padding:8px 12px; border-top:1px dashed var(--border); font-size:10px;">
+                        <div class="tf-toggle" style="display:flex; gap:4px;">
+                            <button class="toggle chart-tf active" data-tf="1m">1m</button>
+                            <button class="toggle chart-tf" data-tf="5m">5m</button>
+                        </div>
+                        <div class="range-toggle" style="display:flex; gap:4px;">
+                            <button class="toggle chart-range active" data-range="today">Today</button>
+                            <button class="toggle chart-range" data-range="3d">3D</button>
+                            <button class="toggle chart-range" data-range="1w">1W</button>
+                        </div>
+                        <div id="chart-slhint" class="hint"></div>
+                    </div>
+                </div>
+                <div style="flex:1; display:flex; flex-direction:column; min-height:0;">
+                    <div class="panel-header">DECISION FEED · <span id="chart-sym-label" style="color:var(--sel-accent)"></span> only</div>
+                    <div id="chart-sym-feed" class="feed" style="padding:0;"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- =========================================================== DECISIONS -->
+    <main id="view-decisions" class="view hidden">
+        <section class="filter-panel">
+            <div class="panel-header">
+                <span>DECISION FEED — filter by provider / symbol / decision</span>
+                <div class="filters">
+                    <select id="filter-provider"><option value="">All providers</option></select>
+                    <input id="filter-symbol" placeholder="Symbol" />
+                    <select id="filter-decision">
+                        <option value="">All decisions</option>
+                        <option value="ENTER">ENTER</option>
+                        <option value="SKIP">SKIP</option>
+                        <option value="HOLD">HOLD</option>
+                        <option value="CLOSE">CLOSE</option>
+                        <option value="FLIP_TO_LONG">FLIP_TO_LONG</option>
+                        <option value="FLIP_TO_SHORT">FLIP_TO_SHORT</option>
+                    </select>
+                    <div class="date-chips" data-target="decisions">
+                        <button class="chip" data-preset="today">Today</button>
+                        <button class="chip" data-preset="yesterday">Yesterday</button>
+                        <button class="chip" data-preset="7d">7d</button>
+                        <button class="chip active" data-preset="all">All</button>
+                        <button class="chip" data-preset="custom">Custom…</button>
+                        <div class="custom-range hidden">
+                            <input id="filter-since" type="date" title="Start (inclusive)" />
+                            <span style="color:var(--text-dim);font-size:11px">→</span>
+                            <input id="filter-until" type="date" title="End (inclusive)" />
+                        </div>
+                    </div>
+                    <button id="filter-apply">Apply</button>
+                    <button id="filter-clear" class="toggle" title="Clear all filters">Clear</button>
+                    <div id="active-filters" class="active-filters"></div>
+                </div>
+            </div>
+            <div id="filter-count" class="filter-count"></div>
+        </section>
+        <section class="feed-panel">
+            <div id="feed-decisions" class="feed"></div>
+        </section>
+    </main>
+
+    <!-- ============================================== REASONING SIDE DRAWER -->
+    <aside id="reasoning-drawer" class="drawer hidden">
+        <div class="drawer-header">
+            <span>DECISION DETAIL</span>
+            <button id="close-drawer">✕</button>
+        </div>
+        <div id="drawer-body"></div>
+    </aside>
+
+    <footer class="statusbar">
+        <span id="last-refresh">—</span>
+        <span id="refresh-info"></span>
+    </footer>
+
+    <script src="https://unpkg.com/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js"></script>
+    <script src="./app.js"></script>
+<script>(function(){async function u(){try{const m=await(await fetch("data/meta.json",{cache:"no-store"})).json();const el=document.getElementById("pb-updated");if(!el||!m||!m.last_updated_iso)return;const d=new Date(m.last_updated_iso);el.textContent=" · Last updated: "+d.toLocaleString(undefined,{month:"short",day:"numeric",hour:"numeric",minute:"2-digit",second:"2-digit",hour12:true});}catch(e){}}u();setInterval(u,60000);})();</script>
+</body>
+</html>
