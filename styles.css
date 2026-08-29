@@ -1044,10 +1044,33 @@ tbody tr:hover .drill-cue { opacity: 0.8; }
         max-height: 40vh !important;
         max-height: 40svh !important;
     }
-    /* Chart-state (when a trade is clicked): stack chart above symbol feed */
+    /* v14.19.36 (mobile chart drill-down)
+       #chart-state has THREE direct children in this order:
+         1) .panel-header wrapping #chart-title (meta line — auto height)
+         2) chart wrapper containing #trade-chart + .chart-footer
+         3) feed wrapper containing panel-header + #chart-sym-feed
+       Prior rules used first-of-type/last-of-type which mis-targeted the
+       header as the chart wrapper (invisible chart). Fixed with nth-child
+       so the assignment is unambiguous. */
     #chart-state > div { flex: none !important; }
-    #chart-state > div:first-of-type { height: 40vh; height: 40svh; }
-    #chart-state > div:last-of-type  { flex: 1 !important; min-height: 200px; }
+    #chart-state > div:nth-child(2) { height: 40vh; height: 40svh; }
+    #chart-state > div:nth-child(3) { flex: 1 !important; min-height: 200px; }
+
+    /* v14.19.36: color dots in feed rows getting stretched by wrapping
+       flex containers. Force inline-block + no-shrink + explicit sizing so
+       the round shape holds regardless of flex context. */
+    .dot,
+    .feed-row .dot,
+    .feed-item .dot {
+        display: inline-block !important;
+        width: 8px !important;
+        height: 8px !important;
+        min-width: 8px !important;
+        min-height: 8px !important;
+        flex-shrink: 0 !important;
+        border-radius: 50% !important;
+        vertical-align: middle;
+    }
 
     /* ---- Decisions tab: filter bar wraps ---- */
     .filter-panel .panel-header { flex-wrap: wrap; gap: 6px; padding: 6px 10px; }
