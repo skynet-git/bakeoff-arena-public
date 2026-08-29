@@ -125,6 +125,15 @@ async function init() {
         obfuscated = true;
         const b = document.getElementById("obfuscate-toggle"); if (b) b.style.display = "none";
         const k = document.querySelector(".kbd-hint"); if (k) k.style.display = "none";
+        // v14.19.37: trade-chart tf (1m/5m) and range (Today/3D/1W)
+        // toggles do nothing useful in public mode — publisher writes
+        // ONE JSON per trade (tf=1m, range=today) so switching either
+        // just re-fetches the same file. Hide them to remove the
+        // false-affordance. Live dashboard keeps them functional.
+        const tfWrap = document.querySelector(".tf-toggle");
+        const rgWrap = document.querySelector(".range-toggle");
+        if (tfWrap) tfWrap.style.display = "none";
+        if (rgWrap) rgWrap.style.display = "none";
     }
     _applyObfuscateButtonState();
     // v14.19.19: kick off market-context poll (SPY/QQQ/IWM). 60s cadence
@@ -803,20 +812,31 @@ function renderMobileLeaderboard(rows) {
         const deltaPct = ((equity / config.starting_capital) - 1) * 100;
         const deltaCls = deltaPct >= 0 ? "pnl-pos" : "pnl-neg";
         const rankCls = rank <= 3 ? `rank-${rank}` : "";
-        const winPct = (r.win_rate_day * 100).toFixed(0);
+        // v14.19.37: mobile card shows LIFETIME win rate, not today-only.
+        // Today's rate is meaningless outside trading hours (and misleading
+        // on days a model didn't trade). Fall back to day rate if the
+        // server didn't return a total (pre-v14.19.37 snapshots).
+        const winRate = r.win_rate_total != null ? r.win_rate_total : r.win_rate_day;
+        const winPct = (winRate * 100).toFixed(0);
         const card = document.createElement("div");
         card.className = "m-lb-card";
+        // v14.19.37: rank tooltip explains the podium coloring so 1 (gold)
+        // vs 3 (bronze) — which look similar on dark screens — is at least
+        // documented. Trades label clarifies day/total.
+        const rankTitle = rank <= 3
+            ? `Rank ${rank} — ${rank === 1 ? 'gold' : rank === 2 ? 'silver' : 'bronze'} podium`
+            : `Rank ${rank}`;
         card.innerHTML = `
-            <div class="m-lb-rank ${rankCls}">${rank}</div>
+            <div class="m-lb-rank ${rankCls}" title="${rankTitle}">${rank}</div>
             <div class="m-lb-name">
                 <span class="dot" style="background:${r.color}"></span>
                 <span>${displayModel(r.display_name)}</span>
             </div>
             <div class="m-lb-equity">${money(equity)}</div>
             <div class="m-lb-meta">
-                <span>W ${winPct}%</span>
-                <span>T ${r.n_trades_day}/${r.n_trades_total}</span>
-                <span>Cost ${money(r.cost_total_usd)}</span>
+                <span title="Lifetime win rate (wins ÷ closed trades)">W ${winPct}%</span>
+                <span title="Trades today / lifetime">T ${r.n_trades_day}/${r.n_trades_total}</span>
+                <span title="Total LLM API cost">Cost ${money(r.cost_total_usd)}</span>
             </div>
             <div class="m-lb-delta ${deltaCls}">${fmtPct(deltaPct, true)}</div>
             ${r.halted ? '<div class="m-lb-halt">⛔ HALTED</div>' : ''}

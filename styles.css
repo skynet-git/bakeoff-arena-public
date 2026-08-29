@@ -997,7 +997,11 @@ tbody tr:hover .drill-cue { opacity: 0.8; }
         gap: 3px;
     }
     .feed-r1 { flex-wrap: wrap; gap: 6px; }
-    .feed-r1 span:first-child { min-width: 0; flex: 1; }
+    /* v14.19.37: was `.feed-r1 span:first-child { flex: 1 }` — but the
+       first span IS the .dot, so we accidentally told the dot to grow-
+       to-fill the row (rendered as long horizontal ovals). Target the
+       SECOND span (the name/decision text) instead. */
+    .feed-r1 > span:nth-child(2) { min-width: 0; flex: 1; }
     .feed-r2 { font-size: 10px; flex-wrap: wrap; gap: 8px; }
     .feed-r3 {
         font-size: 11px;
