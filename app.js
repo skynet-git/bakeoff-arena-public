@@ -1620,7 +1620,30 @@ async function _fetchStatic(url) {
 
     if (path === "/api/config") filePath = "data/config.json";
     else if (path === "/api/state") filePath = "data/state.json";
-    else if (path === "/api/equity") filePath = "data/equity.json";
+    else if (path === "/api/equity") {
+        // v14.19.27: the public repo only ships one equity.json (range=ALL).
+        // Apply the range filter client-side by keeping points whose time
+        // is within the requested window OF THE LAST POINT (not of now — a
+        // page loaded post-session should still see the trading day, not
+        // an empty overnight window).
+        filePath = "data/equity.json";
+        const range = (params.get("range") || "").toUpperCase();
+        const RANGE_SEC = { "1H": 3600, "1D": 24 * 3600, "1W": 7 * 24 * 3600 };
+        const cutoff = RANGE_SEC[range];
+        if (cutoff) {
+            postFilter = (body) => {
+                if (!body || !body.series) return body;
+                const out = {};
+                for (const [name, pts] of Object.entries(body.series)) {
+                    if (!pts || !pts.length) { out[name] = pts || []; continue; }
+                    const lastT = pts[pts.length - 1].time;
+                    const start = lastT - cutoff;
+                    out[name] = pts.filter(p => p.time >= start);
+                }
+                return { ...body, series: out };
+            };
+        }
+    }
     else if (path === "/api/market_context") filePath = "data/market_context.json";
     else if (path === "/api/index_series") {
         const sym = (params.get("symbol") || "").toUpperCase();
