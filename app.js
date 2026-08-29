@@ -283,22 +283,21 @@ function initChart() {
 }
 
 function createSeries() {
-    // 2026-08-28: v14.19.17 → tightened v14.19.20. Kill both the series
-    // title label AND the last-value pill on the right axis. We do it in
-    // BOTH the constructor and via applyOptions after — v4's addLineSeries
-    // was ignoring the options on some builds, leaving stacked labels
-    // overlapping like Qwen3.6 / Claude which are ~$2 apart. Custom
-    // overlay panel (renderChartLegendOverlay) handles per-series labels.
+    // 2026-08-28: v14.19.24 reverted the label suppression from v14.19.17.
+    // The overlap of very-close values (Qwen $9,999.88 vs Claude $9,997.91)
+    // is minor compared to LOSING series identity on the right axis — the
+    // primary "which line is which" cue for most viewers. Right-side pills
+    // now always show, matching what appears on private-mode toggle. The
+    // top-left custom legend (v14.19.20) still exists for click-to-hide
+    // AND shows the same values redundantly.
     for (const p of config.providers) {
         if (!p.enabled) continue;
         const s = chart.addLineSeries({
             color: p.color, lineWidth: 2,
-            title: "",
+            title: displayModel(p.display_name),
             priceLineVisible: false,
-            lastValueVisible: false,
+            lastValueVisible: true,
         });
-        // Belt-and-suspenders: also apply post-create.
-        try { s.applyOptions({ title: "", lastValueVisible: false, priceLineVisible: false }); } catch (e) {}
         priceSeries[p.name] = s;
     }
     // v14.19.21: create hidden index-overlay series (SPY/QQQ/IWM) alongside
