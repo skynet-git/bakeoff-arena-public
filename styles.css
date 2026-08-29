@@ -848,7 +848,10 @@ tbody tr:hover .drill-cue { opacity: 0.8; }
     .view { padding: 8px; gap: 8px; }
     #view-overview {
         grid-template-columns: 1fr;
-        grid-template-rows: 220px 1fr auto;
+        /* v14.19.32: chart bumped 220 → 320px. 220 was too cramped with 6
+           series + legend + right-axis pills; users couldn't read which
+           model was which. 320 gives ~$100/pixel headroom in $ mode. */
+        grid-template-rows: 320px 1fr auto;
         grid-template-areas:
             "chart"
             "leaderboard"
@@ -859,19 +862,14 @@ tbody tr:hover .drill-cue { opacity: 0.8; }
         gap: 6px;
         padding: 6px 10px;
     }
-    /* Range + $/% toggles push down onto their own line when they don't fit */
     .chart-panel .panel-header .toggles { flex-shrink: 0; }
-    /* Chart legend on mobile: sits at TOP-LEFT overlay but tighter + no
-       benchmark section (SPY/QQQ/IWM overlay is desktop-only) */
-    .chart-legend {
-        max-width: 55vw;
-        font-size: 10px;
-        padding: 2px 0;
-        top: 4px; left: 4px;
-    }
-    .legend-row { padding: 2px 6px; grid-template-columns: 10px 1fr auto; gap: 4px; }
-    .legend-index { display: none; }  /* SPY/QQQ/IWM overlays hidden on mobile */
-    .legend-divider { display: none; }
+    /* v14.19.32: hide the top-left legend overlay on mobile. The right-
+       axis last-value pills carry the same info (color + name + price)
+       and don't cover chart content. Two label surfaces on a small chart
+       is redundant and eats data area. Users still click legend rows to
+       hide/show series on desktop — that affordance is desktop-only for
+       now (P2 nice-to-have for mobile: tap a pill to toggle series). */
+    .chart-legend { display: none; }
 
     .leaderboard-panel { max-height: none; }
     .leaderboard-panel .panel-header { padding: 6px 10px; font-size: 10px; }
