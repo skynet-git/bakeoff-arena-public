@@ -734,6 +734,16 @@ tbody tr:hover .drill-cue { opacity: 0.8; }
 .halt-no  { color: var(--green); }
 
 /* ============================================================================
+ * v14.19.33: mobile-only elements — hidden by DEFAULT (desktop), shown by
+ * the @media (max-width: 767px) block below. These MUST live BEFORE the
+ * media query so the media-query rule wins on mobile via source-order
+ * (both rules have equal specificity; later one wins). v14.19.31 shipped
+ * these AFTER the @media block by accident, which hid them on ALL widths.
+ * ---------------------------------------------------------------------- */
+.mobile-nav { display: none; }
+.mobile-leaderboard { display: none; }
+
+/* ============================================================================
  * v14.19.31 — MOBILE-FIRST RESHAPING (below md: 768px)
  *
  * Everything above this block is unchanged desktop layout. Everything below
@@ -1087,12 +1097,8 @@ tbody tr:hover .drill-cue { opacity: 0.8; }
     .table-scroll:not(:hover)::after { opacity: 0.6; }
 }
 
-/* ============================================================================
- * v14.19.31 — MOBILE NAV VISIBILITY
- * The .mobile-nav element lives in every view (see index.html). On desktop
- * it's hidden; on mobile the desktop .nav (in topbar) is hidden and .mobile-
- * nav (at the bottom) takes over. The corresponding .mobile-leaderboard is
- * also desktop-hidden.
- * ---------------------------------------------------------------------- */
-.mobile-nav { display: none; }
-.mobile-leaderboard { display: none; }
+/* v14.19.33: previously .mobile-nav + .mobile-leaderboard default-hidden
+ * rules lived HERE (after the @media block) which meant they overrode the
+ * media-query show-on-mobile rules due to source-order specificity. Rules
+ * have been moved to just BEFORE the @media block so the media query wins
+ * on mobile. This trailing comment is a tombstone; do not re-add them here. */
