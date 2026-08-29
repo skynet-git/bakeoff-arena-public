@@ -1692,29 +1692,35 @@ function closeDrawer() {
 // ============================================================================
 
 function wireToggles() {
-    // 2026-08-28: two separate button groups now — $/% mode and equity time
-    // range (1H/1D/1W/ALL). Split the handler so a range click doesn't set
-    // mode=undefined.
-    document.querySelectorAll(".toggle[data-mode]").forEach(btn => {
-        btn.addEventListener("click", () => {
+    // v14.19.38: switched from per-button listeners to a single delegated
+    // listener on the document. Mobile field-test caught cases where the
+    // per-button binding didn't fire (Brave iOS in particular seems to
+    // swallow some button taps behind their scroll-gesture layer). A
+    // document-level listener catches the event no matter which
+    // ancestor's event chain gets interrupted; then we dispatch by
+    // dataset. Also handles buttons injected after init.
+    document.addEventListener("click", (e) => {
+        // Match ONLY the equity-chart toggle buttons (mode + range). The
+        // trade-drilldown chart also uses .toggle with data-range but has
+        // an additional .chart-range class — exclude those; they're
+        // handled in wireTradeChart. Same for data-tf.
+        const btn = e.target.closest(
+            ".toggle[data-mode], .toggle[data-range]:not(.chart-range)");
+        if (!btn) return;
+        if (btn.hasAttribute("data-mode")) {
             mode = btn.dataset.mode;
             document.querySelectorAll(".toggle[data-mode]").forEach(
                 b => b.classList.toggle("active", b === btn));
             refreshOverview();
-        });
-    });
-    document.querySelectorAll(".toggle[data-range]").forEach(btn => {
-        btn.addEventListener("click", () => {
+        } else {
             equityRange = btn.dataset.range;
-            document.querySelectorAll(".toggle[data-range]").forEach(
+            document.querySelectorAll(
+                ".toggle[data-range]:not(.chart-range)").forEach(
                 b => b.classList.toggle("active", b === btn));
-            // Reset per-series bookkeeping so renderEquity() rebuilds with
-            // setData() + fitContent() — the whole chart re-fits to the new
-            // range instead of trying to incremental-update a different span.
             for (const k of Object.keys(_lastPointTime)) delete _lastPointTime[k];
             _lastMode = null;
             refreshOverview();
-        });
+        }
     });
 }
 
