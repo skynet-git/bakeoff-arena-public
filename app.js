@@ -1612,7 +1612,10 @@ async function refreshDecisions() {
     const symbol = document.getElementById("filter-symbol").value.trim().toUpperCase();
     const decision = document.getElementById("filter-decision").value;
     const { since, until } = _activeDateRange("decisions");
-    let url = "/api/decisions?limit=200";
+    // v14.19.45: was 200 — clipped "All" and long-range views on active days.
+    // Server caps at 1000 (server.py:/api/decisions); public snapshot writes
+    // 5000 rows and client-filters here, so 1000 is a safe upper bound.
+    let url = "/api/decisions?limit=1000";
     if (provider) url += `&provider=${encodeURIComponent(provider)}`;
     if (symbol) url += `&symbol=${encodeURIComponent(symbol)}`;
     if (decision) url += `&decision=${encodeURIComponent(decision)}`;
