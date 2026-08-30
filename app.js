@@ -245,12 +245,15 @@ function initChart() {
         rightPriceScale: {
             borderColor: "#2a3948",
             autoScale: true,
-            // 5% top/bottom padding — tighter than the initial 15% which
-            // made the data band look compressed in the middle.
-            // renderEquity() also uses series.update() for incremental
-            // refreshes so the initial autoScale doesn't fight the user's
-            // manual zoom on every dashboard poll.
-            scaleMargins: { top: 0.05, bottom: 0.05 },
+            // v14.19.40: 12% top/bottom padding on mobile, 5% on desktop.
+            // On mobile the chart is only ~400px tall with 6 model labels
+            // stacked on the right axis — 5% wasn't enough breathing room
+            // and the top-most (Model 3) + bottom-most (Model 5) labels
+            // got clipped by the chart edges. Desktop keeps tighter
+            // margins because it has vertical space to spare.
+            scaleMargins: window.matchMedia("(max-width: 767px)").matches
+                ? { top: 0.12, bottom: 0.12 }
+                : { top: 0.05, bottom: 0.05 },
         },
         timeScale: {
             borderColor: "#2a3948",

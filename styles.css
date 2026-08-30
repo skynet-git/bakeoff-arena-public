@@ -886,10 +886,13 @@ tbody tr:hover .drill-cue { opacity: 0.8; }
     .view { padding: 8px; gap: 8px; }
     #view-overview {
         grid-template-columns: 1fr;
-        /* v14.19.32: chart bumped 220 → 320px. 220 was too cramped with 6
-           series + legend + right-axis pills; users couldn't read which
-           model was which. 320 gives ~$100/pixel headroom in $ mode. */
-        grid-template-rows: 320px 1fr auto;
+        /* v14.19.40: chart bumped 320 → 400px. Even with 320 the top-most
+           (leader) and bottom-most (last-place) right-axis labels were
+           clipped by the chart edges. Combined with the wider scaleMargins
+           (12% top+bottom vs desktop's 5%) applied in initChart on mobile,
+           400px gives all 6 model labels breathing room without pushing
+           the leaderboard cards too far below the fold. */
+        grid-template-rows: 400px 1fr auto;
         grid-template-areas:
             "chart"
             "leaderboard"
