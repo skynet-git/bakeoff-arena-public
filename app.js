@@ -1469,6 +1469,16 @@ async function loadSymFeed(symbol) {
     const thisTradeHolds = rows.filter(
         d => d.kind === "exit" && d.decision === "HOLD" && inLifetime(d)
     );
+    // v14.19.42: pull out the LAST HOLD (chronologically nearest the exit)
+    // and surface it in the main section. On mechanical exits (SL/TP/EOD)
+    // there's no LLM CLOSE decision — so without this row the drilldown
+    // shows just ENTER and mechanical trigger, giving zero insight into
+    // what the model was thinking right before the trigger fired.
+    // rows arrive DESC-sorted (highest decision_id first = latest ts),
+    // so thisTradeHolds[0] is the most recent HOLD. Remaining HOLDs stay
+    // in the collapsed "HOLD POLLS" section for full context.
+    const lastHold = thisTradeHolds.length ? thisTradeHolds[0] : null;
+    const otherHolds = thisTradeHolds.slice(1);
 
     // Everything NOT part of this trade (other historical decisions on this symbol)
     const thisTradeIds = new Set([
@@ -1502,9 +1512,21 @@ async function loadSymFeed(symbol) {
             ${items.map(renderRow).join("")}</details>`;
     };
 
+    // v14.19.42: main section now includes ENTER, the LAST HOLD (if any),
+    // any LLM CLOSE/FLIP decisions, and the mechanical trigger pseudo-row.
+    // Order (top → bottom = earliest → latest chronologically):
+    //   ENTER → last HOLD → LLM close/flip decisions → mechanical trigger.
+    const mainItems = [
+        ...thisTradeEntry,
+        ...(lastHold ? [lastHold] : []),
+        ...thisTradePolls,
+    ];
+    const mainTitle = lastHold
+        ? "THIS TRADE · ENTRY + LAST HOLD + EXIT"
+        : "THIS TRADE · ENTRY + EXIT";
     el.innerHTML =
-        section("THIS TRADE · ENTRY + EXIT", thisTradeEntry.concat(thisTradePolls), false, mechExitRow) +
-        section("THIS TRADE · HOLD POLLS", thisTradeHolds, true) +
+        section(mainTitle, mainItems, false, mechExitRow) +
+        section("THIS TRADE · HOLD POLLS", otherHolds, true) +
         section(`OTHER ${symbol} DECISIONS (past trades on same symbol)`, otherDecisions, true);
     // Wire click → drawer with full detail
     el.querySelectorAll(".feed-item[data-decision-id]").forEach(fi =>
