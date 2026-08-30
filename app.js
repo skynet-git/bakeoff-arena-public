@@ -709,7 +709,7 @@ function renderLeaderboard(rows) {
             <td class="num" title="Cost per closed trade — LLM spend efficiency">${r.cost_per_trade != null ? money(r.cost_per_trade) : "—"}</td>
             <td class="num ${pcls(r.net_pnl_day)}">${money(r.net_pnl_day, true)}</td>
             <td class="num">${r.n_trades_day}/${r.n_trades_total}</td>
-            <td class="num">${(r.win_rate_day * 100).toFixed(0)}%</td>
+            <td class="num" title="Lifetime win rate — wins ÷ closed trades. Fallback to today's rate on pre-v14.19.37 snapshots.">${(((r.win_rate_total != null ? r.win_rate_total : r.win_rate_day) * 100)).toFixed(0)}%</td>
             <td class="num">${r.n_open_positions}</td>
             <td class="num">${money(r.buying_power_used)}</td>
             <td class="num ${pcls(r.equity - config.starting_capital)}">${money(r.equity)}</td>
