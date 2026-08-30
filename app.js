@@ -594,7 +594,10 @@ async function refreshOverview() {
         renderFeed(filtered, "feed-overview");
     });
     safe("equity",      () => renderEquity(equity.series));
-    document.getElementById("last-refresh").textContent = "Last refresh: " + new Date().toLocaleTimeString();
+    // v14.19.43: force ET regardless of viewer TZ. All timestamps in the
+    // app render as America/New_York; "Last refresh" is the visible clock
+    // and shouldn't be the one outlier that reads viewer-local time.
+    document.getElementById("last-refresh").textContent = "Last refresh: " + new Date().toLocaleTimeString("en-US", { timeZone: "America/New_York", hour: "numeric", minute: "2-digit", second: "2-digit", hour12: true }) + " ET";
     document.getElementById("refresh-info").textContent = "";
 }
 
@@ -1890,21 +1893,66 @@ function fmtPct(n, withSign) {
     return `${sign}${n.toFixed(2)}%`;
 }
 
-// 2026-08-28: shared date+time formatter. Tournament runs multiple days;
-// showing just "3:05 PM" hid whether that was today or three days ago.
-// "Aug 28, 3:05:15 PM" is short enough to fit inline everywhere the old
-// toLocaleTimeString() lived.
+// v14.19.43: EVERY timestamp renders in America/New_York (ET) regardless
+// of the viewer's browser timezone. Bakeoff is trading US markets; all
+// meaningful references (market hours, session open/close, trade IDs)
+// are in ET. A viewer in Cayman, London, or Tokyo should see the same
+// wall clock a NY trader would.
+//
+// Input handling
+// - number  → treated as unix SECONDS. Absolute instant; render in ET.
+// - string  → server writes NAIVE ISO strings in ET (sidecar's local TZ).
+//   new Date(str) with no TZ marker interprets as BROWSER-LOCAL, which
+//   double-shifts by (viewer TZ − server TZ). Fix: explicitly interpret
+//   the naive string as ET before rendering.
 function fmtDateTime(input) {
-    // Accepts either an ISO string OR a unix-seconds number.
-    const d = typeof input === "number"
-        ? new Date(input * 1000)
-        : new Date(input);
-    if (isNaN(d.getTime())) return "—";
-    return d.toLocaleString("en-US", {
+    let ms;
+    if (typeof input === "number") {
+        ms = input * 1000;
+    } else if (typeof input === "string" && input) {
+        ms = _naiveEtIsoToUnixMs(input);
+    } else {
+        return "—";
+    }
+    if (isNaN(ms)) return "—";
+    return new Date(ms).toLocaleString("en-US", {
+        timeZone: "America/New_York",
         month: "short", day: "numeric",
         hour: "numeric", minute: "2-digit", second: "2-digit",
         hour12: true,
     });
+}
+
+// Interpret a naive ISO string ("2026-08-28T15:05:15.371014", no TZ
+// suffix) as ET wall-clock and return the corresponding unix-ms instant.
+// Handles DST — ET is UTC-4 (EDT) roughly Mar-Nov, UTC-5 (EST) otherwise;
+// we look up the actual offset for the exact date via Intl.
+function _naiveEtIsoToUnixMs(iso) {
+    const clean = iso.replace(/Z$|[+-]\d{2}:?\d{2}$/, "");   // strip any TZ suffix
+    // Parse the "as if UTC" ms — this is our staging value; we'll shift it.
+    const asIfUtcMs = Date.parse(clean + "Z");
+    if (isNaN(asIfUtcMs)) return NaN;
+    // Compute ET's UTC offset AT THIS DATE (handles DST transitions).
+    // Format the same UTC instant in ET and diff the wall clocks.
+    const probe = new Date(asIfUtcMs);
+    const parts = new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/New_York",
+        year: "numeric", month: "2-digit", day: "2-digit",
+        hour: "2-digit", minute: "2-digit", second: "2-digit",
+        hour12: false,
+    }).formatToParts(probe);
+    const g = (t) => parts.find(p => p.type === t).value;
+    const etWallAsUtcMs = Date.UTC(
+        +g("year"), +g("month") - 1, +g("day"),
+        // 2-digit hour: '24' at midnight in some locales — normalize
+        (+g("hour")) % 24, +g("minute"), +g("second"),
+    );
+    // etWallAsUtcMs - asIfUtcMs = ET's offset from UTC in ms
+    //   EDT: -14400000 (ET is 4h behind UTC)
+    //   EST: -18000000 (ET is 5h behind UTC)
+    // Actual instant for wall-clock "15:05 ET" = asIfUtc (15:05 UTC) - offset.
+    const etOffsetMs = etWallAsUtcMs - asIfUtcMs;
+    return asIfUtcMs - etOffsetMs;
 }
 
 // Latency formatter — ms is unreadable past ~2s. Reasoning models happily
