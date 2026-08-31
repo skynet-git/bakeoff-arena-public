@@ -1,1 +1,1 @@
-{"error":"POLYGON_API_KEY not set","tickers":[]}
+{"tickers":[{"symbol":"SPY","last":765.67,"change_pct":-0.48},{"symbol":"QQQ","last":714.35,"change_pct":-0.29},{"symbol":"IWM","last":293.18,"change_pct":-0.87}],"cached_until_ts":1788202899.4345362}
