@@ -1,1 +1,1 @@
-{"provider":"claude","n_trades":0,"win_rate":0.0,"avg_win":0.0,"avg_loss":0.0,"profit_factor":null,"expectancy":0.0,"max_drawdown":0.0,"sharpe":null,"total_pnl":0.0,"best_trade":0.0,"worst_trade":0.0,"avg_hold_minutes":0.0}
+{"provider":"claude","n_trades":1,"win_rate":0.0,"avg_win":0.0,"avg_loss":-14.601599999999742,"profit_factor":0.0,"expectancy":-14.601599999999742,"max_drawdown":-14.601599999999742,"sharpe":null,"total_pnl":-14.601599999999742,"best_trade":-14.601599999999742,"worst_trade":-14.601599999999742,"avg_hold_minutes":3.216666666666667}

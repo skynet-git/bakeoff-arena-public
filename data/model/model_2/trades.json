@@ -1,1 +1,1 @@
-{"provider":"model_2","trades":[]}
+{"provider":"model_2","trades":[{"entry_ts":"2026-09-01T10:27:02.201425","exit_ts":"2026-09-01T10:30:15.623364","symbol":"KYTX","direction":"LONG","shares":507,"entry_price":7.8888,"exit_price":7.86,"exit_reason":"CLOSE","pnl_dollars":-14.601599999999742,"pnl_pct":-0.36507453605110396,"hold_seconds":193,"notional":3999.6216,"decision_id":4277,"flip_to_fill_id":null,"shadow_fill_id":323,"tp_trailing_pct":null}]}
