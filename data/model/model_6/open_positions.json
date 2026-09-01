@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":339,"entry_ts":"2026-09-01T12:24:49.799418","symbol":"GRNJ","direction":"SHORT","entry_price":28.49,"shares":35,"notional":997.15,"invalidation":28.85,"take_profit_price":28.35,"take_profit_trailing_pct":null,"decision_id":4738},{"shadow_fill_id":338,"entry_ts":"2026-09-01T12:23:08.830027","symbol":"KMLM","direction":"LONG","entry_price":30.4,"shares":65,"notional":1976.0,"invalidation":30.15,"take_profit_price":30.55,"take_profit_trailing_pct":null,"decision_id":4729}]}
