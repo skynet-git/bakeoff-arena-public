@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[]}
+{"provider":"model_1","open_positions":[{"shadow_fill_id":331,"entry_ts":"2026-09-01T11:23:09.035227","symbol":"GSG","direction":"LONG","entry_price":34.5,"shares":289,"notional":9970.5,"invalidation":34.4,"take_profit_price":null,"take_profit_trailing_pct":0.5,"decision_id":4516}]}
