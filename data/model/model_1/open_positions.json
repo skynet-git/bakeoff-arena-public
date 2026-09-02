@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[]}
+{"provider":"model_1","open_positions":[{"shadow_fill_id":380,"entry_ts":"2026-09-02T13:21:13.340948","symbol":"DLLL","direction":"LONG","entry_price":25.5251,"shares":195,"notional":4977.394499999999,"invalidation":25.2,"take_profit_price":null,"take_profit_trailing_pct":1.5,"decision_id":6083}]}
