@@ -713,7 +713,7 @@ function renderLeaderboard(rows) {
             <td class="num ${pcls(r.net_pnl_day)}">${money(r.net_pnl_day, true)}</td>
             <td class="num">${r.n_trades_day}/${r.n_trades_total}</td>
             <td class="num" title="Lifetime win rate — wins ÷ closed trades. Fallback to today's rate on pre-v14.19.37 snapshots.">${(((r.win_rate_total != null ? r.win_rate_total : r.win_rate_day) * 100)).toFixed(0)}%</td>
-            <td class="num">${r.n_open_positions}</td>
+            <td class="num">${r.n_open_positions}${r.stops_unguarded_count > 0 ? ` <span class="stop-unguarded-chip" title="${r.stops_unguarded_count} position(s) currently UNGUARDED: price feed stale, stops silently skip">⚠ ${r.stops_unguarded_count}</span>` : ''}</td>
             <td class="num">${money(r.buying_power_used)}</td>
             <td class="num ${pcls(r.equity - config.starting_capital)}">${money(r.equity)}</td>
             <td class="${r.halted ? 'halt-yes' : 'halt-no'}">${r.halted ? '⛔ HALT' : 'OK'} <span class="drill-cue" title="Click to drill down">›</span></td>
@@ -1069,6 +1069,9 @@ function renderModelPositions(rows) {
         const dcls = r.direction === "LONG" ? "dir-LONG" : "dir-SHORT";
         const tp = r.take_profit_price != null ? money(r.take_profit_price) : (r.take_profit_trailing_pct != null ? `trail ${r.take_profit_trailing_pct}%` : "—");
         const tr = document.createElement("tr");
+        const unguardedChip = r.stop_unguarded
+            ? ` <span class="stop-unguarded-chip" title="Price feed stale. Stop-check loop skips this position until Polygon returns fresh data.">⚠ stop off</span>`
+            : '';
         tr.innerHTML = `
             <td>${fmtDateTime(r.entry_ts)}</td>
             <td>${r.symbol}</td>
@@ -1076,7 +1079,7 @@ function renderModelPositions(rows) {
             <td class="num">${r.shares}</td>
             <td class="num">${money(r.entry_price)}</td>
             <td class="num">${money(r.notional)}</td>
-            <td class="num">${r.invalidation != null ? money(r.invalidation) : '—'}</td>
+            <td class="num">${r.invalidation != null ? money(r.invalidation) : '—'}${unguardedChip}</td>
             <td class="num">${tp}</td>
         `;
         tr.dataset.fillId = r.shadow_fill_id;

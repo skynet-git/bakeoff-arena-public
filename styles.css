@@ -733,6 +733,21 @@ tbody tr:hover .drill-cue { opacity: 0.8; }
 .halt-yes { color: var(--red); font-weight: 700; }
 .halt-no  { color: var(--green); }
 
+/* v14.19.66: warning chip for open positions whose stop is currently
+ * silently skipped due to a stale price feed. */
+.stop-unguarded-chip {
+    display: inline-block;
+    padding: 1px 6px;
+    margin-left: 4px;
+    border-radius: 3px;
+    background: rgba(255, 152, 0, 0.18);
+    color: #ff9800;
+    font-size: 0.85em;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: help;
+}
+
 /* ============================================================================
  * v14.19.33: mobile-only elements — hidden by DEFAULT (desktop), shown by
  * the @media (max-width: 767px) block below. These MUST live BEFORE the
