@@ -1,1 +1,1 @@
-{"provider":"model_4","trades":[]}
+{"provider":"model_4","trades":[{"entry_ts":"2026-09-03T13:02:56.550321","exit_ts":"2026-09-03T13:14:32.235617","symbol":"RARE","direction":"LONG","shares":135,"entry_price":14.775,"exit_price":14.5617,"exit_reason":"CLOSE","pnl_dollars":-28.795500000000036,"pnl_pct":-1.4436548223350274,"hold_seconds":695,"notional":1994.625,"decision_id":7180,"flip_to_fill_id":null,"shadow_fill_id":446,"tp_trailing_pct":null}]}
