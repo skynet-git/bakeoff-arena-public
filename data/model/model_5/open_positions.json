@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":414,"entry_ts":"2026-09-03T10:28:16.950870","symbol":"HOOD","direction":"LONG","entry_price":122.47,"shares":40,"notional":4898.8,"invalidation":121.0,"take_profit_price":null,"take_profit_trailing_pct":2.5,"decision_id":6589,"stop_unguarded":false}]}
