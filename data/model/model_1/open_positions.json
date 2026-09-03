@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[]}
+{"provider":"model_1","open_positions":[{"shadow_fill_id":537,"entry_ts":"2026-09-03T15:07:07.560394","symbol":"CPB","direction":"LONG","entry_price":22.095,"shares":362,"notional":7998.389999999999,"invalidation":21.93,"take_profit_price":null,"take_profit_trailing_pct":1.8,"decision_id":8646,"stop_unguarded":false}]}
