@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[]}
+{"provider":"model_4","open_positions":[{"shadow_fill_id":484,"entry_ts":"2026-09-03T13:32:24.095870","symbol":"TSLZ","direction":"LONG","entry_price":10.745,"shares":186,"notional":1998.57,"invalidation":10.6,"take_profit_price":11.04,"take_profit_trailing_pct":null,"decision_id":7606,"stop_unguarded":false}]}
