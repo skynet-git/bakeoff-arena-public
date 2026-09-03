@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":402,"entry_ts":"2026-09-03T09:46:23.147632","symbol":"RARE","direction":"LONG","entry_price":14.615,"shares":136,"notional":1987.64,"invalidation":13.75,"take_profit_price":15.15,"take_profit_trailing_pct":null,"decision_id":6507,"stop_unguarded":false}]}
