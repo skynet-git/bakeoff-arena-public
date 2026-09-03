@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[]}
+{"provider":"model_1","open_positions":[{"shadow_fill_id":526,"entry_ts":"2026-09-03T14:37:54.168638","symbol":"XLYI","direction":"LONG","entry_price":22.8,"shares":438,"notional":9986.4,"invalidation":22.73,"take_profit_price":null,"take_profit_trailing_pct":1.5,"decision_id":8348,"stop_unguarded":false}]}
