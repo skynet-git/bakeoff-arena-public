@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[]}
+{"provider":"model_1","open_positions":[{"shadow_fill_id":566,"entry_ts":"2026-09-04T10:41:11.702052","symbol":"LABX","direction":"LONG","entry_price":12.56,"shares":636,"notional":7988.160000000001,"invalidation":12.34,"take_profit_price":null,"take_profit_trailing_pct":1.5,"decision_id":9069,"stop_unguarded":false}]}
