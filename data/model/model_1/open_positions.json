@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[{"shadow_fill_id":580,"entry_ts":"2026-09-04T10:52:34.794059","symbol":"IXC","direction":"LONG","entry_price":58.66,"shares":85,"notional":4986.099999999999,"invalidation":58.55,"take_profit_price":null,"take_profit_trailing_pct":0.5,"decision_id":9155,"stop_unguarded":false}]}
+{"provider":"model_1","open_positions":[]}
