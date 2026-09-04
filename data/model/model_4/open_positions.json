@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[]}
+{"provider":"model_4","open_positions":[{"shadow_fill_id":553,"entry_ts":"2026-09-04T10:04:41.556631","symbol":"SUNB","direction":"LONG","entry_price":66.46,"shares":75,"notional":4984.499999999999,"invalidation":66.12,"take_profit_price":67.1,"take_profit_trailing_pct":null,"decision_id":8906,"stop_unguarded":false}]}
