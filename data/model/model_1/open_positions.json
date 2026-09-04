@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[]}
+{"provider":"model_1","open_positions":[{"shadow_fill_id":705,"entry_ts":"2026-09-04T14:19:20.055779","symbol":"EFX","direction":"LONG","entry_price":176.0925,"shares":28,"notional":4930.59,"invalidation":175.8,"take_profit_price":null,"take_profit_trailing_pct":1.0,"decision_id":10846,"stop_unguarded":false}]}
