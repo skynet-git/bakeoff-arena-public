@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":589,"entry_ts":"2026-09-04T11:15:35.533071","symbol":"FICO","direction":"LONG","entry_price":921.845,"shares":10,"notional":9218.45,"invalidation":917.6,"take_profit_price":934.5,"take_profit_trailing_pct":null,"decision_id":9305,"stop_unguarded":false}]}
