@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":935,"entry_ts":"2026-09-08T12:31:07.096343","symbol":"GPRK","direction":"LONG","entry_price":12.07,"shares":579,"notional":6988.53,"invalidation":11.97,"take_profit_price":12.18,"take_profit_trailing_pct":null,"decision_id":13597,"stop_unguarded":false}]}
