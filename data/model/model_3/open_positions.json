@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":742,"entry_ts":"2026-09-08T09:42:21.110367","symbol":"QCML","direction":"SHORT","entry_price":16.72,"shares":598,"notional":9998.56,"invalidation":17.8,"take_profit_price":15.81,"take_profit_trailing_pct":null,"decision_id":11449,"stop_unguarded":false}]}
