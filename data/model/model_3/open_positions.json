@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":772,"entry_ts":"2026-09-08T10:15:22.598042","symbol":"RGTX","direction":"SHORT","entry_price":10.3606,"shares":965,"notional":9997.979,"invalidation":10.6,"take_profit_price":10.2,"take_profit_trailing_pct":null,"decision_id":11678,"stop_unguarded":false}]}
