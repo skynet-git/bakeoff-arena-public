@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":852,"entry_ts":"2026-09-08T11:29:56.666491","symbol":"SGML","direction":"LONG","entry_price":10.9109,"shares":458,"notional":4997.1921999999995,"invalidation":10.84,"take_profit_price":11.1,"take_profit_trailing_pct":null,"decision_id":12559,"stop_unguarded":false}]}
