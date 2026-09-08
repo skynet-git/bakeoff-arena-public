@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[]}
+{"provider":"model_1","open_positions":[{"shadow_fill_id":1095,"entry_ts":"2026-09-08T14:50:33.763831","symbol":"QBTS","direction":"SHORT","entry_price":17.5223,"shares":456,"notional":7990.1688,"invalidation":17.62,"take_profit_price":null,"take_profit_trailing_pct":1.5,"decision_id":15932,"stop_unguarded":false}]}
