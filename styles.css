@@ -1194,3 +1194,32 @@ tbody tr:hover .drill-cue { opacity: 0.8; }
  * media-query show-on-mobile rules due to source-order specificity. Rules
  * have been moved to just BEFORE the @media block so the media query wins
  * on mobile. This trailing comment is a tombstone; do not re-add them here. */
+
+/* v15.7.0: roster-change notice. Chart series are built once at init, so a
+ * model added mid-session cannot be plotted without a reload. Rather than
+ * leave the user staring at a grey unnamed row (the pre-fix behaviour), say
+ * so and offer the reload. */
+.roster-change-notice {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 9999;
+    padding: 10px 14px;
+    border-radius: 6px;
+    background: rgba(30, 41, 59, 0.97);
+    border: 1px solid #475569;
+    color: #e2e8f0;
+    font-size: 0.85em;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+}
+.roster-change-notice button {
+    margin-left: 10px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    border: 1px solid #64748b;
+    background: #334155;
+    color: #e2e8f0;
+    cursor: pointer;
+    font-size: 0.95em;
+}
+.roster-change-notice button:hover { background: #475569; }

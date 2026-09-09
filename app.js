@@ -140,8 +140,55 @@ async function init() {
     // to match server-side cache; failures are silent (icon shows —).
     _refreshMarketContext();
     setInterval(_refreshMarketContext, 60_000);
+    // v15.7.0: re-poll config so a ROSTER CHANGE is picked up without a
+    // manual reload. Previously config was fetched exactly once at init, so
+    // a model added mid-session rendered with a grey dot and its raw config
+    // name (gpt6_astra instead of "GPT-6 Astra") until someone happened to
+    // refresh — with nothing on screen to say why.
+    setInterval(_refreshConfig, 60_000);
     showView("overview");
     await refreshCurrentView();
+}
+
+
+// v15.7.0: refresh provider metadata (names, colours, deprecated flags).
+//
+// Deliberately does NOT rebuild chart series. Those are created once at
+// init, and tearing them down live would drop the plotted history and any
+// zoom the user has set. So: metadata updates silently (feed and
+// leaderboard immediately render correctly), and if the provider SET
+// changed we surface a reload prompt rather than half-updating the chart.
+async function _refreshConfig() {
+    let next;
+    try {
+        next = await fetchJson("/api/config");
+    } catch (e) {
+        return;   // transient; next tick retries
+    }
+    if (!next || !next.providers) return;
+    const before = new Set((config && config.providers || []).map(p => p.name));
+    const after = new Set(next.providers.map(p => p.name));
+    const added = [...after].filter(n => !before.has(n));
+    const removed = [...before].filter(n => !after.has(n));
+    config = next;
+    _buildObfuscationMap();
+    if (added.length || removed.length) {
+        _showRosterChangeNotice(added, removed);
+    }
+}
+
+
+function _showRosterChangeNotice(added, removed) {
+    if (document.getElementById("roster-change-notice")) return;  // once
+    const parts = [];
+    if (added.length) parts.push(`+${added.length} model${added.length > 1 ? "s" : ""}`);
+    if (removed.length) parts.push(`-${removed.length}`);
+    const el = document.createElement("div");
+    el.id = "roster-change-notice";
+    el.className = "roster-change-notice";
+    el.innerHTML = `Roster changed (${parts.join(", ")}) — reload to plot on the chart`
+        + ` <button type="button" onclick="location.reload()">Reload</button>`;
+    document.body.appendChild(el);
 }
 
 async function _refreshMarketContext() {
