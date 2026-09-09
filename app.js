@@ -700,7 +700,7 @@ function renderLeaderboard(rows) {
         // = OB + Real (Day) + Unreal).
         tr.innerHTML = `
             <td><span class="rank-badge ${rankCls}">${rank}</span></td>
-            <td><span class="dot" style="background:${r.color}"></span>${displayModel(r.display_name)}</td>
+            <td><span class="dot" style="background:${r.color}"></span>${displayModel(r.display_name)}${r.deprecated ? ` <span class="deprecated-chip" title="${(r.deprecated_note || 'Retired — no longer receives new decisions. History and final equity are preserved.').replace(/"/g, '&quot;')}">RETIRED</span>` : ''}</td>
             <td class="num">${money(r.ob_day)}</td>
             <td class="num" style="color:var(--text-dim)">${money(r.buying_power)}</td>
             <td class="num ${pcls(r.realized_pnl_day)}">${money(r.realized_pnl_day, true)}</td>
