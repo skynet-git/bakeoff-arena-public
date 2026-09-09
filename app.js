@@ -778,6 +778,9 @@ let _baselineDrawn = false;
 // points and preserves user's current view. Reset on mode-toggle only.
 const _lastPointTime = {};
 let _lastMode = null;
+// v15.7.2: how many series were plotted last render. A change means a
+// provider was added or removed, so the time axis must re-fit.
+let _lastPlottedCount = 0;
 
 function renderEquity(series) {
     const modeChanged = _lastMode !== mode;
@@ -815,7 +818,30 @@ function renderEquity(series) {
     }
     // Only autofit the TIME axis on first render; subsequent refreshes leave
     // the user's manual pan/zoom alone.
-    if (modeChanged || Object.keys(_lastPointTime).length <= 1) {
+    //
+    // v15.7.2: ALSO re-fit when the set of plotted series CHANGES, and
+    // recover from a degenerate visible range.
+    //
+    // Why: renderEquity can throw mid-loop (Lightweight Charts rejects
+    // non-ascending data by throwing from setData). The throw jumps past
+    // this fitContent, so the chart keeps whatever time range it had —
+    // which on a fresh load is a collapsed one. The result was a chart
+    // with correct y-axis and correct price pills but an empty body and a
+    // single timestamp on the x-axis. Fixing the data stopped the throw,
+    // but any page ALREADY in that state never re-fit, because
+    // _lastPointTime was populated so this branch stayed false. The user
+    // had to know to hard-refresh, with nothing on screen saying so.
+    const plotted = Object.keys(_lastPointTime).length;
+    const seriesSetChanged = plotted !== _lastPlottedCount;
+    _lastPlottedCount = plotted;
+    let degenerate = false;
+    try {
+        const vr = chart.timeScale().getVisibleRange();
+        // A range covering under a minute across a multi-point series means
+        // the axis is collapsed, not that the user zoomed in deliberately.
+        degenerate = !vr || (vr.to - vr.from) < 60;
+    } catch (e) { /* older chart builds may not expose it — ignore */ }
+    if (modeChanged || plotted <= 1 || seriesSetChanged || degenerate) {
         chart.timeScale().fitContent();
     }
     // v14.19.17: refresh the legend overlay with the latest per-series value.
