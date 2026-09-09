@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":1471,"entry_ts":"2026-09-09T15:08:18.325662","symbol":"GMEU","direction":"LONG","entry_price":6.17,"shares":1620,"notional":9995.4,"invalidation":6.1,"take_profit_price":6.29,"take_profit_trailing_pct":null,"decision_id":20385,"stop_unguarded":false}]}
