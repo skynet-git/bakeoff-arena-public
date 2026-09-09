@@ -1,1 +1,1 @@
-{"provider":"model_7","trades":[]}
+{"provider":"model_7","trades":[{"entry_ts":"2026-09-09T12:18:53.628774","exit_ts":"2026-09-09T12:37:18.869861","symbol":"BKV","direction":"SHORT","shares":415,"entry_price":24.06,"exit_price":24.235,"exit_reason":"STOP","pnl_dollars":-72.6250000000003,"pnl_pct":-0.7273482959268526,"hold_seconds":1105,"notional":9984.9,"decision_id":17904,"flip_to_fill_id":null,"shadow_fill_id":1279,"tp_trailing_pct":null}]}
