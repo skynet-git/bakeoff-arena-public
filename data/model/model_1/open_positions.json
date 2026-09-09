@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[]}
+{"provider":"model_1","open_positions":[{"shadow_fill_id":1281,"entry_ts":"2026-09-09T12:19:29.727577","symbol":"FBL","direction":"LONG","entry_price":26.3796,"shares":303,"notional":7993.0188,"invalidation":26.1,"take_profit_price":null,"take_profit_trailing_pct":1.5,"decision_id":17920,"stop_unguarded":false}]}
