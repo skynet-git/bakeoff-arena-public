@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":1400,"entry_ts":"2026-09-09T13:33:12.463064","symbol":"SIG","direction":"LONG","entry_price":99.84,"shares":50,"notional":4992.0,"invalidation":99.4,"take_profit_price":null,"take_profit_trailing_pct":0.8,"decision_id":19253,"stop_unguarded":false}]}
