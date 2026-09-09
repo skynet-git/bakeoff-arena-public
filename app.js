@@ -72,6 +72,19 @@ function _buildObfuscationMap() {
 // state. Accepts EITHER the internal name (e.g. "gpt_oss_120b") or the
 // display name (e.g. "gpt-oss-120b") — call sites use both.
 function displayModel(name) {
+    // v15.7.8: in PUBLIC mode the PUBLISHER has already obfuscated every
+    // name server-side, using STABLE numbers persisted in bakeoff_meta
+    // (gpt-oss-120b = Model 6 for the life of the tournament). Re-mapping
+    // here applied a SECOND, POSITIONAL pass on top:
+    // _buildObfuscationMap numbers by index in config.providers, and
+    // gpt-oss-120b sits 8th in the yaml because the two new models were
+    // inserted ahead of it. So the server's correct "Model 6" was
+    // overwritten with "Model 8" in the browser, while the chart series
+    // (keyed by the internal name model_6) stayed correct — producing a
+    // leaderboard and a chart that disagreed on the same page.
+    //
+    // Public payloads are already anonymous; there is nothing left to hide.
+    if (window.BAKEOFF_PUBLIC) return name;
     if (!obfuscated || !name) return name;
     return OBFUSCATED_BY_INTERNAL[name]
         || OBFUSCATED_BY_DISPLAY[name]
