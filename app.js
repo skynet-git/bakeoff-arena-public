@@ -170,23 +170,43 @@ async function _refreshConfig() {
     const after = new Set(next.providers.map(p => p.name));
     const added = [...after].filter(n => !before.has(n));
     const removed = [...before].filter(n => !after.has(n));
+
+    // v15.7.6: compare the full MAPPING, not just the set of names.
+    //
+    // Chart series are created once at init, keyed by provider name, with
+    // their title and colour baked in. If a name keeps existing but now
+    // means a DIFFERENT model, the series keeps its old title while
+    // receiving the new model's data — the right-axis labels and the
+    // legend then disagree, which is exactly what happened when the public
+    // Model-N numbering was corrected (model_6 changed from GPT-5.6 Sol to
+    // gpt-oss-120b while the name set stayed {model_1..model_8}).
+    //
+    // A set comparison cannot see that. Fingerprint name+display+colour so
+    // any remapping OR recolour triggers the reload prompt.
+    const fp = (ps) => (ps || []).map(
+        p => `${p.name}|${p.display_name}|${p.color}`).sort().join(",");
+    const remapped = fp(config && config.providers) !== fp(next.providers);
+
     config = next;
     _buildObfuscationMap();
-    if (added.length || removed.length) {
-        _showRosterChangeNotice(added, removed);
+    if (added.length || removed.length || remapped) {
+        _showRosterChangeNotice(added, removed, remapped);
     }
 }
 
 
-function _showRosterChangeNotice(added, removed) {
+function _showRosterChangeNotice(added, removed, remapped) {
     if (document.getElementById("roster-change-notice")) return;  // once
     const parts = [];
     if (added.length) parts.push(`+${added.length} model${added.length > 1 ? "s" : ""}`);
     if (removed.length) parts.push(`-${removed.length}`);
+    // v15.7.6: a remap with no add/remove is the DANGEROUS case — the chart
+    // silently shows one model's data under another's label until reload.
+    if (!parts.length && remapped) parts.push("labels/colours changed");
     const el = document.createElement("div");
     el.id = "roster-change-notice";
     el.className = "roster-change-notice";
-    el.innerHTML = `Roster changed (${parts.join(", ")}) — reload to plot on the chart`
+    el.innerHTML = `Roster changed (${parts.join(", ")}) — chart labels are stale, reload`
         + ` <button type="button" onclick="location.reload()">Reload</button>`;
     document.body.appendChild(el);
 }
