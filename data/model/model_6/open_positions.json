@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":1473,"entry_ts":"2026-09-09T15:24:46.520222","symbol":"BRZE","direction":"LONG","entry_price":24.055,"shares":83,"notional":1996.565,"invalidation":23.9,"take_profit_price":24.9,"take_profit_trailing_pct":null,"decision_id":20485,"stop_unguarded":false}]}
