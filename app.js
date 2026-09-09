@@ -1968,7 +1968,19 @@ async function _fetchStatic(url) {
     }
 
     if (!filePath) throw new Error(`PUBLIC_MODE: no static route for ${url}`);
-    const r = await fetch(filePath, { cache: "no-store" });
+    // v15.7.7: GitHub Pages serves data/*.json with `cache-control:
+    // max-age=600` behind an edge CDN (observed `x-cache: HIT`). `no-store`
+    // only governs the BROWSER cache — the edge still returned a copy up to
+    // 10 minutes stale, so the public site kept showing an old leaderboard
+    // (and old model numbering) through repeated reloads while the origin
+    // files were already correct.
+    //
+    // Append a 60-second bucket so each minute is a distinct URL the edge
+    // must re-fetch, while still letting it cache within the minute. The
+    // publish cadence is 5 minutes, so a minute of staleness is invisible.
+    const _bust = Math.floor(Date.now() / 60000);
+    const _sep = filePath.includes("?") ? "&" : "?";
+    const r = await fetch(`${filePath}${_sep}v=${_bust}`, { cache: "no-store" });
     if (!r.ok) throw new Error(`${filePath}: ${r.status}`);
     const body = await r.json();
     return postFilter ? postFilter(body) : body;

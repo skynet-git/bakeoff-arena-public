@@ -557,9 +557,13 @@ tbody tr:hover .drill-cue { opacity: 0.8; }
 
 /* Leaderboard rank badges */
 .rank-badge { display: inline-block; width: 20px; text-align: center; font-weight: 700; }
-.rank-1 { color: gold; }
-.rank-2 { color: silver; }
-.rank-3 { color: #cd7f32; }
+/* v15.7.7: medal colours removed per operator. Gold/silver/bronze on ranks
+ * 1-3 read as a THIRD colour system on a page that already uses colour for
+ * model identity (the dot) and for P&L sign (green/red). Only ranks 1 and 3
+ * were visually obvious, so it looked like an inconsistency rather than a
+ * ranking. Rank number now inherits normal text colour; ordering already
+ * conveys rank. */
+.rank-1, .rank-2, .rank-3 { color: inherit; }
 
 /* P&L color */
 .pnl-pos { color: var(--green); }
