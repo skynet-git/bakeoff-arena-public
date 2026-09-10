@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[{"shadow_fill_id":1800,"entry_ts":"2026-09-10T12:46:31.040789","symbol":"CNQ","direction":"SHORT","entry_price":51.095,"shares":156,"notional":7970.82,"invalidation":51.2,"take_profit_price":null,"take_profit_trailing_pct":1.0,"decision_id":24830,"stop_unguarded":false}]}
+{"provider":"model_1","open_positions":[]}
