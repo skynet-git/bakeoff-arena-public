@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[]}
+{"provider":"model_4","open_positions":[{"shadow_fill_id":1843,"entry_ts":"2026-09-10T13:34:13.708458","symbol":"GFR","direction":"SHORT","entry_price":6.32,"shares":632,"notional":3994.2400000000002,"invalidation":6.35,"take_profit_price":6.26,"take_profit_trailing_pct":null,"decision_id":25569,"stop_unguarded":false}]}
