@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":1665,"entry_ts":"2026-09-10T10:48:33.624549","symbol":"ERAS","direction":"LONG","entry_price":16.7,"shares":29,"notional":484.29999999999995,"invalidation":16.6,"take_profit_price":17.1,"take_profit_trailing_pct":null,"decision_id":22572,"stop_unguarded":false}]}
