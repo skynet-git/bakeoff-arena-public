@@ -1,1 +1,1 @@
-{"provider":"model_8","open_positions":[]}
+{"provider":"model_8","open_positions":[{"shadow_fill_id":1880,"entry_ts":"2026-09-10T14:33:12.385431","symbol":"BKV","direction":"LONG","entry_price":24.685,"shares":405,"notional":9997.425,"invalidation":24.61,"take_profit_price":24.86,"take_profit_trailing_pct":null,"decision_id":26609,"stop_unguarded":false}]}
