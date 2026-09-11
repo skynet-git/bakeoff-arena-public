@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":2159,"entry_ts":"2026-09-11T11:07:25.802007","symbol":"TENB","direction":"SHORT","entry_price":30.47,"shares":164,"notional":4997.08,"invalidation":30.6,"take_profit_price":30.18,"take_profit_trailing_pct":null,"decision_id":29792,"stop_unguarded":false}]}
