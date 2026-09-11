@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":2355,"entry_ts":"2026-09-11T14:29:10.876549","symbol":"ETHB","direction":"LONG","entry_price":32.675,"shares":30,"notional":980.2499999999999,"invalidation":32.05,"take_profit_price":33.33,"take_profit_trailing_pct":null,"decision_id":33347,"stop_unguarded":false}]}

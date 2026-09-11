@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[]}
+{"provider":"model_1","open_positions":[{"shadow_fill_id":2349,"entry_ts":"2026-09-11T14:26:04.210808","symbol":"ATEC","direction":"LONG","entry_price":10.505,"shares":1189,"notional":12490.445000000002,"invalidation":10.47,"take_profit_price":null,"take_profit_trailing_pct":1.5,"decision_id":33295,"stop_unguarded":false}]}
