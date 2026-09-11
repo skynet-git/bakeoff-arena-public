@@ -1,1 +1,1 @@
-{"provider":"model_8","open_positions":[]}
+{"provider":"model_8","open_positions":[{"shadow_fill_id":2065,"entry_ts":"2026-09-11T10:20:33.759423","symbol":"FETH","direction":"LONG","entry_price":26.05,"shares":383,"notional":9977.15,"invalidation":25.94,"take_profit_price":26.35,"take_profit_trailing_pct":null,"decision_id":28803,"stop_unguarded":false}]}
