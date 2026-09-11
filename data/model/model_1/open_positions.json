@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[]}
+{"provider":"model_1","open_positions":[{"shadow_fill_id":1919,"entry_ts":"2026-09-11T09:30:38.843022","symbol":"AAPU","direction":"LONG","entry_price":43.1,"shares":116,"notional":4999.6,"invalidation":42.8,"take_profit_price":null,"take_profit_trailing_pct":1.5,"decision_id":27410,"stop_unguarded":false}]}

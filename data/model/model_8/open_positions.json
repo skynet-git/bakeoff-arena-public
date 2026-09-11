@@ -1,1 +1,1 @@
-{"provider":"model_8","open_positions":[]}
+{"provider":"model_8","open_positions":[{"shadow_fill_id":1944,"entry_ts":"2026-09-11T09:34:44.166219","symbol":"GDXU","direction":"SHORT","entry_price":153.2,"shares":19,"notional":2910.7999999999997,"invalidation":156.2,"take_profit_price":150.0,"take_profit_trailing_pct":null,"decision_id":27666,"stop_unguarded":false}]}
