@@ -1,1 +1,1 @@
-{"provider":"model_8","open_positions":[]}
+{"provider":"model_8","open_positions":[{"shadow_fill_id":2125,"entry_ts":"2026-09-11T10:54:57.942575","symbol":"ETHU","direction":"LONG","entry_price":29.11,"shares":274,"notional":7976.139999999999,"invalidation":28.88,"take_profit_price":29.65,"take_profit_trailing_pct":null,"decision_id":29436,"stop_unguarded":false}]}
