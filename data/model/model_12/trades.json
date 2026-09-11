@@ -1,1 +1,1 @@
-{"provider":"model_12","trades":[]}
+{"provider":"model_12","trades":[{"entry_ts":"2026-09-11T14:47:10.645681","exit_ts":"2026-09-11T14:49:21.814602","symbol":"ETHB","direction":"LONG","shares":30,"entry_price":32.73,"exit_price":32.71,"exit_reason":"FLIP","pnl_dollars":-0.5999999999998806,"pnl_pct":-0.061106018942853724,"hold_seconds":131,"notional":981.8999999999999,"decision_id":33732,"flip_to_fill_id":2421,"shadow_fill_id":2393,"tp_trailing_pct":null}]}

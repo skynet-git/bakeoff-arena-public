@@ -1,1 +1,1 @@
-{"provider":"gpt_oss_120b_1c","n_trades":0,"win_rate":0.0,"avg_win":0.0,"avg_loss":0.0,"profit_factor":null,"expectancy":0.0,"max_drawdown":0.0,"sharpe":null,"total_pnl":0.0,"best_trade":0.0,"worst_trade":0.0,"avg_hold_minutes":0.0}
+{"provider":"gpt_oss_120b_1c","n_trades":2,"win_rate":0.0,"avg_win":0.0,"avg_loss":-2.374999999999865,"profit_factor":0.0,"expectancy":-1.1874999999999325,"max_drawdown":-2.374999999999865,"sharpe":-0.7071067811865476,"total_pnl":-2.374999999999865,"best_trade":0.0,"worst_trade":-2.374999999999865,"avg_hold_minutes":1.725}
