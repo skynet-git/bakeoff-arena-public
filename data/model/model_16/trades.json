@@ -1,1 +1,1 @@
-{"provider":"model_16","trades":[]}
+{"provider":"model_16","trades":[{"entry_ts":"2026-09-11T15:37:39.374681","exit_ts":"2026-09-11T15:39:16.379936","symbol":"FETH","direction":"LONG","shares":39,"entry_price":25.355,"exit_price":25.32,"exit_reason":"STOP","pnl_dollars":-1.3650000000000055,"pnl_pct":-0.13803983435219935,"hold_seconds":97,"notional":988.845,"decision_id":35560,"flip_to_fill_id":null,"shadow_fill_id":2661,"tp_trailing_pct":2.5}]}
