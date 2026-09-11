@@ -1,1 +1,1 @@
-{"provider":"model_15","trades":[]}
+{"provider":"model_15","trades":[{"entry_ts":"2026-09-11T14:54:52.093503","exit_ts":"2026-09-11T15:01:32.762931","symbol":"CADL","direction":"SHORT","shares":770,"entry_price":10.3799,"exit_price":10.44,"exit_reason":"CLOSE","pnl_dollars":-46.2770000000002,"pnl_pct":-0.5790036512875872,"hold_seconds":400,"notional":7992.522999999999,"decision_id":34262,"flip_to_fill_id":null,"shadow_fill_id":2476,"tp_trailing_pct":2.5}]}
