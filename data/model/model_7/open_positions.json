@@ -1,1 +1,1 @@
-{"provider":"model_7","open_positions":[]}
+{"provider":"model_7","open_positions":[{"shadow_fill_id":2038,"entry_ts":"2026-09-11T10:04:46.897035","symbol":"ORCL","direction":"SHORT","entry_price":155.75,"shares":64,"notional":9968.0,"invalidation":156.85,"take_profit_price":154.45,"take_profit_trailing_pct":null,"decision_id":28472,"stop_unguarded":false}]}
