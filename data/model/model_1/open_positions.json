@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[{"shadow_fill_id":150,"entry_ts":"2026-09-14T14:31:52.399445","symbol":"EWS","direction":"SHORT","entry_price":33.6849,"shares":14,"notional":471.5886,"invalidation":33.74,"take_profit_price":33.55,"take_profit_trailing_pct":null,"decision_id":1720,"stop_unguarded":false}]}
+{"provider":"model_1","open_positions":[]}
