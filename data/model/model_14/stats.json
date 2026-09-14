@@ -1,1 +1,1 @@
-{"provider":"gemini_31_flite","n_trades":0,"win_rate":0.0,"avg_win":0.0,"avg_loss":0.0,"profit_factor":null,"expectancy":0.0,"max_drawdown":0.0,"sharpe":null,"total_pnl":0.0,"best_trade":0.0,"worst_trade":0.0,"avg_hold_minutes":0.0}
+{"provider":"gemini_31_flite","n_trades":1,"win_rate":0.0,"avg_win":0.0,"avg_loss":-13.69499999999993,"profit_factor":0.0,"expectancy":-13.69499999999993,"max_drawdown":-13.69499999999993,"sharpe":null,"total_pnl":-13.69499999999993,"best_trade":-13.69499999999993,"worst_trade":-13.69499999999993,"avg_hold_minutes":2.35}
