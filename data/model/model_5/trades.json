@@ -1,1 +1,1 @@
-{"provider":"model_5","trades":[]}
+{"provider":"model_5","trades":[{"entry_ts":"2026-09-14T13:50:11.150181","exit_ts":"2026-09-14T13:52:15.673225","symbol":"DV","direction":"SHORT","shares":369,"entry_price":13.545000000000002,"exit_price":13.559999999999999,"exit_reason":"CLOSE","pnl_dollars":-5.534999999998899,"pnl_pct":-0.11074197120706543,"hold_seconds":124,"notional":4998.1050000000005,"decision_id":48,"flip_to_fill_id":null,"shadow_fill_id":22,"tp_trailing_pct":null}]}
