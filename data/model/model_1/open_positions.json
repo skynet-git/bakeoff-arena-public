@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[]}
+{"provider":"model_1","open_positions":[{"shadow_fill_id":164,"entry_ts":"2026-09-14T14:51:59.033132","symbol":"BWIN","direction":"SHORT","entry_price":31.935000000000002,"shares":62,"notional":1979.9700000000003,"invalidation":31.98,"take_profit_price":31.78,"take_profit_trailing_pct":null,"decision_id":2005,"stop_unguarded":false}]}
