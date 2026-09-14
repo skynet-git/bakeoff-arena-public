@@ -1,1 +1,1 @@
-{"provider":"model_10","trades":[]}
+{"provider":"model_10","trades":[{"entry_ts":"2026-09-14T09:34:34.455694","exit_ts":"2026-09-14T09:34:46.355915","symbol":"NFXL","direction":"LONG","shares":108,"entry_price":18.4,"exit_price":18.205,"exit_reason":"STOP","pnl_dollars":-21.06000000000003,"pnl_pct":-1.0597826086956539,"hold_seconds":11,"notional":1987.1999999999998,"decision_id":69,"flip_to_fill_id":null,"shadow_fill_id":20,"tp_trailing_pct":null}]}
