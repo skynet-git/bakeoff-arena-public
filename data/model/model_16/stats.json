@@ -1,1 +1,1 @@
-{"provider":"gpt_oss_20b_nv","n_trades":0,"win_rate":0.0,"avg_win":0.0,"avg_loss":0.0,"profit_factor":null,"expectancy":0.0,"max_drawdown":0.0,"sharpe":null,"total_pnl":0.0,"best_trade":0.0,"worst_trade":0.0,"avg_hold_minutes":0.0}
+{"provider":"gpt_oss_20b_nv","n_trades":2,"win_rate":0.0,"avg_win":0.0,"avg_loss":-51.4499999999989,"profit_factor":0.0,"expectancy":-51.4499999999989,"max_drawdown":-102.8999999999978,"sharpe":-0.9002881438269703,"total_pnl":-102.8999999999978,"best_trade":-11.039999999999765,"worst_trade":-91.85999999999804,"avg_hold_minutes":0.7416666666666667}
