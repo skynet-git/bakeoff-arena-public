@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[{"shadow_fill_id":164,"entry_ts":"2026-09-15T09:55:52.328336","symbol":"ALLY","direction":"SHORT","entry_price":40.14,"shares":49,"notional":1966.8600000000001,"invalidation":41.3,"take_profit_price":39.8,"take_profit_trailing_pct":null,"decision_id":1093,"stop_unguarded":false}]}
+{"provider":"model_1","open_positions":[]}
