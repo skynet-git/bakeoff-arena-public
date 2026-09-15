@@ -14,7 +14,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Bakeoff">
     <title>Bakeoff Arena</title>
-    <link rel="stylesheet" href="./styles.css?v=202609151645">
+    <link rel="stylesheet" href="./styles.css?v=202609151650">
 
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TJNL6CBX');</script>
@@ -185,9 +185,14 @@ Esc      = close drawer or chart
             <div class="table-scroll" style="max-height: 260px">
                 <table id="model-positions">
                     <thead>
-                        <tr><th>Entry</th><th>Sym</th><th>Dir</th><th class="num">Shares</th>
-                            <th class="num">Entry $</th><th class="num">Notional</th>
-                            <th class="num">Stop</th><th class="num">TP</th></tr>
+                        <tr><th data-sort="entry_ts" data-sort-type="time">Entry</th>
+                            <th data-sort="symbol" data-sort-type="text">Sym</th>
+                            <th data-sort="direction" data-sort-type="text">Dir</th>
+                            <th class="num" data-sort="shares">Shares</th>
+                            <th class="num" data-sort="entry_price">Entry $</th>
+                            <th class="num" data-sort="notional">Notional</th>
+                            <th class="num" data-sort="invalidation">Stop</th>
+                            <th class="num" data-sort="take_profit_price">TP</th></tr>
                     </thead>
                     <tbody></tbody>
                 </table>
@@ -204,9 +209,16 @@ Esc      = close drawer or chart
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Exit ts</th><th>Sym</th><th>Dir</th>
-                            <th class="num">Shares</th><th class="num">Entry</th><th class="num">Exit</th>
-                            <th>Reason</th><th class="num">P&amp;L $</th><th class="num">P&amp;L %</th><th class="num">Hold</th>
+                            <th data-sort="exit_ts" data-sort-type="time">Exit ts</th>
+                            <th data-sort="symbol" data-sort-type="text">Sym</th>
+                            <th data-sort="direction" data-sort-type="text">Dir</th>
+                            <th class="num" data-sort="shares">Shares</th>
+                            <th class="num" data-sort="entry_price">Entry</th>
+                            <th class="num" data-sort="exit_price">Exit</th>
+                            <th data-sort="exit_reason" data-sort-type="text">Reason</th>
+                            <th class="num" data-sort="pnl_dollars">P&amp;L $</th>
+                            <th class="num" data-sort="pnl_pct">P&amp;L %</th>
+                            <th class="num" data-sort="hold_seconds">Hold</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -308,7 +320,7 @@ Esc      = close drawer or chart
     </footer>
 
     <script src="https://unpkg.com/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js"></script>
-    <script src="./app.js?v=202609151645"></script>
+    <script src="./app.js?v=202609151650"></script>
 <script>(function(){async function u(){try{const b=Math.floor(Date.now()/60000);const m=await(await fetch("data/meta.json?v="+b,{cache:"no-store"})).json();const el=document.getElementById("pb-updated");if(!el||!m||!m.last_updated_iso)return;const d=new Date(m.last_updated_iso);el.textContent=" · Last updated: "+d.toLocaleString("en-US",{timeZone:"America/New_York",month:"short",day:"numeric",hour:"numeric",minute:"2-digit",second:"2-digit",hour12:true})+" ET";}catch(e){}}u();setInterval(u,60000);})();</script>
 </body>
 </html>

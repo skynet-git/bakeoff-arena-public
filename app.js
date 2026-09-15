@@ -755,6 +755,101 @@ function _sortedRows(rows) {
     return sorted;
 }
 
+// ============================================================================
+// v15.11.7: the same click-to-sort, for any table.
+//
+// The leaderboard has had sortable headers since 2026-08-28; the drill-down
+// tables did not, so the trade log and open positions were stuck in server
+// order (newest first) with no way to ask "which trade lost the most" or
+// "which position is my biggest". Rather than copy the leaderboard's three
+// functions twice, this generalises them.
+//
+// State is PER TABLE, so sorting the trade log does not disturb open
+// positions. Comparator semantics are deliberately identical to the
+// leaderboard's: nulls sink to the bottom whichever way you sort, strings
+// use localeCompare, numbers compare numerically.
+// ============================================================================
+
+function makeTableSorter(tableSelector, rerender) {
+    const state = {col: null, dir: "desc"};
+
+    function install() {
+        const head = document.querySelector(`${tableSelector} thead`);
+        if (!head || head.dataset.wired === "1") return;
+        head.dataset.wired = "1";
+        head.querySelectorAll("th[data-sort]").forEach(th => {
+            th.style.cursor = "pointer";
+            th.addEventListener("click", () => {
+                const col = th.dataset.sort;
+                if (state.col === col) {
+                    state.dir = state.dir === "desc" ? "asc" : "desc";
+                } else {
+                    state.col = col;
+                    // Text and time columns read better ascending first;
+                    // numbers read better largest-first.
+                    state.dir = (th.dataset.sortType === "text") ? "asc" : "desc";
+                }
+                rerender();
+            });
+        });
+    }
+
+    function indicators() {
+        const head = document.querySelector(`${tableSelector} thead`);
+        if (!head) return;
+        head.querySelectorAll("th[data-sort]").forEach(th => {
+            if (!th.dataset.baseLabel) {
+                th.dataset.baseLabel = th.textContent
+                    .replace(/[▲▼]\s*$/, "").trim();
+            }
+            const base = th.dataset.baseLabel;
+            if (th.dataset.sort === state.col) {
+                const arrow = state.dir === "desc" ? "▼" : "▲";
+                th.innerHTML = `${escapeHtml(base)} <span class="sort-ind">${arrow}</span>`;
+            } else {
+                th.textContent = base;
+            }
+        });
+    }
+
+    function _type(col) {
+        const th = document.querySelector(
+            `${tableSelector} thead th[data-sort="${col}"]`);
+        return th ? (th.dataset.sortType || "num") : "num";
+    }
+
+    function apply(rows) {
+        if (!state.col) return rows;
+        const kind = _type(state.col);
+        const key = r => {
+            const v = r[state.col];
+            if (v == null) return null;
+            // Timestamps are ISO strings; compare as instants, not text, so
+            // a format change can never silently reorder the table.
+            if (kind === "time") {
+                const t = Date.parse(v);
+                return Number.isNaN(t) ? null : t;
+            }
+            return v;
+        };
+        const out = [...rows];
+        out.sort((a, b) => {
+            const av = key(a), bv = key(b);
+            if (av == null && bv == null) return 0;
+            if (av == null) return 1;
+            if (bv == null) return -1;
+            if (typeof av === "string" || typeof bv === "string") {
+                const cmp = String(av).localeCompare(String(bv));
+                return state.dir === "desc" ? -cmp : cmp;
+            }
+            return state.dir === "desc" ? bv - av : av - bv;
+        });
+        return out;
+    }
+
+    return {install, indicators, apply};
+}
+
 let _lastLeaderboardRows = null;
 
 function renderLeaderboard(rows) {
@@ -1137,7 +1232,15 @@ function moneyC(n) {
     return `<span class="${cls}">${money(n, true)}</span>`;
 }
 
+const _tradesSorter = makeTableSorter("#model-trades",
+    () => { if (_lastModelTrades) renderModelTrades(_lastModelTrades); });
+let _lastModelTrades = null;
+
 function renderModelTrades(rows) {
+    _tradesSorter.install();
+    _lastModelTrades = rows;
+    rows = _tradesSorter.apply(rows);
+    _tradesSorter.indicators();
     const tbody = document.querySelector("#model-trades tbody");
     tbody.innerHTML = "";
     // colspan updated for the new leading chart-icon column.
@@ -1167,7 +1270,15 @@ function renderModelTrades(rows) {
     });
 }
 
+const _posSorter = makeTableSorter("#model-positions",
+    () => { if (_lastModelPositions) renderModelPositions(_lastModelPositions); });
+let _lastModelPositions = null;
+
 function renderModelPositions(rows) {
+    _posSorter.install();
+    _lastModelPositions = rows;
+    rows = _posSorter.apply(rows);
+    _posSorter.indicators();
     const tbody = document.querySelector("#model-positions tbody");
     tbody.innerHTML = "";
     if (!rows.length) { tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;color:var(--text-dim);padding:20px">No open positions</td></tr>`; return; }
