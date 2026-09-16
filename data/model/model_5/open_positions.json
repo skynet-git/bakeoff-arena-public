@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":487,"entry_ts":"2026-09-16T15:03:46.205902","symbol":"FPS","direction":"LONG","entry_price":35.21,"shares":142,"notional":4999.82,"invalidation":34.8,"take_profit_price":null,"take_profit_trailing_pct":1.5,"decision_id":6412,"stop_unguarded":false}]}
