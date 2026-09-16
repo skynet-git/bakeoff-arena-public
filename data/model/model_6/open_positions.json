@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":483,"entry_ts":"2026-09-16T14:54:41.658949","symbol":"TJGC","direction":"LONG","entry_price":11.1,"shares":45,"notional":499.5,"invalidation":10.99,"take_profit_price":11.3,"take_profit_trailing_pct":null,"decision_id":6370,"stop_unguarded":false}]}
