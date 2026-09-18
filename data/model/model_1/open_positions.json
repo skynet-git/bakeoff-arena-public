@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[{"shadow_fill_id":1159,"entry_ts":"2026-09-18T09:36:56.563224","symbol":"PEP","direction":"SHORT","entry_price":131.06,"shares":190,"notional":24901.4,"invalidation":132.3,"take_profit_price":null,"take_profit_trailing_pct":2.5,"decision_id":13910,"stop_unguarded":false}]}
+{"provider":"model_1","open_positions":[]}
