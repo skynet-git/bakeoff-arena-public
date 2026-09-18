@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":1554,"entry_ts":"2026-09-18T14:52:09.443337","symbol":"HALO","direction":"LONG","entry_price":112.26500000000001,"shares":4,"notional":449.06000000000006,"invalidation":111.95,"take_profit_price":null,"take_profit_trailing_pct":0.3,"decision_id":19543,"stop_unguarded":false}]}
