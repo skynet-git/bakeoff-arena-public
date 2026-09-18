@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[]}
+{"provider":"model_4","open_positions":[{"shadow_fill_id":1479,"entry_ts":"2026-09-18T12:17:55.122047","symbol":"HAYW","direction":"LONG","entry_price":12.954999999999998,"shares":154,"notional":1995.0699999999997,"invalidation":12.85,"take_profit_price":null,"take_profit_trailing_pct":2.5,"decision_id":18052,"stop_unguarded":false}]}
