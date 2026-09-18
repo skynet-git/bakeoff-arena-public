@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":1493,"entry_ts":"2026-09-18T12:40:16.452043","symbol":"FER","direction":"LONG","entry_price":54.785,"shares":9,"notional":493.06499999999994,"invalidation":54.7,"take_profit_price":54.95,"take_profit_trailing_pct":null,"decision_id":18326,"stop_unguarded":false}]}
