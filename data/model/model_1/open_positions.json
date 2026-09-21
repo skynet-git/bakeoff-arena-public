@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[{"shadow_fill_id":2110,"entry_ts":"2026-09-21T15:03:24.595071","symbol":"INTC","direction":"LONG","entry_price":121.15,"shares":8,"notional":969.2,"invalidation":120.5,"take_profit_price":124.5,"take_profit_trailing_pct":null,"decision_id":28328,"stop_unguarded":false}]}
+{"provider":"model_1","open_positions":[]}
