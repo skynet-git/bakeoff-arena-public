@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":1809,"entry_ts":"2026-09-21T10:25:20.464509","symbol":"MXL","direction":"LONG","entry_price":87.525,"shares":57,"notional":4988.925,"invalidation":86.55,"take_profit_price":88.8,"take_profit_trailing_pct":null,"decision_id":21715,"stop_unguarded":false}]}
