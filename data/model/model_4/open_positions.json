@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[]}
+{"provider":"model_4","open_positions":[{"shadow_fill_id":2166,"entry_ts":"2026-09-22T09:34:46.529086","symbol":"NVO","direction":"LONG","entry_price":39.57,"shares":126,"notional":4985.82,"invalidation":39.5,"take_profit_price":39.72,"take_profit_trailing_pct":null,"decision_id":29073,"stop_unguarded":false}]}
