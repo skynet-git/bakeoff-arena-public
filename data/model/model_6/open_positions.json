@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":2360,"entry_ts":"2026-09-22T13:11:51.744698","symbol":"SOFI","direction":"SHORT","entry_price":17.150000000000002,"shares":291,"notional":4990.650000000001,"invalidation":17.28,"take_profit_price":16.9,"take_profit_trailing_pct":null,"decision_id":32153,"stop_unguarded":false}]}
