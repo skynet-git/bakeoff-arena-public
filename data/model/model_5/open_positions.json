@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":2421,"entry_ts":"2026-09-22T14:19:23.105164","symbol":"OMER","direction":"LONG","entry_price":21.020000000000003,"shares":237,"notional":4981.740000000001,"invalidation":20.75,"take_profit_price":null,"take_profit_trailing_pct":1.5,"decision_id":33091,"stop_unguarded":false}]}
