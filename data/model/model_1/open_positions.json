@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[{"shadow_fill_id":2471,"entry_ts":"2026-09-22T15:18:03.990272","symbol":"NYT","direction":"LONG","entry_price":65.405,"shares":15,"notional":981.075,"invalidation":65.2,"take_profit_price":65.7,"take_profit_trailing_pct":null,"decision_id":33738,"stop_unguarded":false}]}
+{"provider":"model_1","open_positions":[]}
