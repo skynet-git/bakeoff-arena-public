@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[{"shadow_fill_id":2967,"entry_ts":"2026-09-23T15:44:25.739614","symbol":"EXPE","direction":"SHORT","entry_price":259.77500000000003,"shares":19,"notional":4935.725,"invalidation":261.5,"take_profit_price":257.7,"take_profit_trailing_pct":null,"decision_id":40630,"stop_unguarded":false}]}
+{"provider":"model_1","open_positions":[]}
