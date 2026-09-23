@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[]}
+{"provider":"model_1","open_positions":[{"shadow_fill_id":2894,"entry_ts":"2026-09-23T14:32:58.889174","symbol":"RCL","direction":"SHORT","entry_price":226.76999999999998,"shares":8,"notional":1814.1599999999999,"invalidation":227.2,"take_profit_price":222.5,"take_profit_trailing_pct":null,"decision_id":39933,"stop_unguarded":false}]}
