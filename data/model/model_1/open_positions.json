@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[{"shadow_fill_id":2901,"entry_ts":"2026-09-23T14:35:41.963527","symbol":"IONQ","direction":"SHORT","entry_price":42.665000000000006,"shares":46,"notional":1962.5900000000004,"invalidation":46.1,"take_profit_price":41.8,"take_profit_trailing_pct":null,"decision_id":39965,"stop_unguarded":false}]}
+{"provider":"model_1","open_positions":[]}
