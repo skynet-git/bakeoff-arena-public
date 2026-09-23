@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":2562,"entry_ts":"2026-09-23T10:12:59.466300","symbol":"MCD","direction":"LONG","entry_price":239.245,"shares":20,"notional":4784.9,"invalidation":238.4,"take_profit_price":241.5,"take_profit_trailing_pct":null,"decision_id":34795,"stop_unguarded":false}]}
