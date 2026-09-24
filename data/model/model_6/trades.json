@@ -1,1 +1,1 @@
-{"provider":"model_6","trades":[]}
+{"provider":"model_6","trades":[{"entry_ts":"2026-09-24T13:09:28.706241","exit_ts":"2026-09-24T13:27:03.676381","symbol":"GIL","direction":"SHORT","shares":365,"entry_price":41.085,"exit_price":41.4301,"exit_reason":"CLOSE","pnl_dollars":-125.9615000000008,"pnl_pct":-0.839965924303279,"hold_seconds":1054,"notional":14996.025,"decision_id":244,"flip_to_fill_id":null,"shadow_fill_id":62,"tp_trailing_pct":null}]}
