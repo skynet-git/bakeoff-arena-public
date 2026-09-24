@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":3359,"entry_ts":"2026-09-24T11:59:44.971484","symbol":"QURE","direction":"LONG","entry_price":37.735,"shares":53,"notional":1999.955,"invalidation":37.16,"take_profit_price":38.5,"take_profit_trailing_pct":null,"decision_id":44158,"stop_unguarded":false}]}
