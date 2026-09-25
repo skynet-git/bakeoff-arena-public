@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[]}
+{"provider":"model_1","open_positions":[{"shadow_fill_id":493,"entry_ts":"2026-09-25T15:34:04.669005","symbol":"VKTX","direction":"SHORT","entry_price":35.68000000000001,"shares":56,"notional":1998.0800000000004,"invalidation":35.8,"take_profit_price":35.15,"take_profit_trailing_pct":null,"decision_id":4919,"stop_unguarded":false}]}
