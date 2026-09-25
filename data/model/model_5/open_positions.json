@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":463,"entry_ts":"2026-09-25T14:33:31.013016","symbol":"MGM","direction":"LONG","entry_price":32.665000000000006,"shares":30,"notional":979.9500000000002,"invalidation":32.44,"take_profit_price":32.96,"take_profit_trailing_pct":null,"decision_id":4529,"stop_unguarded":false}]}
