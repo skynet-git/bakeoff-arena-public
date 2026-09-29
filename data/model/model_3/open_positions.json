@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":1266,"entry_ts":"2026-09-29T09:43:07.243344","symbol":"BE","direction":"SHORT","entry_price":286.3337,"shares":27,"notional":7731.009900000001,"invalidation":290.0,"take_profit_price":null,"take_profit_trailing_pct":1.0,"decision_id":12998,"stop_unguarded":false}]}
