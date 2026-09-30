@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":1641,"entry_ts":"2026-09-30T09:43:25.533576","symbol":"NCLH","direction":"LONG","entry_price":14.98,"shares":280,"notional":4194.400000000001,"invalidation":14.85,"take_profit_price":15.25,"take_profit_trailing_pct":null,"decision_id":16641,"stop_unguarded":false}]}
