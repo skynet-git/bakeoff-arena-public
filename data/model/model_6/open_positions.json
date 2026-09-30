@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":1595,"entry_ts":"2026-09-30T09:33:12.754153","symbol":"HMY","direction":"SHORT","entry_price":17.993000000000002,"shares":594,"notional":10687.842,"invalidation":18.1,"take_profit_price":17.9,"take_profit_trailing_pct":null,"decision_id":16345,"stop_unguarded":false}]}
