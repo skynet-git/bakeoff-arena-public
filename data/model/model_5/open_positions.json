@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":1887,"entry_ts":"2026-09-30T15:34:21.528825","symbol":"JBL","direction":"LONG","entry_price":286.925,"shares":2,"notional":573.85,"invalidation":284.3,"take_profit_price":288.5,"take_profit_trailing_pct":null,"decision_id":20031,"stop_unguarded":false}]}
