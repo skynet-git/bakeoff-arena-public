@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":2124,"entry_ts":"2026-10-01T10:26:31.251754","symbol":"PRGS","direction":"SHORT","entry_price":37.78,"shares":101,"notional":3815.78,"invalidation":38.27,"take_profit_price":37.1,"take_profit_trailing_pct":null,"decision_id":21643,"stop_unguarded":false}]}
