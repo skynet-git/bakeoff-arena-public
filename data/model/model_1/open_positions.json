@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[{"shadow_fill_id":2538,"entry_ts":"2026-10-01T14:28:56.639509","symbol":"MT","direction":"LONG","entry_price":64.0601,"shares":6,"notional":384.36060000000003,"invalidation":63.5,"take_profit_price":64.81,"take_profit_trailing_pct":null,"decision_id":26479,"stop_unguarded":false}]}
+{"provider":"model_1","open_positions":[]}
