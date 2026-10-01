@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":2001,"entry_ts":"2026-10-01T09:43:36.193493","symbol":"CEG","direction":"LONG","entry_price":269.405,"shares":1,"notional":269.405,"invalidation":268.0,"take_profit_price":274.0,"take_profit_trailing_pct":null,"decision_id":20558,"stop_unguarded":false}]}
+{"provider":"model_2","open_positions":[]}
