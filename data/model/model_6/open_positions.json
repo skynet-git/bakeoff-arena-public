@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":2613,"entry_ts":"2026-10-02T09:34:32.547886","symbol":"MGY","direction":"LONG","entry_price":24.045,"shares":240,"notional":5770.8,"invalidation":23.9,"take_profit_price":24.28,"take_profit_trailing_pct":null,"decision_id":27099,"stop_unguarded":false}]}
