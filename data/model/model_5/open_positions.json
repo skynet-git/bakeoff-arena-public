@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":3800,"entry_ts":"2026-10-07T14:58:51.331363","symbol":"NEOG","direction":"LONG","entry_price":11.625,"shares":279,"notional":3243.375,"invalidation":11.55,"take_profit_price":11.75,"take_profit_trailing_pct":null,"decision_id":39163,"stop_unguarded":false}]}
