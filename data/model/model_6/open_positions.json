@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":3616,"entry_ts":"2026-10-07T11:25:43.398004","symbol":"PSNL","direction":"LONG","entry_price":16.055,"shares":64,"notional":1027.52,"invalidation":15.99,"take_profit_price":16.15,"take_profit_trailing_pct":null,"decision_id":36563,"stop_unguarded":false}]}
