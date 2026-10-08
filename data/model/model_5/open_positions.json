@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":597,"entry_ts":"2026-10-08T15:33:30.614408","symbol":"MMED","direction":"LONG","entry_price":19.64,"shares":254,"notional":4988.56,"invalidation":19.55,"take_profit_price":19.81,"take_profit_trailing_pct":null,"decision_id":8761,"stop_unguarded":false}]}
