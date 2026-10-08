@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":533,"entry_ts":"2026-10-08T14:06:48.644919","symbol":"LEVI","direction":"LONG","entry_price":18.86,"shares":159,"notional":2998.74,"invalidation":18.72,"take_profit_price":19.15,"take_profit_trailing_pct":null,"decision_id":7489,"stop_unguarded":false}]}
