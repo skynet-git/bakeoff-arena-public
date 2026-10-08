@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":238,"entry_ts":"2026-10-08T11:01:23.841835","symbol":"HESM","direction":"LONG","entry_price":33.97,"shares":147,"notional":4993.59,"invalidation":33.85,"take_profit_price":34.4,"take_profit_trailing_pct":null,"decision_id":2640,"stop_unguarded":false}]}
