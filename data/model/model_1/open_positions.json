@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[{"shadow_fill_id":613,"entry_ts":"2026-10-08T15:52:25.543013","symbol":"PUK","direction":"SHORT","entry_price":23.88,"shares":41,"notional":979.0799999999999,"invalidation":23.92,"take_profit_price":23.78,"take_profit_trailing_pct":null,"decision_id":9004,"stop_unguarded":false}]}
+{"provider":"model_1","open_positions":[]}
