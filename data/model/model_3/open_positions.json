@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":50,"entry_ts":"2026-10-08T09:41:26.085955","symbol":"HSBC","direction":"LONG","entry_price":92.41,"shares":32,"notional":2957.12,"invalidation":92.1,"take_profit_price":92.75,"take_profit_trailing_pct":null,"decision_id":233,"stop_unguarded":false}]}
