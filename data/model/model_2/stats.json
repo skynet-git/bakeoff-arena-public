@@ -1,1 +1,1 @@
-{"provider":"grok_420","n_trades":0,"win_rate":0.0,"avg_win":0.0,"avg_loss":0.0,"profit_factor":null,"expectancy":0.0,"max_drawdown":0.0,"sharpe":null,"total_pnl":0.0,"best_trade":0.0,"worst_trade":0.0,"avg_hold_minutes":0.0}
+{"provider":"grok_420","n_trades":2,"win_rate":0.5,"avg_win":22.124999999999773,"avg_loss":-12.75,"profit_factor":1.735294117647041,"expectancy":4.687499999999886,"max_drawdown":-12.75,"sharpe":0.1900824680608965,"total_pnl":9.374999999999773,"best_trade":22.124999999999773,"worst_trade":-12.75,"avg_hold_minutes":0.575}
