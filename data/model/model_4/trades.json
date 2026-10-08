@@ -1,1 +1,1 @@
-{"provider":"model_4","trades":[]}
+{"provider":"model_4","trades":[{"entry_ts":"2026-10-08T10:40:22.996895","exit_ts":"2026-10-08T10:41:42.753673","symbol":"SBUX","direction":"LONG","shares":54,"entry_price":91.16,"exit_price":90.25,"exit_reason":"CLOSE","pnl_dollars":-49.139999999999816,"pnl_pct":-0.9982448442299219,"hold_seconds":79,"notional":4922.639999999999,"decision_id":1976,"flip_to_fill_id":null,"shadow_fill_id":213,"tp_trailing_pct":null}]}
