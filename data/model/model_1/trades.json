@@ -1,1 +1,1 @@
-{"provider":"model_1","trades":[]}
+{"provider":"model_1","trades":[{"entry_ts":"2026-10-08T09:34:17.710546","exit_ts":"2026-10-08T09:34:17.802681","symbol":"AAOI","direction":"SHORT","shares":43,"entry_price":115.83,"exit_price":114.87,"exit_reason":"TP","pnl_dollars":41.27999999999973,"pnl_pct":0.8288008288008234,"hold_seconds":0,"notional":4980.69,"decision_id":5,"flip_to_fill_id":null,"shadow_fill_id":4,"tp_trailing_pct":null}]}

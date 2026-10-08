@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":6,"entry_ts":"2026-10-08T09:34:20.137301","symbol":"APLD","direction":"SHORT","entry_price":24.14,"shares":414,"notional":9993.960000000001,"invalidation":24.45,"take_profit_price":23.68,"take_profit_trailing_pct":null,"decision_id":30,"stop_unguarded":false}]}
