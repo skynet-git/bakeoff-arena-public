@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":557,"entry_ts":"2026-10-08T14:42:45.351106","symbol":"SBUX","direction":"LONG","entry_price":90.25,"shares":33,"notional":2978.25,"invalidation":89.55,"take_profit_price":91.2,"take_profit_trailing_pct":null,"decision_id":8066,"stop_unguarded":false}]}
