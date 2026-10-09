@@ -842,20 +842,39 @@ tbody tr:hover .drill-cue { opacity: 0.8; }
     /* Move the top nav to the bottom of the viewport (see bottom-nav block
        below). Hide the desktop nav-in-topbar rendering. */
     .topbar .nav { display: none; }
-    /* Squish HIGH/LOW into a single line at 10px so we don't need to hide
-       it entirely — glance-visibility for the tournament leader is P0. */
+    /* HIGH/LOW gets its OWN LINE on mobile.
+     *
+     * v16.14.4: it used to squeeze onto the brand's line with the labels
+     * hidden, `white-space: nowrap` and `overflow: hidden`. With
+     * `justify-content: flex-end` the overflow clips from the LEFT, so on a
+     * 390px phone the operator saw the tails of two numbers and nothing
+     * else — reported as "the top right corner there is text missing":
+     *
+     *     38.30 Model          $710.45
+     *
+     * which is the end of "+$1,038.30 Model 5" and "-$710.45 Model 2".
+     * Hiding the labels made it worse, not better: the two values ran
+     * together with nothing to say which was which.
+     *
+     * The comment it replaces called glance-visibility of the leader P0,
+     * and clipping defeated exactly that. A wrapped second line costs ~14px
+     * of height — the mobile topbar already hides `.nav`, so there is room —
+     * and shows both figures whole, labels included. */
+    .topbar { flex-wrap: wrap; }
     .highlow {
         display: flex;
-        gap: 8px;
+        gap: 14px;
         min-width: 0;
-        flex: 1;
-        justify-content: flex-end;
+        flex-basis: 100%;
+        order: 10;                 /* below brand + the obfuscate toggle */
+        justify-content: flex-start;
         font-size: 9px;
         letter-spacing: 0;
         white-space: nowrap;
         overflow: hidden;
+        text-overflow: ellipsis;   /* if it STILL will not fit, lose the end */
     }
-    .highlow .label { display: none; }  /* Just show model + delta */
+    .highlow .label { display: inline; }
     .kbd-hint { display: none; }  /* No keyboard on mobile */
 
     /* ---- bottom-tab nav (mobile only) ---- */
