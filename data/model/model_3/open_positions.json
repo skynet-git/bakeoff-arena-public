@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":1040,"entry_ts":"2026-10-09T12:59:18.792271","symbol":"BKD","direction":"LONG","entry_price":10.27,"shares":195,"notional":2002.6499999999999,"invalidation":10.15,"take_profit_price":10.42,"take_profit_trailing_pct":null,"decision_id":13651,"stop_unguarded":false}]}
