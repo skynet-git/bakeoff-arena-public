@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[]}
+{"provider":"model_4","open_positions":[{"shadow_fill_id":1232,"entry_ts":"2026-10-09T14:55:41.490364","symbol":"TMUS","direction":"SHORT","entry_price":150.13,"shares":33,"notional":4954.29,"invalidation":151.85,"take_profit_price":148.15,"take_profit_trailing_pct":null,"decision_id":16634,"stop_unguarded":false}]}
