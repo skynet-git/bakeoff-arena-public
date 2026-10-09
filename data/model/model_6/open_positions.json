@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":627,"entry_ts":"2026-10-09T09:35:05.174101","symbol":"AAOI","direction":"LONG","entry_price":115.16,"shares":80,"notional":9212.8,"invalidation":112.9,"take_profit_price":117.44,"take_profit_trailing_pct":null,"decision_id":9068,"stop_unguarded":false}]}

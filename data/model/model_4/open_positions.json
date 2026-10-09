@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[]}
+{"provider":"model_4","open_positions":[{"shadow_fill_id":620,"entry_ts":"2026-10-09T09:33:56.665790","symbol":"DAL","direction":"LONG","entry_price":80.3,"shares":63,"notional":5058.9,"invalidation":79.25,"take_profit_price":81.5,"take_profit_trailing_pct":null,"decision_id":9056,"stop_unguarded":false}]}
