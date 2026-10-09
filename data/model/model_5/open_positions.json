@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":1301,"entry_ts":"2026-10-09T15:54:44.796551","symbol":"NVAX","direction":"SHORT","entry_price":12.75,"shares":392,"notional":4998.0,"invalidation":12.95,"take_profit_price":12.5,"take_profit_trailing_pct":null,"decision_id":17829,"stop_unguarded":false}]}
