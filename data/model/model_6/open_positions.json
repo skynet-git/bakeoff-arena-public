@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[{"shadow_fill_id":1915,"entry_ts":"2026-10-12T15:48:41.477944","symbol":"LEVI","direction":"LONG","entry_price":19.27,"shares":230,"notional":4432.099999999999,"invalidation":19.23,"take_profit_price":19.35,"take_profit_trailing_pct":null,"decision_id":26901,"stop_unguarded":false,"current_price":19.26,"mark_ts":"2026-10-12T19:55:05.290466+00:00","mark_basis":"last_trade","mark_bid":null,"mark_ask":null,"unrealized_pnl":-2.2999999999995424,"unrealized_pct":-0.05189413596262591}]}
+{"provider":"model_6","open_positions":[]}
