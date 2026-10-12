@@ -1295,6 +1295,9 @@ function renderModelPositions(rows) {
             <td class="${dcls}">${r.direction}</td>
             <td class="num">${r.shares}</td>
             <td class="num">${money(r.entry_price)}</td>
+            <td class="num" title="${markTitle(r)}">${money(r.current_price)}</td>
+            <td class="num ${pcls(r.unrealized_pnl)}">${money(r.unrealized_pnl, true)}</td>
+            <td class="num ${pcls(r.unrealized_pct)}">${r.unrealized_pct != null ? (r.unrealized_pct >= 0 ? '+' : '') + r.unrealized_pct.toFixed(2) + '%' : '—'}</td>
             <td class="num">${money(r.notional)}</td>
             <td class="num">${r.invalidation != null ? money(r.invalidation) : '—'}${unguardedChip}</td>
             <td class="num">${tp}</td>
@@ -2197,6 +2200,19 @@ function fmtLatency(ms) {
     if (ms < 1000) return `${ms} ms`;
     if (ms < 10000) return `${(ms / 1000).toFixed(2)} s`;
     return `${(ms / 1000).toFixed(1)} s`;
+}
+
+// v16.19.0: the mark's age, so a frozen price is visible on hover rather
+// than silently passing for live. `money()` already renders a null as an
+// em dash, so a symbol with no mark yet reads "—" instead of repeating the
+// entry price and showing a confident $0.00 unrealized.
+function markTitle(r) {
+    if (r.current_price == null) return "no mark yet for this symbol";
+    if (!r.mark_ts) return "last trade";
+    const age = (Date.now() - new Date(r.mark_ts).getTime()) / 1000;
+    if (!isFinite(age) || age < 0) return `marked ${r.mark_ts}`;
+    if (age < 90) return `marked ${Math.round(age)}s ago`;
+    return `marked ${Math.round(age / 60)}m ago — STALE`;
 }
 
 function pcls(n) {
