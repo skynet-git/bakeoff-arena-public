@@ -1281,7 +1281,11 @@ function renderModelPositions(rows) {
     _posSorter.indicators();
     const tbody = document.querySelector("#model-positions tbody");
     tbody.innerHTML = "";
-    if (!rows.length) { tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;color:var(--text-dim);padding:20px">No open positions</td></tr>`; return; }
+    // v16.19.1: 11, matching the header. It was 8 and stayed 8 when
+    // v16.19.0 added three columns, so a flat arm drew "No open positions"
+    // across eight cells with three trailing blanks and the table's right
+    // edge jumped between arms. The trade-log sibling above was already 11.
+    if (!rows.length) { tbody.innerHTML = `<tr><td colspan="11" style="text-align:center;color:var(--text-dim);padding:20px">No open positions</td></tr>`; return; }
     rows.forEach(r => {
         const dcls = r.direction === "LONG" ? "dir-LONG" : "dir-SHORT";
         const tp = r.take_profit_price != null ? money(r.take_profit_price) : (r.take_profit_trailing_pct != null ? `trail ${r.take_profit_trailing_pct}%` : "—");
