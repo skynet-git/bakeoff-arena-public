@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":1600,"entry_ts":"2026-10-12T11:54:09.746594","symbol":"FIGS","direction":"LONG","entry_price":17.31,"shares":187,"notional":3236.97,"invalidation":17.24,"take_profit_price":null,"take_profit_trailing_pct":0.5,"decision_id":21399,"stop_unguarded":false,"current_price":null,"mark_ts":null,"unrealized_pnl":null,"unrealized_pct":null}]}
+{"provider":"model_2","open_positions":[]}

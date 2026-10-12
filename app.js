@@ -2225,10 +2225,25 @@ function markTitle(r) {
     // already flagged separately by the `stop off` chip on the Stop
     // column, which comes from the adapter's own staleness check.
     const age = (Date.now() - new Date(r.mark_ts).getTime()) / 1000;
-    if (!isFinite(age) || age < 0) return `last moved ${r.mark_ts}`;
-    if (age < 90) return `last moved ${Math.round(age)}s ago`;
-    if (age < 5400) return `last moved ${Math.round(age / 60)}m ago`;
-    return `last moved ${(age / 3600).toFixed(1)}h ago — price may be stale`;
+    let when;
+    if (!isFinite(age) || age < 0) when = `at ${r.mark_ts}`;
+    else if (age < 90) when = `${Math.round(age)}s ago`;
+    else if (age < 5400) when = `${Math.round(age / 60)}m ago`;
+    else when = `${(age / 3600).toFixed(1)}h ago — may be stale`;
+
+    // v16.19.2: say WHICH price this is and show the book behind it. A
+    // mark the operator cannot source is a number they have to trust
+    // blindly, and the whole reason this column was rebuilt is that a
+    // last-trade print is not the NBBO.
+    if (r.mark_basis === "nbbo_mid" && r.mark_bid != null && r.mark_ask != null) {
+        const spr = r.mark_ask - r.mark_bid;
+        const bps = r.mark_bid > 0 ? (spr / ((r.mark_ask + r.mark_bid) / 2) * 10000) : null;
+        return `NBBO mid of ${money(r.mark_bid)} x ${money(r.mark_ask)}`
+             + (bps != null ? ` (${bps.toFixed(1)} bps wide)` : "")
+             + `, last moved ${when}`;
+    }
+    return `LAST TRADE — no usable quote, so this is a print, not the NBBO.`
+         + ` Last moved ${when}`;
 }
 
 function pcls(n) {
