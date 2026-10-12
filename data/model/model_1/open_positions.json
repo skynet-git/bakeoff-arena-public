@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[{"shadow_fill_id":1910,"entry_ts":"2026-10-12T15:43:31.138716","symbol":"TALO","direction":"LONG","entry_price":17.3,"shares":115,"notional":1989.5,"invalidation":17.2,"take_profit_price":17.5,"take_profit_trailing_pct":null,"decision_id":26830,"stop_unguarded":false,"current_price":17.395,"mark_ts":"2026-10-12T19:50:06.418610+00:00","mark_basis":"last_trade","mark_bid":null,"mark_ask":null,"unrealized_pnl":10.92499999999987,"unrealized_pct":0.549132947976872}]}
+{"provider":"model_1","open_positions":[]}
