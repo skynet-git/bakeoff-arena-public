@@ -2209,10 +2209,22 @@ function fmtLatency(ms) {
 function markTitle(r) {
     if (r.current_price == null) return "no mark yet for this symbol";
     if (!r.mark_ts) return "last trade";
+    // v16.19.1: this is when the price last MOVED, not when it was last
+    // looked at. `update_marks` deliberately writes only on a change — the
+    // stop-check ticks every 2s over ~53 symbols, so refreshing the
+    // timestamp regardless would put ~26 writes/second through the same
+    // lock the trading path uses, for a tooltip.
+    //
+    // So it must not claim staleness. A price that has not moved in ten
+    // minutes is a QUIET name, not a dead feed, and the first wording here
+    // said "STALE" for exactly that case. A genuinely stale feed is
+    // already flagged separately by the `stop off` chip on the Stop
+    // column, which comes from the adapter's own staleness check.
     const age = (Date.now() - new Date(r.mark_ts).getTime()) / 1000;
-    if (!isFinite(age) || age < 0) return `marked ${r.mark_ts}`;
-    if (age < 90) return `marked ${Math.round(age)}s ago`;
-    return `marked ${Math.round(age / 60)}m ago — STALE`;
+    if (!isFinite(age) || age < 0) return `last moved ${r.mark_ts}`;
+    if (age < 90) return `last moved ${Math.round(age)}s ago`;
+    if (age < 5400) return `last moved ${Math.round(age / 60)}m ago`;
+    return `last moved ${(age / 3600).toFixed(1)}h ago — price may be stale`;
 }
 
 function pcls(n) {
