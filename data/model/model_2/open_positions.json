@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":1770,"entry_ts":"2026-10-12T13:41:28.795876","symbol":"MMED","direction":"LONG","entry_price":19.31,"shares":288,"notional":5561.28,"invalidation":19.23,"take_profit_price":19.52,"take_profit_trailing_pct":null,"decision_id":24285,"stop_unguarded":false,"current_price":19.415,"mark_ts":"2026-10-12T18:00:03.832550+00:00","mark_basis":"last_trade","mark_bid":null,"mark_ask":null,"unrealized_pnl":30.240000000000123,"unrealized_pct":0.5437597099948236}]}
+{"provider":"model_2","open_positions":[]}
