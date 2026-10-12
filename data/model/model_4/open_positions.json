@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[]}
+{"provider":"model_4","open_positions":[{"shadow_fill_id":1350,"entry_ts":"2026-10-12T09:39:04.549135","symbol":"AGCO","direction":"LONG","entry_price":104.05,"shares":18,"notional":1872.8999999999999,"invalidation":103.3,"take_profit_price":105.5,"take_profit_trailing_pct":null,"decision_id":18113,"stop_unguarded":false}]}
