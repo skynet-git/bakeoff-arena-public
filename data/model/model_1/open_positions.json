@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[{"shadow_fill_id":2648,"entry_ts":"2026-10-13T15:49:11.528859","symbol":"HPK","direction":"LONG","entry_price":10.11,"shares":95,"notional":960.4499999999999,"invalidation":10.04,"take_profit_price":10.22,"take_profit_trailing_pct":null,"decision_id":37377,"stop_unguarded":false,"current_price":10.135,"mark_ts":"2026-10-13T19:55:05.294711+00:00","mark_basis":"nbbo_mid","mark_bid":10.12,"mark_ask":10.15,"unrealized_pnl":2.3750000000000338,"unrealized_pct":0.24727992087042885}]}
+{"provider":"model_1","open_positions":[]}
