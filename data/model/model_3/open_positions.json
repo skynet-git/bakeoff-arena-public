@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":2254,"entry_ts":"2026-10-13T11:08:24.638335","symbol":"VFC","direction":"LONG","entry_price":15.85,"shares":187,"notional":2963.95,"invalidation":15.74,"take_profit_price":16.1,"take_profit_trailing_pct":null,"decision_id":30590,"stop_unguarded":false,"current_price":15.875,"mark_ts":"2026-10-13T15:20:01.576162+00:00","mark_basis":"nbbo_mid","mark_bid":15.87,"mark_ask":15.88,"unrealized_pnl":4.675000000000066,"unrealized_pct":0.15772870662460792}]}
+{"provider":"model_3","open_positions":[]}
