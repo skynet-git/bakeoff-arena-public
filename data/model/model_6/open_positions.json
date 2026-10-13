@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[{"shadow_fill_id":2280,"entry_ts":"2026-10-13T11:15:15.440380","symbol":"MMED","direction":"SHORT","entry_price":19.03,"shares":250,"notional":4757.5,"invalidation":19.13,"take_profit_price":18.82,"take_profit_trailing_pct":null,"decision_id":30950,"stop_unguarded":false,"current_price":18.994999999999997,"mark_ts":"2026-10-13T15:35:01.297285+00:00","mark_basis":"nbbo_mid","mark_bid":18.99,"mark_ask":19.0,"unrealized_pnl":8.750000000000924,"unrealized_pct":0.18392012611667732}]}
+{"provider":"model_6","open_positions":[]}
