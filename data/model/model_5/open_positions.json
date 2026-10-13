@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[{"shadow_fill_id":2167,"entry_ts":"2026-10-13T10:36:47.882984","symbol":"DPZ","direction":"LONG","entry_price":299.5,"shares":17,"notional":5091.5,"invalidation":297.4,"take_profit_price":null,"take_profit_trailing_pct":0.5,"decision_id":29304,"stop_unguarded":false,"current_price":302.505,"mark_ts":"2026-10-13T15:00:04.917847+00:00","mark_basis":"nbbo_mid","mark_bid":302.26,"mark_ask":302.75,"unrealized_pnl":51.08499999999992,"unrealized_pct":1.0033388981636047}]}
+{"provider":"model_5","open_positions":[]}
