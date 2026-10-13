@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":2383,"entry_ts":"2026-10-13T12:09:51.237888","symbol":"STX","direction":"LONG","entry_price":733.11,"shares":7,"notional":5131.77,"invalidation":732.0,"take_profit_price":null,"take_profit_trailing_pct":0.55,"decision_id":32790,"stop_unguarded":false,"current_price":739.44,"mark_ts":"2026-10-13T16:20:03.568663+00:00","mark_basis":"nbbo_mid","mark_bid":739.09,"mark_ask":739.79,"unrealized_pnl":44.31000000000029,"unrealized_pct":0.8634447763637162}]}
+{"provider":"model_2","open_positions":[]}
