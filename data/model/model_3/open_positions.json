@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":2007,"entry_ts":"2026-10-13T09:48:01.894273","symbol":"MRVL","direction":"LONG","entry_price":259.64,"shares":7,"notional":1817.48,"invalidation":258.0,"take_profit_price":263.5,"take_profit_trailing_pct":null,"decision_id":27562,"stop_unguarded":false,"current_price":262.05,"mark_ts":"2026-10-13T13:55:05.431624+00:00","mark_basis":"nbbo_mid","mark_bid":262.0,"mark_ask":262.1,"unrealized_pnl":16.870000000000175,"unrealized_pct":0.9282082883993318}]}
+{"provider":"model_3","open_positions":[]}
