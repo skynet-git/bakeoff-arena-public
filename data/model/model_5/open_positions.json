@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[{"shadow_fill_id":2498,"entry_ts":"2026-10-13T13:38:05.509354","symbol":"AMAT","direction":"LONG","entry_price":456.87,"shares":4,"notional":1827.48,"invalidation":452.75,"take_profit_price":466.5,"take_profit_trailing_pct":null,"decision_id":34879,"stop_unguarded":false,"current_price":459.19,"mark_ts":"2026-10-13T17:45:03.377530+00:00","mark_basis":"nbbo_mid","mark_bid":459.06,"mark_ask":459.32,"unrealized_pnl":9.279999999999973,"unrealized_pct":0.5078030949723101}]}
+{"provider":"model_5","open_positions":[]}
