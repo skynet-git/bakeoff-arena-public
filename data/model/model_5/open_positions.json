@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":2559,"entry_ts":"2026-10-13T14:27:45.363691","symbol":"DPC","direction":"LONG","entry_price":32.98,"shares":31,"notional":1022.3799999999999,"invalidation":32.78,"take_profit_price":33.35,"take_profit_trailing_pct":null,"decision_id":35905,"stop_unguarded":false,"current_price":33.03,"mark_ts":"2026-10-13T18:30:02.317142+00:00","mark_basis":"nbbo_mid","mark_bid":33.0,"mark_ask":33.06,"unrealized_pnl":1.5500000000001322,"unrealized_pct":0.15160703456641683}]}
