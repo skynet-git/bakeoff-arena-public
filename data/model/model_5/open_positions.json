@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":2516,"entry_ts":"2026-10-13T13:53:36.938768","symbol":"SUPN","direction":"SHORT","entry_price":42.5,"shares":120,"notional":5100.0,"invalidation":42.65,"take_profit_price":42.3,"take_profit_trailing_pct":null,"decision_id":35195,"stop_unguarded":false,"current_price":42.519999999999996,"mark_ts":"2026-10-13T17:53:38.525110+00:00","mark_basis":"nbbo_mid","mark_bid":42.5,"mark_ask":42.54,"unrealized_pnl":-2.3999999999995225,"unrealized_pct":-0.047058823529402403}]}
