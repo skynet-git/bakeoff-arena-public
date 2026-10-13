@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":2356,"entry_ts":"2026-10-13T12:00:20.541611","symbol":"EROC","direction":"LONG","entry_price":11.45,"shares":173,"notional":1980.85,"invalidation":11.28,"take_profit_price":11.72,"take_profit_trailing_pct":null,"decision_id":32497,"stop_unguarded":false,"current_price":11.415,"mark_ts":"2026-10-13T16:09:56.473725+00:00","mark_basis":"nbbo_mid","mark_bid":11.4,"mark_ask":11.43,"unrealized_pnl":-6.055000000000025,"unrealized_pct":-0.3056768558951978}]}
+{"provider":"model_3","open_positions":[]}
