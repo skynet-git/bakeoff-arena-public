@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[{"shadow_fill_id":2577,"entry_ts":"2026-10-13T14:42:07.692247","symbol":"SNDX","direction":"SHORT","entry_price":13.7,"shares":74,"notional":1013.8,"invalidation":13.81,"take_profit_price":13.5,"take_profit_trailing_pct":null,"decision_id":36227,"stop_unguarded":false,"current_price":13.67,"mark_ts":"2026-10-13T18:50:02.744407+00:00","mark_basis":"nbbo_mid","mark_bid":13.66,"mark_ask":13.68,"unrealized_pnl":2.2199999999999527,"unrealized_pct":0.21897810218977637}]}
+{"provider":"model_5","open_positions":[]}
