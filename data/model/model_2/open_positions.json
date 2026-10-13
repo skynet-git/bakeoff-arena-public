@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":2561,"entry_ts":"2026-10-13T14:31:48.936869","symbol":"EIX","direction":"LONG","entry_price":55.32,"shares":96,"notional":5310.72,"invalidation":54.8,"take_profit_price":56.0,"take_profit_trailing_pct":null,"decision_id":36003,"stop_unguarded":false,"current_price":55.415,"mark_ts":"2026-10-13T18:35:06.071175+00:00","mark_basis":"nbbo_mid","mark_bid":55.4,"mark_ask":55.43,"unrealized_pnl":9.11999999999989,"unrealized_pct":0.17172812725957856}]}
