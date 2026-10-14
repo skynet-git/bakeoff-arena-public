@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":3327,"entry_ts":"2026-10-14T13:54:14.927034","symbol":"STT","direction":"LONG","entry_price":163.42,"shares":7,"notional":1143.9399999999998,"invalidation":162.79,"take_profit_price":164.35,"take_profit_trailing_pct":null,"decision_id":46801,"stop_unguarded":false,"current_price":163.57999999999998,"mark_ts":"2026-10-14T17:55:06.146172+00:00","mark_basis":"nbbo_mid","mark_bid":163.54,"mark_ask":163.62,"unrealized_pnl":1.1199999999999761,"unrealized_pct":0.09790723289682818}]}
