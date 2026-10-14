@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":3224,"entry_ts":"2026-10-14T13:05:16.487338","symbol":"ASST","direction":"LONG","entry_price":25.08,"shares":79,"notional":1981.32,"invalidation":24.75,"take_profit_price":25.55,"take_profit_trailing_pct":null,"decision_id":44945,"stop_unguarded":false,"current_price":25.200000000000003,"mark_ts":"2026-10-14T17:10:02.927606+00:00","mark_basis":"nbbo_mid","mark_bid":25.19,"mark_ask":25.21,"unrealized_pnl":9.48000000000036,"unrealized_pct":0.4784688995215492}]}
