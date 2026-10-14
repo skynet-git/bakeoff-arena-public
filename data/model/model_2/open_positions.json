@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":3501,"entry_ts":"2026-10-14T15:29:16.740603","symbol":"IBRX","direction":"LONG","entry_price":10.21,"shares":81,"notional":827.0100000000001,"invalidation":10.09,"take_profit_price":10.4,"take_profit_trailing_pct":null,"decision_id":49732,"stop_unguarded":false,"current_price":10.265,"mark_ts":"2026-10-14T19:30:08.789963+00:00","mark_basis":"nbbo_mid","mark_bid":10.26,"mark_ask":10.27,"unrealized_pnl":4.454999999999977,"unrealized_pct":0.5386875612144928}]}
