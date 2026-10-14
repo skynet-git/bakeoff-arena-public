@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":3439,"entry_ts":"2026-10-14T14:54:32.183970","symbol":"ASTS","direction":"LONG","entry_price":42.34,"shares":35,"notional":1481.9,"invalidation":42.15,"take_profit_price":42.85,"take_profit_trailing_pct":null,"decision_id":48886,"stop_unguarded":false,"current_price":42.44,"mark_ts":"2026-10-14T18:55:04.986291+00:00","mark_basis":"nbbo_mid","mark_bid":42.43,"mark_ask":42.45,"unrealized_pnl":3.499999999999801,"unrealized_pct":0.2361832782238883}]}
+{"provider":"model_3","open_positions":[]}
