@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":3512,"entry_ts":"2026-10-14T15:34:35.208126","symbol":"HIMX","direction":"LONG","entry_price":11.91,"shares":126,"notional":1500.66,"invalidation":11.78,"take_profit_price":12.05,"take_profit_trailing_pct":null,"decision_id":49811,"stop_unguarded":false,"current_price":12.015,"mark_ts":"2026-10-14T19:35:06.444634+00:00","mark_basis":"nbbo_mid","mark_bid":12.01,"mark_ask":12.02,"unrealized_pnl":13.230000000000054,"unrealized_pct":0.8816120906801043}]}
+{"provider":"model_3","open_positions":[]}
