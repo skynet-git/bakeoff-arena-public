@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":4509,"entry_ts":"2026-10-15T15:20:40.458204","symbol":"TTMI","direction":"LONG","entry_price":100.82,"shares":14,"notional":1411.48,"invalidation":100.2,"take_profit_price":101.8,"take_profit_trailing_pct":null,"decision_id":63377,"stop_unguarded":false,"current_price":100.7,"mark_ts":"2026-10-15T19:30:08.816558+00:00","mark_basis":"nbbo_mid","mark_bid":100.61,"mark_ask":100.79,"unrealized_pnl":-1.6799999999998647,"unrealized_pct":-0.11902400317396382}]}
+{"provider":"model_3","open_positions":[]}
