@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":3889,"entry_ts":"2026-10-15T11:03:18.762519","symbol":"ETN","direction":"LONG","entry_price":394.56,"shares":7,"notional":2761.92,"invalidation":392.0,"take_profit_price":398.5,"take_profit_trailing_pct":null,"decision_id":53132,"stop_unguarded":false,"current_price":396.79499999999996,"mark_ts":"2026-10-15T15:05:08.781774+00:00","mark_basis":"nbbo_mid","mark_bid":396.59,"mark_ask":397.0,"unrealized_pnl":15.644999999999698,"unrealized_pct":0.5664537712895268}]}
