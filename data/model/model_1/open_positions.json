@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[{"shadow_fill_id":4571,"entry_ts":"2026-10-15T15:54:48.223490","symbol":"DOCN","direction":"LONG","entry_price":108.89,"shares":10,"notional":1088.9,"invalidation":108.5,"take_profit_price":109.5,"take_profit_trailing_pct":null,"decision_id":64123,"stop_unguarded":false,"current_price":108.75,"mark_ts":"2026-10-15T19:55:08.808644+00:00","mark_basis":"nbbo_mid","mark_bid":108.73,"mark_ask":108.77,"unrealized_pnl":-1.4000000000000057,"unrealized_pct":-0.12857011663146345}]}
+{"provider":"model_1","open_positions":[]}
