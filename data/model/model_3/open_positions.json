@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":3993,"entry_ts":"2026-10-15T11:36:12.005071","symbol":"NBIS","direction":"LONG","entry_price":175.7,"shares":16,"notional":2811.2,"invalidation":173.8,"take_profit_price":179.2,"take_profit_trailing_pct":null,"decision_id":54597,"stop_unguarded":false,"current_price":177.13,"mark_ts":"2026-10-15T15:40:08.212667+00:00","mark_basis":"nbbo_mid","mark_bid":177.03,"mark_ask":177.23,"unrealized_pnl":22.88000000000011,"unrealized_pct":0.8138873079112162}]}
