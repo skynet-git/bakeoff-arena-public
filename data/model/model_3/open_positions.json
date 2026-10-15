@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":3878,"entry_ts":"2026-10-15T10:54:53.773573","symbol":"GDS","direction":"LONG","entry_price":24.33,"shares":122,"notional":2968.2599999999998,"invalidation":23.95,"take_profit_price":24.85,"take_profit_trailing_pct":null,"decision_id":52880,"stop_unguarded":false,"current_price":24.34,"mark_ts":"2026-10-15T14:55:06.173307+00:00","mark_basis":"nbbo_mid","mark_bid":24.31,"mark_ask":24.37,"unrealized_pnl":1.2200000000001907,"unrealized_pct":0.04110152075627441}]}
+{"provider":"model_3","open_positions":[]}
