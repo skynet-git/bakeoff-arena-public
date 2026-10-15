@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[{"shadow_fill_id":4480,"entry_ts":"2026-10-15T15:09:45.723312","symbol":"STRL","direction":"LONG","entry_price":433.52,"shares":10,"notional":4335.2,"invalidation":431.0,"take_profit_price":438.5,"take_profit_trailing_pct":null,"decision_id":63087,"stop_unguarded":false,"current_price":436.70500000000004,"mark_ts":"2026-10-15T19:10:05.430161+00:00","mark_basis":"nbbo_mid","mark_bid":435.41,"mark_ask":438.0,"unrealized_pnl":31.85000000000059,"unrealized_pct":0.7346835209448375}]}
+{"provider":"model_4","open_positions":[]}
