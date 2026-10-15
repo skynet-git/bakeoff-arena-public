@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":3829,"entry_ts":"2026-10-15T10:38:55.998525","symbol":"FER","direction":"LONG","entry_price":48.26,"shares":41,"notional":1978.6599999999999,"invalidation":47.9,"take_profit_price":48.85,"take_profit_trailing_pct":null,"decision_id":52226,"stop_unguarded":false,"current_price":48.695,"mark_ts":"2026-10-15T14:45:06.606733+00:00","mark_basis":"nbbo_mid","mark_bid":48.68,"mark_ask":48.71,"unrealized_pnl":17.835000000000093,"unrealized_pct":0.9013675922088734}]}
+{"provider":"model_3","open_positions":[]}
