@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":3969,"entry_ts":"2026-10-15T11:26:34.228543","symbol":"ARMK","direction":"LONG","entry_price":54.35,"shares":48,"notional":2608.8,"invalidation":54.09,"take_profit_price":55.15,"take_profit_trailing_pct":null,"decision_id":54248,"stop_unguarded":false,"current_price":54.36,"mark_ts":"2026-10-15T15:30:03.500002+00:00","mark_basis":"nbbo_mid","mark_bid":54.35,"mark_ask":54.37,"unrealized_pnl":0.4799999999999045,"unrealized_pct":0.018399264029435158}]}
+{"provider":"model_2","open_positions":[]}
