@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":4554,"entry_ts":"2026-10-15T15:42:03.205143","symbol":"SHAZ","direction":"LONG","entry_price":31.26,"shares":59,"notional":1844.3400000000001,"invalidation":31.09,"take_profit_price":31.65,"take_profit_trailing_pct":null,"decision_id":63853,"stop_unguarded":false,"current_price":31.450000000000003,"mark_ts":"2026-10-15T19:45:03.413800+00:00","mark_basis":"nbbo_mid","mark_bid":31.42,"mark_ask":31.48,"unrealized_pnl":11.210000000000075,"unrealized_pct":0.6078055022392874}]}
+{"provider":"model_2","open_positions":[]}
