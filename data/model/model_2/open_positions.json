@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":263,"entry_ts":"2026-10-16T10:36:25.595895","symbol":"CZR","direction":"SHORT","entry_price":29.06,"shares":206,"notional":5986.36,"invalidation":29.15,"take_profit_price":28.92,"take_profit_trailing_pct":null,"decision_id":2041,"stop_unguarded":false,"current_price":29.064999999999998,"mark_ts":"2026-10-16T14:39:54.582937+00:00","mark_basis":"nbbo_mid","mark_bid":29.06,"mark_ask":29.07,"unrealized_pnl":-1.029999999999795,"unrealized_pct":-0.017205781142460446}]}
