@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":404,"entry_ts":"2026-10-16T11:44:10.405924","symbol":"VRNS","direction":"LONG","entry_price":48.71,"shares":61,"notional":2971.31,"invalidation":48.59,"take_profit_price":48.95,"take_profit_trailing_pct":null,"decision_id":3868,"stop_unguarded":false,"current_price":48.705,"mark_ts":"2026-10-16T15:45:06.902580+00:00","mark_basis":"nbbo_mid","mark_bid":48.7,"mark_ask":48.71,"unrealized_pnl":-0.30500000000015604,"unrealized_pct":-0.010264832683232514}]}
