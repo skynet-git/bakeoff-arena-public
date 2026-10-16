@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":330,"entry_ts":"2026-10-16T11:05:29.683473","symbol":"RYAAY","direction":"LONG","entry_price":53.1,"shares":94,"notional":4991.400000000001,"invalidation":52.84,"take_profit_price":null,"take_profit_trailing_pct":0.25,"decision_id":2834,"stop_unguarded":false,"current_price":53.16,"mark_ts":"2026-10-16T15:10:04.064158+00:00","mark_basis":"nbbo_mid","mark_bid":53.13,"mark_ask":53.19,"unrealized_pnl":5.639999999999546,"unrealized_pct":0.11299435028247677}]}
