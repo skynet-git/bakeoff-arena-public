@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[]}
+{"provider":"model_4","open_positions":[{"shadow_fill_id":514,"entry_ts":"2026-10-16T12:44:11.736904","symbol":"WES","direction":"LONG","entry_price":44.53,"shares":112,"notional":4987.360000000001,"invalidation":44.45,"take_profit_price":44.75,"take_profit_trailing_pct":null,"decision_id":5808,"stop_unguarded":false,"current_price":44.55,"mark_ts":"2026-10-16T16:49:04.938335+00:00","mark_basis":"nbbo_mid","mark_bid":44.53,"mark_ask":44.57,"unrealized_pnl":2.2399999999995543,"unrealized_pct":0.04491354143273303}]}
