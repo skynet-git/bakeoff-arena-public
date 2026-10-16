@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[{"shadow_fill_id":459,"entry_ts":"2026-10-16T12:12:30.117653","symbol":"TSLA","direction":"SHORT","entry_price":358.39,"shares":13,"notional":4659.07,"invalidation":360.5,"take_profit_price":356.9,"take_profit_trailing_pct":null,"decision_id":4797,"stop_unguarded":false,"current_price":357.795,"mark_ts":"2026-10-16T16:25:05.553354+00:00","mark_basis":"nbbo_mid","mark_bid":357.74,"mark_ask":357.85,"unrealized_pnl":7.734999999999616,"unrealized_pct":0.1660202572616341}]}
+{"provider":"model_4","open_positions":[]}
