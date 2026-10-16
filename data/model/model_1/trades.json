@@ -1,1 +1,1 @@
-{"provider":"model_1","trades":[]}
+{"provider":"model_1","trades":[{"entry_ts":"2026-10-16T09:31:27.839781","exit_ts":"2026-10-16T09:32:00.669919","symbol":"TLK","direction":"LONG","shares":467,"entry_price":10.69,"exit_price":10.6,"exit_reason":"STOP","pnl_dollars":-42.02999999999993,"pnl_pct":-0.8419083255378845,"hold_seconds":32,"notional":4992.23,"decision_id":6,"flip_to_fill_id":null,"shadow_fill_id":2,"tp_trailing_pct":null}]}

@@ -1,1 +1,1 @@
-{"provider":"model_4","trades":[]}
+{"provider":"model_4","trades":[{"entry_ts":"2026-10-16T09:32:15.345475","exit_ts":"2026-10-16T09:32:53.862338","symbol":"TRV","direction":"LONG","shares":13,"entry_price":373.15,"exit_price":376.5,"exit_reason":"TP","pnl_dollars":43.550000000000296,"pnl_pct":0.8977622939836587,"hold_seconds":38,"notional":4850.95,"decision_id":41,"flip_to_fill_id":null,"shadow_fill_id":9,"tp_trailing_pct":null}]}

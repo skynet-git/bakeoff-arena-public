@@ -1,1 +1,1 @@
-{"provider":"model_3","trades":[]}
+{"provider":"model_3","trades":[{"entry_ts":"2026-10-16T09:32:04.736787","exit_ts":"2026-10-16T09:32:56.612268","symbol":"AAPL","direction":"LONG","shares":8,"entry_price":347.47,"exit_price":346.0,"exit_reason":"STOP","pnl_dollars":-11.760000000000218,"pnl_pct":-0.4230581057357548,"hold_seconds":51,"notional":2779.76,"decision_id":38,"flip_to_fill_id":null,"shadow_fill_id":7,"tp_trailing_pct":null}]}
