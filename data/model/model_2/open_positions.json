@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":248,"entry_ts":"2026-10-16T10:21:00.068096","symbol":"TRV","direction":"LONG","entry_price":385.37,"shares":15,"notional":5780.55,"invalidation":382.8,"take_profit_price":390.5,"take_profit_trailing_pct":null,"decision_id":1670,"stop_unguarded":false,"current_price":385.74,"mark_ts":"2026-10-16T14:30:05.489375+00:00","mark_basis":"nbbo_mid","mark_bid":385.4,"mark_ask":386.08,"unrealized_pnl":5.550000000000068,"unrealized_pct":0.0960116251913757}]}
+{"provider":"model_2","open_positions":[]}
