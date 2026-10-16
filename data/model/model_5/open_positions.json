@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":269,"entry_ts":"2026-10-16T10:44:05.073379","symbol":"OMER","direction":"LONG","entry_price":16.55,"shares":120,"notional":1986.0,"invalidation":16.38,"take_profit_price":16.85,"take_profit_trailing_pct":null,"decision_id":2112,"stop_unguarded":false,"current_price":16.655,"mark_ts":"2026-10-16T14:45:03.462247+00:00","mark_basis":"nbbo_mid","mark_bid":16.63,"mark_ask":16.68,"unrealized_pnl":12.600000000000051,"unrealized_pct":0.6344410876132957}]}
