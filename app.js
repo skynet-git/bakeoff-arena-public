@@ -1078,8 +1078,13 @@ function renderHighLow(rows) {
     const lLabel = mode === "pct"
         ? fmtPct((lowest.equity / config.starting_capital - 1) * 100, true)
         : money(lDelta, true);
-    document.getElementById("highest").innerHTML = `${displayModel(highest.display_name)} <b>${hLabel}</b>`;
-    document.getElementById("lowest").innerHTML = `${displayModel(lowest.display_name)} <b>${lLabel}</b>`;
+    // v16.25.1: colour the figure by its SIGN. The label's colour said
+    // "green = highest", so a losing best arm read as a gain.
+    const signCls = d => d > 0 ? "pnl-pos" : (d < 0 ? "pnl-neg" : "");
+    document.getElementById("highest").innerHTML =
+        `${displayModel(highest.display_name)} <b class="${signCls(hDelta)}">${hLabel}</b>`;
+    document.getElementById("lowest").innerHTML =
+        `${displayModel(lowest.display_name)} <b class="${signCls(lDelta)}">${lLabel}</b>`;
 }
 
 // ============================================================================

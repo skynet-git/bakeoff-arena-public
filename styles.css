@@ -107,8 +107,9 @@ input, select, textarea {
 
 .highlow { display: flex; gap: 20px; font-size: 11px; min-width: 260px; justify-content: flex-end; }
 .highlow .label { color: var(--text-dim); margin-right: 5px; }
-.highest { color: var(--green); }
-.lowest  { color: var(--red); }
+/* v16.25.1: the NUMBER is coloured by its sign (.pnl-pos / .pnl-neg), not
+   the label — HIGHEST showed a loss in green on days every arm was down. */
+.highest, .lowest { color: var(--text); }
 
 /* ============================ Views */
 .view {
