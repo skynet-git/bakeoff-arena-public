@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":498,"entry_ts":"2026-10-16T12:37:08.525692","symbol":"PSO","direction":"SHORT","entry_price":18.17,"shares":275,"notional":4996.750000000001,"invalidation":18.26,"take_profit_price":18.05,"take_profit_trailing_pct":null,"decision_id":5550,"stop_unguarded":false,"current_price":18.165,"mark_ts":"2026-10-16T16:40:03.721353+00:00","mark_basis":"nbbo_mid","mark_bid":18.16,"mark_ask":18.17,"unrealized_pnl":1.3750000000007034,"unrealized_pct":0.02751788662632117}]}
