@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":722,"entry_ts":"2026-10-16T14:38:39.417712","symbol":"BTI","direction":"LONG","entry_price":59.66,"shares":83,"notional":4951.78,"invalidation":59.55,"take_profit_price":59.85,"take_profit_trailing_pct":null,"decision_id":9747,"stop_unguarded":false,"current_price":59.695,"mark_ts":"2026-10-16T18:44:55.316238+00:00","mark_basis":"nbbo_mid","mark_bid":59.69,"mark_ask":59.7,"unrealized_pnl":2.9050000000003067,"unrealized_pct":0.05866577271204106}]}
