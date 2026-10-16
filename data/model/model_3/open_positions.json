@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":111,"entry_ts":"2026-10-16T09:48:34.088028","symbol":"ALLE","direction":"LONG","entry_price":157.37,"shares":12,"notional":1888.44,"invalidation":156.48,"take_profit_price":157.55,"take_profit_trailing_pct":null,"decision_id":482,"stop_unguarded":false,"current_price":157.23000000000002,"mark_ts":"2026-10-16T13:50:00.425769+00:00","mark_basis":"nbbo_mid","mark_bid":157.06,"mark_ask":157.4,"unrealized_pnl":-1.6799999999998363,"unrealized_pct":-0.08896231810382306}]}
+{"provider":"model_3","open_positions":[]}
