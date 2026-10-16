@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":750,"entry_ts":"2026-10-16T15:05:29.371789","symbol":"SHO","direction":"SHORT","entry_price":11.89,"shares":336,"notional":3995.04,"invalidation":11.94,"take_profit_price":11.75,"take_profit_trailing_pct":null,"decision_id":10438,"stop_unguarded":false,"current_price":11.864999999999998,"mark_ts":"2026-10-16T19:09:57.607808+00:00","mark_basis":"nbbo_mid","mark_bid":11.86,"mark_ask":11.87,"unrealized_pnl":8.400000000000716,"unrealized_pct":0.21026072329690607}]}
+{"provider":"model_2","open_positions":[]}
