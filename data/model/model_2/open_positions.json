@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":785,"entry_ts":"2026-10-16T15:19:36.189840","symbol":"CFG","direction":"SHORT","entry_price":62.99,"shares":63,"notional":3968.3700000000003,"invalidation":63.15,"take_profit_price":62.65,"take_profit_trailing_pct":null,"decision_id":10794,"stop_unguarded":false,"current_price":62.980000000000004,"mark_ts":"2026-10-16T19:25:09.230310+00:00","mark_basis":"nbbo_mid","mark_bid":62.97,"mark_ask":62.99,"unrealized_pnl":0.6299999999998747,"unrealized_pct":0.015875535799330067}]}
+{"provider":"model_2","open_positions":[]}
