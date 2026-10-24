@@ -1,0 +1,1249 @@
+/* Bakeoff Arena — v2 (multi-view tournament + drill-down) */
+
+:root {
+    --bg: #0a0e14;
+    --panel: #111821;
+    --panel-alt: #0e1520;
+    --border: #1f2a37;
+    --border-strong: #2a3948;
+    --text: #cbd5e1;
+    --text-dim: #64748b;
+    --text-bright: #f1f5f9;
+    --green: #10b981;
+    --red: #ef4444;
+    --amber: #f59e0b;
+    --accent: #38bdf8;
+    --purple: #a78bfa;
+    --mono: 'JetBrains Mono', 'IBM Plex Mono', 'Fira Code', 'Menlo', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* v14.19.30: mobile foundation.
+   - height: 100svh — small-viewport height, matches iOS Safari with URL bar
+     visible; avoids the "layout jumps when address bar hides" jank. Fallback
+     to 100vh for browsers without svh support (Baseline June 2025).
+   - -webkit-text-size-adjust prevents iOS from auto-inflating fonts in
+     landscape rotate.
+   - overscroll-behavior stops the whole page from rubber-banding when a
+     scroll container hits its edge on iOS. */
+html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.4;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    overscroll-behavior: none;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    /* Give the bottom of the layout air to clear the iOS home-indicator on
+       notched devices. Combined with viewport-fit=cover in the meta tag. */
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* v14.19.30: replace the deleted -webkit-tap-highlight-color (transparent
+   by default across many resets) with an explicit :active feedback state.
+   Otherwise users tap and see NO confirmation the touch registered. */
+button, .chip, .toggle, .nav-btn, .filter-chip, .legend-row,
+tbody tr, thead th[data-sort], a {
+    -webkit-tap-highlight-color: rgba(56, 189, 248, 0.15);
+}
+
+input, select, textarea {
+    font-family: inherit;
+    /* Desktop keeps the compact 11px look; mobile bumps to 16px below to
+       prevent iOS Safari auto-zoom on focus (threshold is exactly 16px). */
+    font-size: 11px;
+}
+
+/* ============================ Top bar */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: var(--panel);
+    border-bottom: 1px dashed var(--border-strong);
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+.brand { display: flex; flex-direction: column; gap: 2px; min-width: 180px; }
+.brand-name { font-size: 16px; font-weight: 700; letter-spacing: 0.15em; color: var(--text-bright); }
+.brand-sub { color: var(--text-dim); font-size: 10px; letter-spacing: 0.1em; }
+
+.nav {
+    display: flex;
+    gap: 4px;
+    flex: 1;
+    justify-content: center;
+}
+
+.nav-btn {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--text-dim);
+    padding: 6px 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.nav-btn.active {
+    color: var(--text-bright);
+    border-color: var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+}
+
+.highlow { display: flex; gap: 20px; font-size: 11px; min-width: 260px; justify-content: flex-end; }
+.highlow .label { color: var(--text-dim); margin-right: 5px; }
+/* v16.25.1: the NUMBER is coloured by its sign (.pnl-pos / .pnl-neg), not
+   the label — HIGHEST showed a loss in green on days every arm was down. */
+.highest, .lowest { color: var(--text); }
+
+/* ============================ Views */
+.view {
+    flex: 1;
+    display: grid;
+    padding: 12px;
+    gap: 12px;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.view.hidden { display: none; }
+
+#view-overview {
+    grid-template-columns: 1.7fr 1fr;
+    grid-template-rows: 1fr auto;
+    grid-template-areas:
+        "chart feed"
+        "leaderboard leaderboard";
+}
+.chart-panel        { grid-area: chart; }
+.feed-panel         { grid-area: feed; }
+.leaderboard-panel  { grid-area: leaderboard; max-height: 45vh; max-height: 45svh; }
+
+#view-models {
+    grid-template-columns: 1.2fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "header header"
+        "trades feed"
+        "positions feed";
+}
+.model-header-panel     { grid-area: header; }
+.model-trades-panel     { grid-area: trades; }
+.model-positions-panel  { grid-area: positions; max-height: 300px; }
+.model-decisions-panel  { grid-area: feed; }
+
+#view-symbols {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "search search"
+        "decisions matrix"
+        "decisions matrix";
+}
+.symbol-search-panel      { grid-area: search; }
+.symbol-decisions-panel   { grid-area: decisions; }
+.agreement-panel          { grid-area: matrix; max-height: 500px; }
+
+#view-decisions {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "filter"
+        "feed";
+}
+.filter-panel { grid-area: filter; }
+#view-decisions .feed-panel { grid-area: feed; }
+
+/* ============================ Panels */
+.chart-panel, .feed-panel, .leaderboard-panel,
+.model-header-panel, .model-trades-panel, .model-positions-panel, .model-decisions-panel,
+.symbol-search-panel, .symbol-decisions-panel, .agreement-panel,
+.filter-panel {
+    background: var(--panel);
+    border: 1px dashed var(--border-strong);
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    border-bottom: 1px dashed var(--border);
+    color: var(--text-dim);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    gap: 12px;
+}
+
+/* padding removed 2026-08-25: was 4px, but clientHeight includes padding →
+   TradingView chart height sized to container.clientHeight rendered its
+   time axis in the bottom padding zone, which got clipped by the parent
+   panel's overflow:hidden. Result: axis blank. Zero padding = axis visible. */
+.chart-canvas { flex: 1; min-height: 0; padding: 0; }
+
+/* Trade-chart split view (2026-08-26) */
+#feed-or-chart { display:flex; flex-direction:column; min-height:0; }
+#trade-chart { width:100%; height:100%; }
+.hint { color: var(--text-dim); font-size: 10px; }
+tbody tr.selected { background:#1a2635 !important; box-shadow: inset 3px 0 0 #38bdf8; }
+.feed .feed-item.compact { padding:6px 12px; }
+.feed .feed-item.compact .feed-r1 { margin-bottom:0; }
+.feed .feed-item.compact .feed-r2 { display:none; }
+.feed .feed-item.compact .feed-r3 { margin-top:2px; font-size:10px; color:var(--text-dim);
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.feed .feed-item.compact:hover .feed-r3 { color:var(--text); }
+/* Expanded chart mode — feed-or-chart panel takes the whole grid */
+#view-models.chart-expanded { grid-template-columns: 1fr; grid-template-rows: auto 1fr;
+    grid-template-areas: "header" "feed"; }
+#view-models.chart-expanded .model-header-panel { grid-area: header; }
+#view-models.chart-expanded .model-trades-panel,
+#view-models.chart-expanded .model-positions-panel { display:none; }
+#view-models.chart-expanded .model-decisions-panel { grid-area: feed; }
+
+.toggles { display: flex; gap: 4px; }
+.toggle {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--text-dim);
+    padding: 3px 10px;
+    font-family: var(--mono);
+    font-size: 10px;
+    cursor: pointer;
+}
+.toggle.active { color: var(--text-bright); border-color: var(--accent); background: rgba(56, 189, 248, 0.08); }
+
+/* ============================ Table helpers */
+.table-scroll { flex: 1; overflow: auto; min-height: 0; }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+}
+th, td {
+    text-align: left;
+    padding: 5px 8px;
+    border-bottom: 1px dashed var(--border);
+    white-space: nowrap;
+}
+th {
+    color: var(--text-dim);
+    text-transform: uppercase;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    background: var(--panel-alt);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+tbody tr { cursor: pointer; }
+tbody tr:hover { background: rgba(56, 189, 248, 0.04); }
+th.num, td.num { text-align: right; font-variant-numeric: tabular-nums; }
+/* 2026-08-28: click-to-sort headers */
+thead th[data-sort] { cursor: pointer; user-select: none; transition: color 0.15s; }
+thead th[data-sort]:hover { color: var(--accent, #38bdf8); }
+/* Sort direction indicator — separated visually so column label reads clean */
+.sort-ind { opacity: 0.55; font-size: 0.85em; margin-left: 4px; color: var(--accent, #38bdf8); }
+
+/* 2026-08-28: hint chip in panel headers — signals a discoverable action */
+.hint-chip {
+    font-size: 11px;
+    color: var(--text-dim, #94a3b8);
+    background: rgba(56, 189, 248, 0.06);
+    border: 1px dashed rgba(56, 189, 248, 0.25);
+    padding: 2px 8px;
+    border-radius: 10px;
+    letter-spacing: 0.02em;
+    margin-left: 12px;
+}
+/* Trade-log leading icon column — signals click-to-drill affordance */
+td.row-icon { text-align: center; opacity: 0.55; width: 24px; padding: 4px 0; }
+tbody tr:hover td.row-icon { opacity: 1; }
+
+/* 2026-08-28: chip-preset date picker (Today/Yesterday/7d/All/Custom…) */
+.date-chips, .chip-group { display: inline-flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+.chip {
+    background: transparent;
+    border: 1px solid var(--border, #2a3948);
+    color: var(--text-dim, #94a3b8);
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: all 0.12s ease;
+}
+.chip:hover { color: var(--text, #cbd5e1); border-color: var(--accent, #38bdf8); }
+.chip.active {
+    background: rgba(56, 189, 248, 0.15);
+    border-color: var(--accent, #38bdf8);
+    color: var(--accent, #38bdf8);
+}
+.custom-range { display: inline-flex; gap: 6px; align-items: center; margin-left: 6px; }
+.custom-range.hidden { display: none !important; }
+
+/* Active-filter chips row (shown above the Decisions feed after Apply) */
+.active-filters {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    margin-top: 8px; padding: 0 12px;
+}
+.filter-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    color: var(--text, #cbd5e1);
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.12s;
+}
+.filter-chip:hover { background: rgba(239, 68, 68, 0.15); border-color: #ef4444; }
+.filter-chip-x { color: var(--text-dim); font-weight: bold; line-height: 1; }
+.filter-chip:hover .filter-chip-x { color: #ef4444; }
+
+/* Leaderboard drill-down chevron — appears on hover to signal clickable row */
+.drill-cue {
+    opacity: 0;
+    color: var(--accent, #38bdf8);
+    margin-left: 4px;
+    font-size: 14px;
+    transition: opacity 0.15s;
+}
+tbody tr:hover .drill-cue { opacity: 0.8; }
+
+/* 2026-08-28: feed rationale "+N more" badge — reveals truncated content
+   lives in the drawer. Compact, non-competitive with the rationale text. */
+.more-badge {
+    display: inline-block;
+    font-size: 10px;
+    padding: 1px 6px;
+    border: 1px dashed var(--border, #2a3948);
+    border-radius: 8px;
+    color: var(--text-dim, #94a3b8);
+    margin-left: 4px;
+    letter-spacing: 0.02em;
+}
+
+/* Reasoning drawer: rationale + raw response side-by-side on wide viewports,
+   stacked on narrow. Prior stacked-only layout wasted the wide side panel
+   and made it hard to spot LLMs copying raw text verbatim into rationale. */
+.drawer-two-col {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+@media (min-width: 900px) {
+    .drawer-two-col { grid-template-columns: 1fr 1fr; }
+}
+
+/* 2026-08-28: fade-in for newly-arrived decision feed rows. Keeps the
+   whole list from strobing on cold-start (see isColdStart in renderFeed). */
+@keyframes feedRowFlash {
+    0%   { background: rgba(56, 189, 248, 0.18); }
+    100% { background: transparent; }
+}
+.feed-row-new {
+    animation: feedRowFlash 1.6s ease-out;
+}
+
+/* 2026-08-28: equity chart legend overlay. Replaces Lightweight Charts'
+   built-in series title labels which crashed into each other when 6
+   providers were spread across a wide y-range. Absolute-positioned card
+   in the top-right of the chart canvas, click a row to toggle series. */
+.chart-with-legend { position: relative; flex: 1; min-height: 0; display: flex; }
+.chart-with-legend .chart-canvas { flex: 1; min-height: 0; }
+.chart-legend {
+    /* 2026-08-28 v14.19.20: moved from top-right → top-LEFT so it no longer
+       overlaps the highest-ranked model's line (which typically sits at the
+       top-right of the chart area). Left edge clears the price-scale gutter
+       on the LEFT (none — price scale is on the right by default). */
+    position: absolute;
+    top: 8px; left: 12px;
+    background: rgba(10, 17, 25, 0.85);
+    border: 1px solid var(--border, #2a3948);
+    border-radius: 6px;
+    padding: 4px 0;
+    font-size: 11px;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+    max-width: 240px;
+    pointer-events: auto;
+}
+.legend-row {
+    display: grid;
+    grid-template-columns: 12px 1fr auto;
+    gap: 8px;
+    align-items: center;
+    padding: 3px 10px;
+    cursor: pointer;
+    transition: background 0.15s, opacity 0.15s;
+}
+.legend-row:hover { background: rgba(56, 189, 248, 0.08); }
+.legend-row.hidden { opacity: 0.35; text-decoration: line-through; }
+.legend-dot { width: 10px; height: 10px; border-radius: 2px; }
+.legend-label { color: var(--text, #cbd5e1); }
+.legend-val { color: var(--text-dim, #94a3b8); font-variant-numeric: tabular-nums; }
+/* v14.19.21: benchmark index overlay rows — visually subordinate to model
+   rows (dashed dot border, italic label). Off state shows a "+" to prompt
+   click. */
+.legend-divider { height: 1px; background: var(--border, #2a3948); margin: 4px 8px; }
+.legend-row.legend-index { font-style: italic; }
+.legend-row.legend-index .legend-dot { border-radius: 0; }
+.legend-row.legend-index.off .legend-val { color: var(--accent, #38bdf8); font-weight: 700; font-style: normal; }
+.legend-row.legend-index.off { opacity: 0.6; }
+.legend-row.legend-index.off:hover { opacity: 1; }
+
+/* 2026-08-28: responsive breakpoint — dashboard was desktop-only. Below
+   1100px, hide secondary leaderboard columns so the primary ones stay
+   readable. Below 720px, add a "view on desktop" hint (rare use case;
+   most spectators will be on a phone via the shared public URL). */
+@media (max-width: 1100px) {
+    /* Hide secondary/derivative columns — keep the primary equity story. */
+    #leaderboard th:nth-child(8),  /* P&L (Total)  */
+    #leaderboard td:nth-child(8),
+    #leaderboard th:nth-child(9),  /* Cost (Day)   */
+    #leaderboard td:nth-child(9),
+    #leaderboard th:nth-child(14), /* Open         */
+    #leaderboard td:nth-child(14),
+    #leaderboard th:nth-child(15), /* BP Used      */
+    #leaderboard td:nth-child(15) { display: none; }
+    /* Chart legend can crowd narrow charts — pull it into a corner. */
+    .chart-legend { max-width: 160px; font-size: 10px; }
+}
+@media (max-width: 720px) {
+    /* v14.19.30: legacy "view on desktop" banner deleted — mobile is now
+       first-class. See @media (max-width: 767px) block below for the
+       actual mobile transformation (Ship B). */
+}
+
+/* ============================================================================
+ * v14.19.30: TOUCH-DEVICE TAP TARGET SIZING
+ *
+ * Scope: pointer:coarse means "the primary input is imprecise (finger)."
+ * True on phones + tablets, false on desktops (mouse) + laptops (trackpad).
+ * Even on a phone plugged into a mouse, pointer:coarse stays true (Safari)
+ * or matches primary input (Chrome). Good enough for our purposes.
+ *
+ * Why not @media (max-width: 767px)?
+ * Because a tablet in landscape at 1024px still has fingers; we want
+ * larger tap targets there too. Scoping by INPUT TYPE not viewport is the
+ * modern correct answer.
+ *
+ * Apple HIG: 44×44 pt minimum. Material Design: 48×48 dp. We aim for 44px.
+ * We add MIN-HEIGHT (not padding) so the visual chip/button doesn't grow;
+ * the tap surface expands invisibly via the element's box.
+ * ---------------------------------------------------------------------- */
+@media (pointer: coarse) {
+    /* Bump inputs to 16px to block iOS Safari auto-zoom on focus. */
+    input, select, textarea {
+        font-size: 16px;
+    }
+
+    /* Chips, toggles, nav buttons, small buttons — all pill-shaped
+       interactive elements. min-height creates a tall tap surface without
+       inflating the visual pill. */
+    .chip, .toggle, .nav-btn, .filter-chip,
+    .obfuscate-btn, button:not(.rank-badge) {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Selects + inputs need vertical padding to reach 44px given native
+       chrome. iOS renders date inputs at a fixed height regardless of
+       CSS — nothing we can do; they're compliant. */
+    input:not([type="date"]), select {
+        min-height: 44px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    /* Table rows: hit surface = the row itself. min-height on the row
+       via padding on td. */
+    tbody tr td { padding-top: 10px; padding-bottom: 10px; }
+
+    /* Legend rows on the equity chart — click to toggle series visibility.
+       Bump for finger-tap without hiding under content. */
+    .legend-row { padding-top: 8px; padding-bottom: 8px; }
+
+    /* Sort-header cells reuse the same rule via padding above. Nothing
+       extra needed — thead th shares the tbody td padding via inheritance. */
+    thead th[data-sort] {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    /* Filter-chip × close glyph — was a bare span, unreachable at 12×12.
+       Padding it to a real 24×24 hit area (WithIn the 44px chip's tail). */
+    .filter-chip-x {
+        padding: 4px 6px;
+        margin-right: -6px;  /* keep chip visual width identical */
+    }
+}
+
+/* 2026-08-28: obfuscation eye toggle in topbar */
+.obfuscate-btn {
+    background: transparent;
+    border: 1px solid var(--border, #2a3948);
+    color: var(--text, #cbd5e1);
+    font-size: 16px;
+    line-height: 1;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: 12px;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.obfuscate-btn:hover {
+    background: rgba(56, 189, 248, 0.08);
+    color: var(--accent, #38bdf8);
+    border-color: var(--accent, #38bdf8);
+}
+.obfuscate-btn.obfuscate-on {
+    background: rgba(251, 191, 36, 0.12);
+    color: #fbbf24;
+    border-color: #fbbf24;
+}
+
+/* 2026-08-28: market-context bar — SPY / QQQ / IWM % change under topbar.
+   Reads at a glance so operators can distinguish "bad model" from "bad
+   day for everything." 60s poll cadence matches server-side Polygon cache. */
+.market-context {
+    display: flex; gap: 18px; align-items: center;
+    padding: 6px 20px;
+    background: rgba(10, 17, 25, 0.6);
+    border-bottom: 1px solid var(--border, #2a3948);
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    color: var(--text-dim, #94a3b8);
+}
+.mc-label { color: var(--text-dim, #94a3b8); font-weight: 600; font-size: 10px; letter-spacing: 0.15em; }
+.mc-slot { font-variant-numeric: tabular-nums; }
+.mc-stale { margin-left: auto; font-size: 10px; opacity: 0.7; }
+
+/* 2026-08-28: keyboard-shortcuts hint — hover to see the map */
+.kbd-hint {
+    display: inline-flex; align-items: center;
+    font-size: 14px;
+    color: var(--text-dim, #94a3b8);
+    margin-left: 8px;
+    cursor: help;
+    opacity: 0.6;
+    transition: opacity 0.15s;
+}
+.kbd-hint:hover { opacity: 1; }
+
+/* Leaderboard rank badges */
+.rank-badge { display: inline-block; width: 20px; text-align: center; font-weight: 700; }
+/* v15.7.7: medal colours removed per operator. Gold/silver/bronze on ranks
+ * 1-3 read as a THIRD colour system on a page that already uses colour for
+ * model identity (the dot) and for P&L sign (green/red). Only ranks 1 and 3
+ * were visually obvious, so it looked like an inconsistency rather than a
+ * ranking. Rank number now inherits normal text colour; ordering already
+ * conveys rank. */
+.rank-1, .rank-2, .rank-3 { color: inherit; }
+
+/* P&L color */
+.pnl-pos { color: var(--green); }
+.pnl-neg { color: var(--red); }
+.pnl-zero { color: var(--text-dim); }
+
+/* Provider color dot */
+.dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+/* ============================ Decision feed */
+.feed { flex: 1; overflow-y: auto; padding: 8px 12px; min-height: 0; }
+.feed-row {
+    padding: 6px 4px;
+    border-bottom: 1px dashed var(--border);
+    cursor: pointer;
+    font-size: 11px;
+}
+.feed-row:hover { background: rgba(56, 189, 248, 0.05); }
+.feed-r1 { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.feed-r2 { display: flex; justify-content: space-between; font-size: 10px; color: var(--text-dim); margin-top: 3px; gap: 12px; }
+.feed-r3 { font-size: 10px; color: var(--text); margin-top: 3px; opacity: 0.75; }
+.feed-decision {
+    font-weight: 700;
+    padding: 1px 6px;
+    border: 1px solid;
+    border-radius: 2px;
+    font-size: 10px;
+}
+.dec-ENTER          { color: #34d399; border-color: #10b981; background: rgba(16,185,129,0.06); }
+.dec-SKIP           { color: var(--text-dim); border-color: var(--border-strong); }
+.dec-HOLD           { color: var(--accent); border-color: var(--accent); background: rgba(56,189,248,0.06); }
+.dec-CLOSE          { color: var(--amber); border-color: var(--amber); background: rgba(245,158,11,0.06); }
+.dec-FLIP_TO_LONG   { color: var(--purple); border-color: var(--purple); background: rgba(167,139,250,0.06); }
+.dec-FLIP_TO_SHORT  { color: var(--purple); border-color: var(--purple); background: rgba(167,139,250,0.06); }
+.dec-FAIL           { color: var(--red); border-color: var(--red); background: rgba(239,68,68,0.06); }
+
+.dir-LONG  { color: var(--green); }
+.dir-SHORT { color: var(--red); }
+
+/* ============================ Model view */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 8px;
+    padding: 12px;
+}
+.stat-card {
+    background: var(--panel-alt);
+    border: 1px dashed var(--border);
+    padding: 8px 10px;
+}
+.stat-label { font-size: 9px; text-transform: uppercase; color: var(--text-dim); letter-spacing: 0.1em; }
+.stat-value { font-size: 16px; margin-top: 4px; font-weight: 600; }
+
+#model-selector, #filter-provider, #filter-decision, #symbol-input, #filter-symbol {
+    background: var(--panel-alt);
+    border: 1px solid var(--border-strong);
+    color: var(--text-bright);
+    padding: 5px 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+}
+#symbol-go, #filter-apply {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 5px 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+.filters { display: flex; gap: 6px; }
+.filter-count { padding: 6px 12px; font-size: 10px; color: var(--text-dim); }
+
+.symbol-summary {
+    padding: 12px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px;
+}
+
+/* ============================ Agreement matrix */
+.matrix-table { border-collapse: collapse; font-size: 10px; margin: 12px; }
+.matrix-table td, .matrix-table th { padding: 6px 8px; text-align: center; border: 1px solid var(--border); }
+.matrix-table th { background: var(--panel-alt); color: var(--text-dim); }
+
+/* ============================ Reasoning drawer */
+.drawer {
+    position: fixed;
+    top: 0; right: 0;
+    width: 440px;
+    height: 100vh;   /* fallback for pre-Baseline browsers */
+    height: 100svh;  /* iOS Safari address-bar-safe */
+    background: var(--panel);
+    border-left: 1px dashed var(--border-strong);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    box-shadow: -8px 0 24px rgba(0,0,0,0.4);
+    /* Notch/rounded-corner safe area — pushes drawer content inward on
+       devices where the top/bottom edges are occupied by system UI. */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-right: env(safe-area-inset-right);
+}
+.drawer.hidden { display: none; }
+.drawer-header {
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed var(--border);
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 11px;
+}
+.drawer-header button {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+    padding: 3px 10px;
+    cursor: pointer;
+    font-family: var(--mono);
+}
+#drawer-body { flex: 1; overflow-y: auto; padding: 16px; }
+#drawer-body h4 { color: var(--text-dim); text-transform: uppercase; font-size: 10px; letter-spacing: 0.1em; margin: 12px 0 4px; }
+#drawer-body .rationale {
+    background: var(--panel-alt);
+    padding: 10px;
+    border-left: 3px solid var(--accent);
+    font-size: 12px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    margin: 6px 0;
+}
+#drawer-body pre.raw {
+    background: #000;
+    color: #a3e4a3;
+    font-size: 10px;
+    padding: 8px;
+    overflow-x: auto;
+    max-height: 220px;
+    white-space: pre-wrap;
+}
+#drawer-body dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; font-size: 11px; }
+#drawer-body dt { color: var(--text-dim); }
+
+/* ============================ Statusbar */
+.statusbar {
+    padding: 5px 20px;
+    background: var(--panel);
+    border-top: 1px dashed var(--border-strong);
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+.halt-yes { color: var(--red); font-weight: 700; }
+.halt-no  { color: var(--green); }
+
+/* v14.19.66: warning chip for open positions whose stop is currently
+ * silently skipped due to a stale price feed. */
+.stop-unguarded-chip {
+    display: inline-block;
+    padding: 1px 6px;
+    margin-left: 4px;
+    border-radius: 3px;
+    background: rgba(255, 152, 0, 0.18);
+    color: #ff9800;
+    font-size: 0.85em;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: help;
+}
+
+/* v15.7.0: RETIRED badge. A deprecated provider stops receiving decisions
+ * but keeps its row, its history, and its (now flat) equity curve — this
+ * marks why the line stopped moving. Deliberately muted: it is a status,
+ * not a warning. */
+.deprecated-chip {
+    display: inline-block;
+    padding: 1px 6px;
+    margin-left: 6px;
+    border-radius: 3px;
+    background: rgba(148, 163, 184, 0.18);
+    color: #94a3b8;
+    font-size: 0.72em;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    cursor: help;
+    vertical-align: middle;
+}
+
+/* ============================================================================
+ * v14.19.33: mobile-only elements — hidden by DEFAULT (desktop), shown by
+ * the @media (max-width: 767px) block below. These MUST live BEFORE the
+ * media query so the media-query rule wins on mobile via source-order
+ * (both rules have equal specificity; later one wins). v14.19.31 shipped
+ * these AFTER the @media block by accident, which hid them on ALL widths.
+ * ---------------------------------------------------------------------- */
+.mobile-nav { display: none; }
+.mobile-leaderboard { display: none; }
+
+/* ============================================================================
+ * v14.19.31 — MOBILE-FIRST RESHAPING (below md: 768px)
+ *
+ * Everything above this block is unchanged desktop layout. Everything below
+ * only applies at phone widths. Two-line summary of the reshape:
+ *
+ *   1. Topbar shrinks to brand line only; nav moves to a bottom-tab bar
+ *      pinned to the bottom of the viewport (thumb-reachable).
+ *   2. Every table becomes cards: leaderboard = per-model summary card;
+ *      Models tab stacks vertically with the chart taking full width.
+ *   3. Drawer slides UP from the bottom, full-width, 90% viewport tall.
+ *   4. All filter/chip rows wrap; long banners collapse to compact.
+ *
+ * Design source: parallel research + audit subagents 2026-08-29. Follows
+ * P0/P1 priorities from the research synthesis (skipping P2/nice-to-have).
+ * ---------------------------------------------------------------------- */
+@media (max-width: 767px) {
+
+    /* v14.19.34: on mobile, let the ENTIRE PAGE scroll naturally instead
+       of trapping content inside a 100svh viewport with per-panel
+       overflow. Desktop uses a fixed-viewport dashboard model (everything
+       fits in the visible area); mobile can't fit everything, so scrolling
+       is the answer. Standard mobile pattern.
+       Bottom-tab nav stays fixed on top of the scroll — see .mobile-nav. */
+    html, body {
+        height: auto;
+        overflow: visible;
+        overscroll-behavior: auto;  /* allow pull-to-refresh */
+    }
+    body { min-height: 100svh; }
+    .view {
+        overflow: visible;
+        min-height: 0;
+    }
+    /* Panels: natural height, no max-height cap that would cause internal
+       scrollbars fighting the page scroll. */
+    .leaderboard-panel { max-height: none !important; }
+    .feed-panel, .chart-panel { min-height: 0; }
+    /* Table-scroll wrappers on mobile: let content grow (no max-height)
+       and remove horizontal-scroll fade since the whole page scrolls. */
+    .model-trades-panel .table-scroll,
+    .model-positions-panel .table-scroll {
+        max-height: none !important;
+    }
+    .table-scroll::after { display: none; }
+
+    /* ---- topbar: brand + obfuscate button + hamburger-hint icon only ---- */
+    .topbar {
+        padding: 8px 12px;
+        gap: 8px;
+        /* Notched-device safe area */
+        padding-top: max(8px, env(safe-area-inset-top));
+        padding-left: max(12px, env(safe-area-inset-left));
+        padding-right: max(12px, env(safe-area-inset-right));
+    }
+    .brand { min-width: 0; }
+    .brand-name { font-size: 13px; }
+    .brand-sub { font-size: 9px; }
+    /* Move the top nav to the bottom of the viewport (see bottom-nav block
+       below). Hide the desktop nav-in-topbar rendering. */
+    .topbar .nav { display: none; }
+    /* HIGH/LOW gets its OWN LINE on mobile.
+     *
+     * v16.14.4: it used to squeeze onto the brand's line with the labels
+     * hidden, `white-space: nowrap` and `overflow: hidden`. With
+     * `justify-content: flex-end` the overflow clips from the LEFT, so on a
+     * 390px phone the operator saw the tails of two numbers and nothing
+     * else — reported as "the top right corner there is text missing":
+     *
+     *     38.30 Model          $710.45
+     *
+     * which is the end of "+$1,038.30 Model 5" and "-$710.45 Model 2".
+     * Hiding the labels made it worse, not better: the two values ran
+     * together with nothing to say which was which.
+     *
+     * The comment it replaces called glance-visibility of the leader P0,
+     * and clipping defeated exactly that. A wrapped second line costs ~14px
+     * of height — the mobile topbar already hides `.nav`, so there is room —
+     * and shows both figures whole, labels included. */
+    .topbar { flex-wrap: wrap; }
+    .highlow {
+        display: flex;
+        gap: 14px;
+        min-width: 0;
+        flex-basis: 100%;
+        order: 10;                 /* below brand + the obfuscate toggle */
+        justify-content: flex-start;
+        font-size: 9px;
+        letter-spacing: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;   /* if it STILL will not fit, lose the end */
+    }
+    .highlow .label { display: inline; }
+    .kbd-hint { display: none; }  /* No keyboard on mobile */
+
+    /* ---- bottom-tab nav (mobile only) ---- */
+    .mobile-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--panel);
+        border-top: 1px solid var(--border-strong);
+        z-index: 50;
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
+    .mobile-nav-btn {
+        flex: 1;
+        background: none;
+        border: none;
+        color: var(--text-dim);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        padding: 8px 4px;
+        font-size: 10px;
+        letter-spacing: 0.05em;
+        min-height: 56px;
+        cursor: pointer;
+        border-top: 2px solid transparent;
+        margin-top: -1px;  /* overlap the .mobile-nav border */
+    }
+    .mobile-nav-btn .mnav-icon { font-size: 18px; line-height: 1; }
+    .mobile-nav-btn.active {
+        color: var(--accent);
+        border-top-color: var(--accent);
+        background: rgba(56, 189, 248, 0.06);
+    }
+
+    /* Bottom padding on body so bottom-nav doesn't cover last row of content */
+    body { padding-bottom: calc(56px + env(safe-area-inset-bottom)); }
+
+    /* ---- market context bar: keep visible but compact ---- */
+    .market-context {
+        padding: 4px 10px;
+        gap: 10px;
+        font-size: 10px;
+        overflow-x: auto;
+        white-space: nowrap;
+        /* Hide the "MARKET:" label — the 3 ticker chips speak for themselves */
+    }
+    .market-context .mc-label { display: none; }
+    .market-context .mc-stale { display: none; }
+
+    /* ---- public banner: compact ---- */
+    .public-banner {
+        font-size: 9px !important;
+        padding: 4px 10px !important;
+        letter-spacing: 0.03em !important;
+    }
+    .public-banner .updated { display: block; margin-top: 1px; }
+
+    /* ---- overview: chart on top full-width, leaderboard below, feed collapsed ---- */
+    .view { padding: 8px; gap: 8px; }
+    #view-overview {
+        grid-template-columns: 1fr;
+        /* v14.19.40: chart bumped 320 → 400px. Even with 320 the top-most
+           (leader) and bottom-most (last-place) right-axis labels were
+           clipped by the chart edges. Combined with the wider scaleMargins
+           (12% top+bottom vs desktop's 5%) applied in initChart on mobile,
+           400px gives all 6 model labels breathing room without pushing
+           the leaderboard cards too far below the fold. */
+        grid-template-rows: 400px 1fr auto;
+        grid-template-areas:
+            "chart"
+            "leaderboard"
+            "feed";
+    }
+    .chart-panel .panel-header {
+        flex-wrap: wrap;
+        gap: 6px;
+        padding: 6px 10px;
+    }
+    .chart-panel .panel-header .toggles { flex-shrink: 0; }
+    /* v14.19.32: hide the top-left legend overlay on mobile. The right-
+       axis last-value pills carry the same info (color + name + price)
+       and don't cover chart content. Two label surfaces on a small chart
+       is redundant and eats data area. Users still click legend rows to
+       hide/show series on desktop — that affordance is desktop-only for
+       now (P2 nice-to-have for mobile: tap a pill to toggle series). */
+    .chart-legend { display: none; }
+
+    .leaderboard-panel { max-height: none; }
+    .leaderboard-panel .panel-header { padding: 6px 10px; font-size: 10px; }
+
+    /* ---- leaderboard: CARDS instead of the 18-column table ---- */
+    /* Hide the desktop table; show the .mobile-leaderboard container. */
+    #leaderboard { display: none; }
+    .mobile-leaderboard {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 6px;
+        overflow-y: auto;
+    }
+    .m-lb-card {
+        background: var(--panel-alt);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 10px 12px;
+        display: grid;
+        grid-template-columns: 28px 1fr auto;
+        grid-template-rows: auto auto;
+        column-gap: 10px;
+        row-gap: 2px;
+        align-items: center;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(56, 189, 248, 0.15);
+    }
+    .m-lb-card:active { background: rgba(56, 189, 248, 0.06); }
+    .m-lb-rank {
+        grid-row: 1 / span 2;
+        font-size: 20px;
+        font-weight: 800;
+        text-align: center;
+        line-height: 1;
+    }
+    .m-lb-name {
+        display: flex; align-items: center; gap: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-bright);
+    }
+    .m-lb-name .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .m-lb-equity {
+        text-align: right;
+        font-size: 14px;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+    }
+    .m-lb-meta {
+        grid-column: 2;
+        font-size: 10px;
+        color: var(--text-dim);
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    .m-lb-delta {
+        grid-column: 3;
+        text-align: right;
+        font-size: 11px;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+    }
+    .m-lb-halt {
+        grid-column: 1 / -1;
+        text-align: center;
+        color: var(--red);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        padding-top: 4px;
+        border-top: 1px dashed var(--red);
+        margin-top: 2px;
+    }
+
+    /* ---- feed on overview: compact ---- */
+    .feed-panel .panel-header {
+        flex-wrap: wrap;
+        gap: 6px;
+        padding: 6px 10px;
+        font-size: 10px;
+    }
+    .feed-panel #feed-filter-chips { flex-wrap: wrap; }
+    .feed-row {
+        padding: 8px 10px;
+        gap: 3px;
+    }
+    .feed-r1 { flex-wrap: wrap; gap: 6px; }
+    /* v14.19.37: was `.feed-r1 span:first-child { flex: 1 }` — but the
+       first span IS the .dot, so we accidentally told the dot to grow-
+       to-fill the row (rendered as long horizontal ovals). Target the
+       SECOND span (the name/decision text) instead. */
+    .feed-r1 > span:nth-child(2) { min-width: 0; flex: 1; }
+    .feed-r2 { font-size: 10px; flex-wrap: wrap; gap: 8px; }
+    .feed-r3 {
+        font-size: 11px;
+        line-height: 1.4;
+        /* v14.19.31: 2-line clamp — spectator doesn't need the full LLM
+           essay in the feed. Full rationale still available via drawer. */
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* ---- Models tab: single column, chart full-width ---- */
+    #view-models {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto 1fr;
+        grid-template-areas:
+            "header"
+            "positions"
+            "trades"
+            "feed";
+    }
+    .model-header-panel .panel-header {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 6px 10px;
+    }
+    .model-header-panel .date-chips { margin-left: 0 !important; flex-wrap: wrap; }
+    #model-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+        padding: 6px 10px;
+    }
+    .stat-card { padding: 6px 8px; }
+    .stat-label { font-size: 8px; }
+    .stat-value { font-size: 13px; }
+    /* Hide the trade log's leading chart icon column on mobile — the whole
+       row is tap-to-open, the icon is redundant and eats width */
+    #model-trades th:first-child, #model-trades td.row-icon { display: none; }
+    /* On mobile the Trade Log panel scroll wrapper max-height should be
+       taller than the desktop 400px — we have the whole viewport now */
+    .model-trades-panel .table-scroll,
+    .model-positions-panel .table-scroll {
+        max-height: 40vh !important;
+        max-height: 40svh !important;
+    }
+    /* v14.19.36 (mobile chart drill-down)
+       #chart-state has THREE direct children in this order:
+         1) .panel-header wrapping #chart-title (meta line — auto height)
+         2) chart wrapper containing #trade-chart + .chart-footer
+         3) feed wrapper containing panel-header + #chart-sym-feed
+       Prior rules used first-of-type/last-of-type which mis-targeted the
+       header as the chart wrapper (invisible chart). Fixed with nth-child
+       so the assignment is unambiguous. */
+    #chart-state > div { flex: none !important; }
+    #chart-state > div:nth-child(2) { height: 40vh; height: 40svh; }
+    #chart-state > div:nth-child(3) { flex: 1 !important; min-height: 200px; }
+
+    /* v14.19.36: color dots in feed rows getting stretched by wrapping
+       flex containers. Force inline-block + no-shrink + explicit sizing so
+       the round shape holds regardless of flex context. */
+    .dot,
+    .feed-row .dot,
+    .feed-item .dot {
+        display: inline-block !important;
+        width: 8px !important;
+        height: 8px !important;
+        min-width: 8px !important;
+        min-height: 8px !important;
+        flex-shrink: 0 !important;
+        border-radius: 50% !important;
+        vertical-align: middle;
+    }
+
+    /* ---- Decisions tab: filter bar wraps ---- */
+    .filter-panel .panel-header { flex-wrap: wrap; gap: 6px; padding: 6px 10px; }
+    .filters { flex-wrap: wrap; gap: 6px; width: 100%; }
+    .filters select, .filters input, .filters button { flex: 1; min-width: 44%; }
+    .date-chips { flex-wrap: wrap; gap: 4px; width: 100%; }
+    .custom-range { flex-wrap: wrap; gap: 4px; width: 100%; }
+    .custom-range input[type="date"] { flex: 1; }
+    #active-filters { padding: 0 10px; }
+
+    /* ---- Drawer: full-width bottom-sheet slide-up ---- */
+    .drawer {
+        width: 100vw !important;
+        height: 90vh !important;
+        height: 90svh !important;
+        top: auto !important;
+        bottom: 0 !important;
+        right: 0 !important;
+        border-left: none;
+        border-top: 1px solid var(--accent);
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        box-shadow: 0 -8px 24px rgba(0,0,0,0.6);
+        padding-top: 0;  /* the header itself is the top */
+    }
+    .drawer-header {
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        background: var(--panel);
+    }
+    #close-drawer {
+        min-height: 44px !important;
+        min-width: 44px !important;
+        font-size: 20px !important;
+    }
+    #drawer-body { padding: 12px 16px 40px 16px; }
+    #drawer-body pre.raw {
+        max-height: none;
+        font-size: 10px;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+    /* Drawer 2-col layout: force single column on mobile */
+    .drawer-two-col { grid-template-columns: 1fr !important; }
+
+    /* ---- Trade chart drill-down: chart footer wraps ---- */
+    .chart-footer { flex-wrap: wrap !important; gap: 6px !important; }
+    #chart-title { flex-wrap: wrap; }
+    #chart-title span { font-size: 11px !important; }
+    /* Chart expand button hidden on mobile — chart is already full-width */
+    #chart-expand { display: none !important; }
+
+    /* ---- Panel-header text scale ---- */
+    .panel-header { font-size: 10px; padding: 6px 10px; }
+    .hint-chip { font-size: 9px; }
+
+    /* ---- Table generic: allow horizontal scroll for any remaining tables
+       (e.g., #model-trades on Models tab) with a subtle right-edge fade to
+       signal "there's more" */
+    .table-scroll {
+        position: relative;
+        -webkit-overflow-scrolling: touch;
+    }
+    .table-scroll::after {
+        content: "";
+        position: absolute;
+        top: 0; right: 0; bottom: 0;
+        width: 20px;
+        background: linear-gradient(to right, transparent, rgba(10, 14, 20, 0.8));
+        pointer-events: none;
+    }
+    /* Only show fade when actually scrollable */
+    .table-scroll:not(:hover)::after { opacity: 0.6; }
+}
+
+/* v14.19.33: previously .mobile-nav + .mobile-leaderboard default-hidden
+ * rules lived HERE (after the @media block) which meant they overrode the
+ * media-query show-on-mobile rules due to source-order specificity. Rules
+ * have been moved to just BEFORE the @media block so the media query wins
+ * on mobile. This trailing comment is a tombstone; do not re-add them here. */
+
+/* v15.7.0: roster-change notice. Chart series are built once at init, so a
+ * model added mid-session cannot be plotted without a reload. Rather than
+ * leave the user staring at a grey unnamed row (the pre-fix behaviour), say
+ * so and offer the reload. */
+.roster-change-notice {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 9999;
+    padding: 10px 14px;
+    border-radius: 6px;
+    background: rgba(30, 41, 59, 0.97);
+    border: 1px solid #475569;
+    color: #e2e8f0;
+    font-size: 0.85em;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+}
+.roster-change-notice button {
+    margin-left: 10px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    border: 1px solid #64748b;
+    background: #334155;
+    color: #e2e8f0;
+    cursor: pointer;
+    font-size: 0.95em;
+}
+.roster-change-notice button:hover { background: #475569; }
