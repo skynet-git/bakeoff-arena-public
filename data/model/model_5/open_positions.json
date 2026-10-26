@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[{"shadow_fill_id":3550,"entry_ts":"2026-10-26T12:21:15.766391","symbol":"RDDT","direction":"LONG","entry_price":136.65,"shares":10,"notional":1366.5,"invalidation":135.75,"take_profit_price":138.5,"take_profit_trailing_pct":null,"decision_id":50394,"stop_unguarded":false,"current_price":136.21,"mark_ts":"2026-10-26T16:25:04.736832+00:00","mark_basis":"nbbo_mid","mark_bid":136.12,"mark_ask":136.3,"unrealized_pnl":-4.399999999999977,"unrealized_pct":-0.3219904866447111}]}
+{"provider":"model_5","open_positions":[]}
