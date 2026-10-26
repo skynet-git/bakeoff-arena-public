@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[{"shadow_fill_id":3489,"entry_ts":"2026-10-26T11:35:31.673802","symbol":"PBR.A","direction":"LONG","entry_price":19.34,"shares":17,"notional":328.78,"invalidation":19.17,"take_profit_price":19.6,"take_profit_trailing_pct":null,"decision_id":49011,"stop_unguarded":false,"current_price":19.285,"mark_ts":"2026-10-26T15:40:07.319325+00:00","mark_basis":"nbbo_mid","mark_bid":19.28,"mark_ask":19.29,"unrealized_pnl":-0.9349999999999952,"unrealized_pct":-0.28438469493278035}]}
+{"provider":"model_6","open_positions":[]}
