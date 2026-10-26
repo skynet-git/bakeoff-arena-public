@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":3793,"entry_ts":"2026-10-26T15:26:13.917493","symbol":"SGRY","direction":"LONG","entry_price":23.25,"shares":159,"notional":3696.75,"invalidation":23.18,"take_profit_price":null,"take_profit_trailing_pct":0.2,"decision_id":54561,"stop_unguarded":false,"current_price":23.235,"mark_ts":"2026-10-26T19:29:34.099975+00:00","mark_basis":"nbbo_mid","mark_bid":23.23,"mark_ask":23.24,"unrealized_pnl":-2.3850000000000904,"unrealized_pct":-0.06451612903226052}]}
