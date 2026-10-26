@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":3244,"entry_ts":"2026-10-26T09:36:26.023689","symbol":"CART","direction":"SHORT","entry_price":53.88,"shares":64,"notional":3448.32,"invalidation":54.4,"take_profit_price":52.5,"take_profit_trailing_pct":null,"decision_id":45804,"stop_unguarded":false,"current_price":53.975,"mark_ts":"2026-10-26T13:40:06.276023+00:00","mark_basis":"nbbo_mid","mark_bid":53.82,"mark_ask":54.13,"unrealized_pnl":-6.079999999999927,"unrealized_pct":-0.17631774313288578}]}
