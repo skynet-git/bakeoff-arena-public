@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":3545,"entry_ts":"2026-10-26T12:15:30.554409","symbol":"SLM","direction":"SHORT","entry_price":19.71,"shares":74,"notional":1458.54,"invalidation":19.8,"take_profit_price":19.6,"take_profit_trailing_pct":null,"decision_id":50297,"stop_unguarded":false,"current_price":19.715,"mark_ts":"2026-10-26T16:19:13.234673+00:00","mark_basis":"nbbo_mid","mark_bid":19.71,"mark_ask":19.72,"unrealized_pnl":-0.3699999999999264,"unrealized_pct":-0.02536783358700662}]}
