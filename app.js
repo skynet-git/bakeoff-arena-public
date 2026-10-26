@@ -955,17 +955,31 @@ function _applySortIndicators() {
     });
 }
 
+// v16.36.4 (operator 2026-10-26): "#" is the arm's Equity rank in every
+// sort, on the leaderboard and on the phone card. It used to number the rows
+// in the order shown, so sorted the other way it still read 1 to 7 and the
+// rank-1 badge sat on the lowest Equity. 1 is the highest `equity`, the
+// field the Equity header sorts on. Arms with the same Equity keep the order
+// the server sent (it sorts on Equity, stably, in config order), so a rank
+// never depends on the column the table is sorted on. An arm with no Equity
+// figure has no rank: its "#" prints a dash and carries no podium class.
+// Returns a Map from row to rank.
+function _equityRanks(rows) {
+    const ranked = rows.filter(r => Number.isFinite(r.equity));    // a number, not null or NaN
+    ranked.sort((a, b) => b.equity - a.equity);     // stable: ties keep the server's order
+    return new Map(ranked.map((r, i) => [r, i + 1]));
+}
+
 function _sortedRows(rows) {
     if (!sortColumn) return rows;
-    // "rank" is a virtual key = server order + 1. Sort by original index.
-    if (sortColumn === "rank") {
-        const withIdx = rows.map((r, i) => ({r, i}));
-        withIdx.sort((a, b) => sortDir === "desc" ? b.i - a.i : a.i - b.i);
-        return withIdx.map(x => x.r);
-    }
+    // v16.36.4: "#" sorts on the figure it prints, the Equity rank; an arm
+    // with no rank sinks to the bottom, as a missing figure does under
+    // every header.
+    const ranks = sortColumn === "rank" ? _equityRanks(rows) : null;
+    const value = r => (ranks ? ranks.get(r) : r[sortColumn]);
     const sorted = [...rows];
     sorted.sort((a, b) => {
-        const av = a[sortColumn], bv = b[sortColumn];
+        const av = value(a), bv = value(b);
         // null/undefined sink to the bottom regardless of direction.
         if (av == null && bv == null) return 0;
         if (av == null) return 1;
@@ -1127,10 +1141,11 @@ function renderLeaderboard(rows) {
     const tbody = document.getElementById("leaderboard-body");
     tbody.innerHTML = "";
     const displayRows = _sortedRows(rows);
+    const ranks = _equityRanks(rows);       // v16.36.4: "#" is the Equity rank in every sort
     _applySortIndicators();
-    displayRows.forEach((r, i) => {
-        const rank = i + 1;
-        const rankCls = rank <= 3 ? `rank-${rank}` : "";
+    displayRows.forEach(r => {
+        const rank = ranks.get(r);
+        const rankCls = rank != null && rank <= 3 ? `rank-${rank}` : "";
         const tr = document.createElement("tr");
         // v16.36.0: every money cell prints `r.display`, rounded ONCE on the
         // server (half-up, no negative zero); the page never rounds again.
@@ -1141,7 +1156,7 @@ function renderLeaderboard(rows) {
         // words ("not booked", "no trades") are never coloured.
         const d = r.display || {};
         tr.innerHTML = `
-            <td><span class="rank-badge ${rankCls}">${rank}</span></td>
+            <td><span class="rank-badge ${rankCls}">${rank == null ? "—" : rank}</span></td>
             <td class="lb-model" title="${escapeHtml(displayModel(r.display_name))}"><span class="dot" style="background:${r.color}"></span>${displayModel(r.display_name)}${r.deprecated ? ` <span class="deprecated-chip" title="${(r.deprecated_note || 'Retired — no longer receives new decisions. History and final equity are preserved.').replace(/"/g, '&quot;')}">RETIRED</span>` : ''}</td>
             <td class="num lb-ob">${money(d.ob_day)}</td>
             <td class="num lb-bp" style="color:var(--text-dim)">${money(d.buying_power)}</td>
@@ -1278,15 +1293,16 @@ function renderMobileLeaderboard(rows) {
     // resized to mobile keeps that ordering.
     _lastLeaderboardRows = rows;
     const sorted = _sortedRows(rows);
+    const ranks = _equityRanks(rows);       // v16.36.4: the card's rank is the Equity rank too
     el.innerHTML = "";
-    sorted.forEach((r, i) => {
-        const rank = i + 1;
+    sorted.forEach(r => {
+        const rank = ranks.get(r);
         const equity = r.equity;
         const deltaPct = ((equity / config.starting_capital) - 1) * 100;
         // v16.36.0: a delta that prints as 0.00% is not coloured.
         const deltaCls = _printsZero(deltaPct, 2) ? "pnl-zero"
             : (deltaPct > 0 ? "pnl-pos" : "pnl-neg");
-        const rankCls = rank <= 3 ? `rank-${rank}` : "";
+        const rankCls = rank != null && rank <= 3 ? `rank-${rank}` : "";
         // v14.19.37: the card shows the RUN's win rate, not today's.
         // Today's rate is meaningless outside trading hours (and misleading
         // on days a model didn't trade). v16.36.3: no fallback to today's
@@ -1296,7 +1312,8 @@ function renderMobileLeaderboard(rows) {
         // v14.19.37: rank tooltip explains the podium coloring so 1 (gold)
         // vs 3 (bronze) — which look similar on dark screens — is at least
         // documented.
-        const rankTitle = rank <= 3
+        const rankTitle = rank == null ? "No rank: no Equity figure"
+            : rank <= 3
             ? `Rank ${rank} — ${rank === 1 ? 'gold' : rank === 2 ? 'silver' : 'bronze'} podium`
             : `Rank ${rank}`;
         // v16.36.0: ONE added line, Net; its four parts open on tap, with
@@ -1305,7 +1322,7 @@ function renderMobileLeaderboard(rows) {
         // phones, so every card grew by two lines instead of one.
         const d = r.display || {};
         card.innerHTML = `
-            <div class="m-lb-rank ${rankCls}" title="${rankTitle}">${rank}</div>
+            <div class="m-lb-rank ${rankCls}" title="${rankTitle}">${rank == null ? "—" : rank}</div>
             <div class="m-lb-name">
                 <span class="dot" style="background:${r.color}"></span>
                 <span>${displayModel(r.display_name)}</span>
