@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[{"shadow_fill_id":3251,"entry_ts":"2026-10-26T09:39:29.319594","symbol":"BABA","direction":"LONG","entry_price":99.97,"shares":69,"notional":6897.93,"invalidation":99.7,"take_profit_price":100.45,"take_profit_trailing_pct":null,"decision_id":45865,"stop_unguarded":false,"current_price":99.9,"mark_ts":"2026-10-26T13:55:02.105680+00:00","mark_basis":"nbbo_mid","mark_bid":99.88,"mark_ask":99.92,"unrealized_pnl":-4.829999999999529,"unrealized_pct":-0.07002100630188374}]}
+{"provider":"model_6","open_positions":[]}
