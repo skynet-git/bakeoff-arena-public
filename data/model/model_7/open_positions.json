@@ -1,1 +1,1 @@
-{"provider":"model_7","open_positions":[{"shadow_fill_id":3587,"entry_ts":"2026-10-26T12:33:55.446731","symbol":"NU","direction":"LONG","entry_price":12.4,"shares":795,"notional":9858.0,"invalidation":12.26,"take_profit_price":12.75,"take_profit_trailing_pct":null,"decision_id":50694,"stop_unguarded":false,"current_price":12.425,"mark_ts":"2026-10-26T16:50:08.720958+00:00","mark_basis":"nbbo_mid","mark_bid":12.42,"mark_ask":12.43,"unrealized_pnl":19.875000000000284,"unrealized_pct":0.20161290322580935}]}
+{"provider":"model_7","open_positions":[]}
