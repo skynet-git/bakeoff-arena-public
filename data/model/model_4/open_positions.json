@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[{"shadow_fill_id":3534,"entry_ts":"2026-10-26T12:03:02.882584","symbol":"EQT","direction":"LONG","entry_price":53.57,"shares":92,"notional":4928.44,"invalidation":53.25,"take_profit_price":54.5,"take_profit_trailing_pct":null,"decision_id":49949,"stop_unguarded":false,"current_price":54.394999999999996,"mark_ts":"2026-10-26T17:10:06.913443+00:00","mark_basis":"nbbo_mid","mark_bid":54.39,"mark_ask":54.4,"unrealized_pnl":75.89999999999961,"unrealized_pct":1.540041067761799}]}
+{"provider":"model_4","open_positions":[]}
