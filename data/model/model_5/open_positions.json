@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[{"shadow_fill_id":3765,"entry_ts":"2026-10-26T15:01:49.169363","symbol":"XP","direction":"LONG","entry_price":15.36,"shares":96,"notional":1474.56,"invalidation":15.22,"take_profit_price":null,"take_profit_trailing_pct":0.5,"decision_id":54132,"stop_unguarded":false,"current_price":15.385000000000002,"mark_ts":"2026-10-26T19:05:08.069374+00:00","mark_basis":"nbbo_mid","mark_bid":15.38,"mark_ask":15.39,"unrealized_pnl":2.4000000000002046,"unrealized_pct":0.16276041666668056}]}
+{"provider":"model_5","open_positions":[]}
