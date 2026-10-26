@@ -148,6 +148,7 @@ async function init() {
     wireTradeChart();
     wireObfuscateToggle();
     wireKeyboard();
+    wireDefinitionTips(document);
     // v14.19.23: in PUBLIC_MODE, obfuscation is baked into the JSON files.
     // Lock it ON at the client, hide the toggle, and hide the keyboard-hint
     // icon (kbd shortcuts still work — just no need to advertise them to
@@ -726,14 +727,65 @@ function wireNav() {
 // on top of an existing mouse UI. Ignored when the user is typing into
 // an input/textarea/select so search boxes still work.
 const _NAV_KEY_TO_VIEW = { "1": "overview", "2": "models", "3": "decisions" };
+// v16.36.0: header definitions. Every element carrying `data-def` (the id
+// of its <dd> in the Definitions list) opens that text in one floating box
+// on hover AND on keyboard focus, and Esc closes it (wireKeyboard). The box
+// sits outside every scroll panel, so none of them clips it. The element is
+// also described by the <dd> for a screen reader, closed <details> or not.
+let _defTipOwner = null;
+
+function wireDefinitionTips(root) {
+    root.querySelectorAll("[data-def]").forEach(el => {
+        if (el.dataset.defWired === "1") return;
+        el.dataset.defWired = "1";
+        el.setAttribute("tabindex", "0");
+        el.setAttribute("aria-describedby", el.dataset.def);
+        el.addEventListener("mouseenter", () => showDefinitionTip(el));
+        el.addEventListener("mouseleave", () => hideDefinitionTip(el));
+        el.addEventListener("focus", () => showDefinitionTip(el));
+        el.addEventListener("blur", () => hideDefinitionTip(el));
+        // Enter on a focused sortable header sorts it, as a click does.
+        el.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" && el.dataset.sort) { el.click(); e.preventDefault(); }
+        });
+    });
+}
+
+function showDefinitionTip(el) {
+    const tip = document.getElementById("def-tip");
+    const def = document.getElementById(el.dataset.def);
+    if (!tip || !def) return;
+    tip.textContent = def.textContent;
+    tip.classList.remove("hidden");
+    _defTipOwner = el;
+    const r = el.getBoundingClientRect();
+    const w = tip.offsetWidth || 260;
+    const left = Math.max(8, Math.min(r.right - w, window.innerWidth - w - 8));
+    tip.style.left = `${left}px`;
+    tip.style.top = `${r.bottom + 6}px`;
+}
+
+// Hides the box (only if `el`, when given, is the one that opened it).
+// Returns true when something was open.
+function hideDefinitionTip(el) {
+    const tip = document.getElementById("def-tip");
+    if (!tip || tip.classList.contains("hidden")) return false;
+    if (el && el !== _defTipOwner) return false;
+    tip.classList.add("hidden");
+    _defTipOwner = null;
+    return true;
+}
+
 function wireKeyboard() {
     document.addEventListener("keydown", (e) => {
         const t = e.target;
         const tag = t && t.tagName;
         const typing = tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || t.isContentEditable;
         if (typing && e.key !== "Escape") return;
-        // Esc closes drawer or trade chart (in that priority order).
+        // Esc closes an open definition first, then the drawer, then the
+        // trade chart (in that priority order).
         if (e.key === "Escape") {
+            if (hideDefinitionTip()) { e.preventDefault(); return; }
             const drawer = document.getElementById("reasoning-drawer");
             if (drawer && !drawer.classList.contains("hidden")) { closeDrawer(); e.preventDefault(); return; }
             const chartState = document.getElementById("chart-state");
@@ -803,6 +855,7 @@ async function refreshOverview() {
         document.getElementById("refresh-info").textContent = "⚠ Fetch error";
         return;
     }
+    safe("leaderboardTitle",  () => renderLeaderboardTitle(state.day_columns));
     safe("leaderboard",       () => renderLeaderboard(state.leaderboard));
     safe("mobileLeaderboard", () => renderMobileLeaderboard(state.leaderboard));
     safe("highLow",           () => renderHighLow(state.leaderboard));
@@ -815,11 +868,41 @@ async function refreshOverview() {
         renderFeed(filtered, "feed-overview");
     });
     safe("equity",      () => renderEquity(equity.series));
+    safe("clockDrift",  () => renderClockDrift(state.clock));
     // v14.19.43: force ET regardless of viewer TZ. All timestamps in the
     // app render as America/New_York; "Last refresh" is the visible clock
     // and shouldn't be the one outlier that reads viewer-local time.
     document.getElementById("last-refresh").textContent = "Last refresh: " + new Date().toLocaleTimeString("en-US", { timeZone: "America/New_York", hour: "numeric", minute: "2-digit", second: "2-digit", hour12: true }) + " ET";
     document.getElementById("refresh-info").textContent = "";
+}
+
+// v16.36.0: the sidecar's clock-drift flag. `clock` is only present on the
+// LOCAL dashboard (the public state.json never carries it), so a missing
+// value hides the chip. Red while the latest 5-minute rollup is over the
+// limit; amber once it recovers, so a breach that came and went is still
+// on screen until the sidecar restarts.
+function renderClockDrift(clock) {
+    const el = document.getElementById("clock-drift");
+    if (!el) return;
+    el.classList.remove("now", "seen");
+    if (!clock || (!clock.warning && !clock.last_warning_at)) {
+        el.classList.add("hidden");
+        el.textContent = "";
+        return;
+    }
+    const pct = v => (v == null ? "—" : `${v >= 0 ? "+" : ""}${v.toFixed(3)}%`);
+    el.classList.remove("hidden");
+    if (clock.warning) {
+        el.classList.add("now");
+        el.textContent = `⚠ CLOCK DRIFT ${pct(clock.drift_pct)}`;
+    } else {
+        el.classList.add("seen");
+        el.textContent = `CLOCK DRIFT SEEN ${pct(clock.last_warning_drift_pct)}`;
+    }
+    el.title = `Wall clock vs monotonic clock over the last ${clock.window_s != null ? clock.window_s.toFixed(0) : "?"} s: `
+        + `${pct(clock.drift_pct)} (limit ${clock.warn_pct}%, clock_drift_warn_pct). `
+        + `Breaches since the sidecar started: ${clock.warnings}; last ${clock.last_warning_at || "never"}. `
+        + `Check the host's time sync.`;
 }
 
 // 2026-08-28: client-side column sort. Default is server order (equity desc).
@@ -993,16 +1076,46 @@ function makeTableSorter(tableSelector, rerender) {
 
 let _lastLeaderboardRows = null;
 
+// v16.36.0: "LEADERBOARD · day columns: Fri 2026-10-23". The date is the
+// one the server computed the day columns for (state.json), never the
+// browser's clock: the public page shows the last session overnight.
+function renderLeaderboardTitle(dayColumns) {
+    const el = document.getElementById("leaderboard-title");
+    if (!el) return;
+    const d = dayColumns && dayColumns.date
+        ? `${dayColumns.weekday ? dayColumns.weekday + " " : ""}${dayColumns.date}` : "—";
+    el.textContent = `LEADERBOARD · day columns: ${d}`;
+}
+
+// v16.36.0: Comm $ / ECN $ — the figure, or words when the day was not
+// booked (its trades closed before commission and ECN booking began).
+// ECN $ can be a rebate, so a positive one carries a "+".
+// v16.36.1: the colour class for a charge cell. Words ("not booked", "no
+// trades") get none; a figure is coloured by sign at the precision it prints.
+function feeCls(v, places = 2) {
+    return v == null ? "" : pcls(v, places);
+}
+
+function feeCell(v, plus) {
+    return v == null ? "not booked" : money(v, !!plus);
+}
+
+// v16.36.0: Token $/Trade, four decimals — or words when there is no trade
+// to divide by. The server signs it like Token $: zero or negative.
+function tokenPerTrade(v) {
+    return v == null ? "no trades" : money(v, false, 4);
+}
+
+// v16.36.0: the drawer's Token $ for ONE decision. The row stores the spend
+// as a positive amount (`cost_usd`); on screen it is a charge, negative, as
+// in the Token $ column. A dash when there is none recorded.
+function tokenSpendCell(usd) {
+    return usd ? money(-usd, false, 4) : "—";
+}
+
 function renderLeaderboard(rows) {
     _installHeaderSort();
     _lastLeaderboardRows = rows;
-    // 2026-08-28: annotate cost_per_trade BEFORE sort so users can sort
-    // by it. Null when no closed trades (leaves it at the bottom).
-    rows.forEach(r => {
-        r.cost_per_trade = (r.n_trades_total > 0 && r.cost_total_usd != null)
-            ? (r.cost_total_usd / r.n_trades_total)
-            : null;
-    });
     const tbody = document.getElementById("leaderboard-body");
     tbody.innerHTML = "";
     const displayRows = _sortedRows(rows);
@@ -1011,28 +1124,34 @@ function renderLeaderboard(rows) {
         const rank = i + 1;
         const rankCls = rank <= 3 ? `rank-${rank}` : "";
         const tr = document.createElement("tr");
-        // v4 taxonomy 2026-08-26: OB (Day) added after Model (locked at open,
-        // = prior day close Equity); Equity moved to end (LIVE liquidation value
-        // = OB + Real (Day) + Unreal).
+        // v16.36.0: every money cell prints `r.display`, rounded ONCE on the
+        // server (half-up, no negative zero); the page never rounds again.
+        // The day group stays together — Real (Day), Unreal, P&L (Day),
+        // Token $, Comm $, ECN $, then a gap and a bold Net (Day). v16.36.1:
+        // every signed figure is coloured by its sign (operator: charges are
+        // negative and rebates positive, so a charge is red and a rebate green);
+        // words ("not booked", "no trades") are never coloured.
+        const d = r.display || {};
         tr.innerHTML = `
             <td><span class="rank-badge ${rankCls}">${rank}</span></td>
-            <td><span class="dot" style="background:${r.color}"></span>${displayModel(r.display_name)}${r.deprecated ? ` <span class="deprecated-chip" title="${(r.deprecated_note || 'Retired — no longer receives new decisions. History and final equity are preserved.').replace(/"/g, '&quot;')}">RETIRED</span>` : ''}</td>
-            <td class="num">${money(r.ob_day)}</td>
-            <td class="num" style="color:var(--text-dim)">${money(r.buying_power)}</td>
-            <td class="num ${pcls(r.realized_pnl_day)}">${money(r.realized_pnl_day, true)}</td>
-            <td class="num ${pcls(r.unrealized_pnl)}">${money(r.unrealized_pnl, true)}</td>
-            <td class="num ${pcls(r.pnl_day)}">${money(r.pnl_day, true)}</td>
-            <td class="num ${pcls(r.pnl_total)}">${money(r.pnl_total, true)}</td>
-            <td class="num">${money(r.cost_day_usd)}</td>
-            <td class="num">${money(r.cost_total_usd)}</td>
-            <td class="num" title="Cost per closed trade — LLM spend efficiency">${r.cost_per_trade != null ? money(r.cost_per_trade) : "—"}</td>
-            <td class="num ${pcls(r.net_pnl_day)}">${money(r.net_pnl_day, true)}</td>
-            <td class="num">${r.n_trades_day}/${r.n_trades_total}</td>
-            <td class="num" title="Lifetime win rate — wins ÷ closed trades. Fallback to today's rate on pre-v14.19.37 snapshots.">${(((r.win_rate_total != null ? r.win_rate_total : r.win_rate_day) * 100)).toFixed(0)}%</td>
-            <td class="num">${r.n_open_positions}${r.stops_unguarded_count > 0 ? ` <span class="stop-unguarded-chip" title="${r.stops_unguarded_count} position(s) currently UNGUARDED: price feed stale, stops silently skip">⚠ ${r.stops_unguarded_count}</span>` : ''}</td>
-            <td class="num">${money(r.buying_power_used)}</td>
-            <td class="num ${pcls(r.equity - config.starting_capital)}">${money(r.equity)}</td>
-            <td class="${r.halted ? 'halt-yes' : 'halt-no'}">${r.halted ? '⛔ HALT' : 'OK'} <span class="drill-cue" title="Click to drill down">›</span></td>
+            <td class="lb-model" title="${escapeHtml(displayModel(r.display_name))}"><span class="dot" style="background:${r.color}"></span>${displayModel(r.display_name)}${r.deprecated ? ` <span class="deprecated-chip" title="${(r.deprecated_note || 'Retired — no longer receives new decisions. History and final equity are preserved.').replace(/"/g, '&quot;')}">RETIRED</span>` : ''}</td>
+            <td class="num lb-ob">${money(d.ob_day)}</td>
+            <td class="num lb-bp" style="color:var(--text-dim)">${money(d.buying_power)}</td>
+            <td class="num lb-real ${pcls(d.realized_pnl_day)}">${money(d.realized_pnl_day, true)}</td>
+            <td class="num lb-unreal ${pcls(d.unrealized_pnl)}">${money(d.unrealized_pnl, true)}</td>
+            <td class="num lb-day lb-pnlday ${pcls(d.pnl_day)}">${money(d.pnl_day, true)}</td>
+            <td class="num lb-day ${pcls(d.token_day_usd)}">${money(d.token_day_usd)}</td>
+            <td class="num lb-day ${feeCls(d.comm_day_usd)}">${feeCell(d.comm_day_usd)}</td>
+            <td class="num lb-day ${feeCls(d.ecn_day_usd)}">${feeCell(d.ecn_day_usd, true)}</td>
+            <td class="num lb-net ${pcls(d.net_pnl_day)}">${money(d.net_pnl_day, true)}</td>
+            <td class="num lb-total ${pcls(d.pnl_total)}">${money(d.pnl_total, true)}</td>
+            <td class="num lb-tpt ${feeCls(d.token_per_trade_usd, 4)}">${tokenPerTrade(d.token_per_trade_usd)}</td>
+            <td class="num lb-trades">${r.n_trades_day}/${r.n_trades_total}</td>
+            <td class="num lb-win" title="Lifetime win rate — wins ÷ closed trades. Fallback to today's rate on pre-v14.19.37 snapshots.">${(((r.win_rate_total != null ? r.win_rate_total : r.win_rate_day) * 100)).toFixed(0)}%</td>
+            <td class="num lb-open">${r.n_open_positions}${r.stops_unguarded_count > 0 ? ` <span class="stop-unguarded-chip" title="${r.stops_unguarded_count} position(s) currently UNGUARDED: price feed stale, stops silently skip">⚠ ${r.stops_unguarded_count}</span>` : ''}</td>
+            <td class="num lb-bpused">${money(d.buying_power_used)}</td>
+            <td class="num lb-equity ${pcls(d.equity != null ? d.equity - config.starting_capital : null)}">${money(d.equity)}</td>
+            <td class="lb-halt ${r.halted ? 'halt-yes' : 'halt-no'}">${r.halted ? '⛔ HALT' : 'OK'} <span class="drill-cue" title="Click to drill down">›</span></td>
         `;
         tr.title = "Click to drill down to this model";
         tr.addEventListener("click", () => { document.getElementById("model-selector").value = r.provider; currentModel = r.provider; showView("models"); });
@@ -1130,27 +1249,30 @@ function renderEquity(series) {
 // v14.19.31: mobile leaderboard cards. One card per model, glance-scannable
 // at 375px width. Fields:
 //   [rank] [color-dot MODEL NAME]            [equity $]
-//          [W%  trades  cost]                 [delta +/-%]
+//          [W%  trades  Token $/Trade]       [delta +/-%]
+//          [Net (Day) value — tap for the four parts]
 //   [HALTED banner (only if halted)]
-// Tap → drill into the Models view for that model (same as desktop rows).
+// Tap → drill into the Models view for that model (same as desktop rows),
+// except on the Net (Day) line, which opens and closes its parts.
+// v16.36.0: providers whose Net (Day) parts are open, so a refresh does not
+// snap them shut under the reader's thumb.
+const _openNetCards = new Set();
+
 function renderMobileLeaderboard(rows) {
     const el = document.getElementById("mobile-leaderboard");
     if (!el) return;
     // Reuse the desktop sort state so a user who sorted on desktop and
     // resized to mobile keeps that ordering.
     _lastLeaderboardRows = rows;
-    rows.forEach(r => {
-        r.cost_per_trade = (r.n_trades_total > 0 && r.cost_total_usd != null)
-            ? (r.cost_total_usd / r.n_trades_total)
-            : null;
-    });
     const sorted = _sortedRows(rows);
     el.innerHTML = "";
     sorted.forEach((r, i) => {
         const rank = i + 1;
         const equity = r.equity;
         const deltaPct = ((equity / config.starting_capital) - 1) * 100;
-        const deltaCls = deltaPct >= 0 ? "pnl-pos" : "pnl-neg";
+        // v16.36.0: a delta that prints as 0.00% is not coloured.
+        const deltaCls = _printsZero(deltaPct, 2) ? "pnl-zero"
+            : (deltaPct > 0 ? "pnl-pos" : "pnl-neg");
         const rankCls = rank <= 3 ? `rank-${rank}` : "";
         // v14.19.37: mobile card shows LIFETIME win rate, not today-only.
         // Today's rate is meaningless outside trading hours (and misleading
@@ -1166,22 +1288,45 @@ function renderMobileLeaderboard(rows) {
         const rankTitle = rank <= 3
             ? `Rank ${rank} — ${rank === 1 ? 'gold' : rank === 2 ? 'silver' : 'bronze'} podium`
             : `Rank ${rank}`;
+        // v16.36.0: ONE added line, Net (Day); its four parts open on tap,
+        // with Token $/Trade under them. Token $/Trade is not on the meta
+        // line: there it wrapped onto a line of its own on 375-412 px
+        // phones, so every card grew by two lines instead of one.
+        const d = r.display || {};
         card.innerHTML = `
             <div class="m-lb-rank ${rankCls}" title="${rankTitle}">${rank}</div>
             <div class="m-lb-name">
                 <span class="dot" style="background:${r.color}"></span>
                 <span>${displayModel(r.display_name)}</span>
             </div>
-            <div class="m-lb-equity">${money(equity)}</div>
+            <div class="m-lb-equity">${money(d.equity != null ? d.equity : equity)}</div>
             <div class="m-lb-meta">
                 <span title="Lifetime win rate (wins ÷ closed trades)">W ${winPct}%</span>
                 <span title="Trades today / lifetime">T ${r.n_trades_day}/${r.n_trades_total}</span>
-                <span title="Total LLM API cost">Cost ${money(r.cost_total_usd)}</span>
             </div>
             <div class="m-lb-delta ${deltaCls}">${fmtPct(deltaPct, true)}</div>
+            <details class="m-lb-net"${_openNetCards.has(r.provider) ? " open" : ""}>
+                <summary>Net (Day) <span class="${pcls(d.net_pnl_day)}">${money(d.net_pnl_day, true)}</span></summary>
+                <dl>
+                    <dt>P&amp;L (Day)</dt><dd class="${pcls(d.pnl_day)}">${money(d.pnl_day, true)}</dd>
+                    <dt>Token $</dt><dd class="${pcls(d.token_day_usd)}">${money(d.token_day_usd)}</dd>
+                    <dt>Comm $</dt><dd class="${feeCls(d.comm_day_usd)}">${feeCell(d.comm_day_usd)}</dd>
+                    <dt>ECN $</dt><dd class="${feeCls(d.ecn_day_usd)}">${feeCell(d.ecn_day_usd, true)}</dd>
+                </dl>
+                <dl class="m-lb-tpt">
+                    <dt title="An average: all token spend since the run began, divided by the lifetime trade count (T). Zero or negative, like Token $.">Token $/Trade</dt><dd class="${feeCls(d.token_per_trade_usd, 4)}">${tokenPerTrade(d.token_per_trade_usd)}</dd>
+                </dl>
+            </details>
             ${r.halted ? '<div class="m-lb-halt">⛔ HALTED</div>' : ''}
         `;
-        card.addEventListener("click", () => {
+        const net = card.querySelector(".m-lb-net");
+        if (net) net.addEventListener("toggle", () => {
+            if (net.open) _openNetCards.add(r.provider); else _openNetCards.delete(r.provider);
+        });
+        card.addEventListener("click", (e) => {
+            // v16.36.0: a tap on the Net (Day) line opens its parts; it
+            // must not also leave for the Models view.
+            if (e.target && e.target.closest && e.target.closest(".m-lb-net")) return;
             const sel = document.getElementById("model-selector");
             if (sel) sel.value = r.provider;
             currentModel = r.provider;
@@ -1213,7 +1358,9 @@ function renderHighLow(rows) {
         : money(lDelta, true);
     // v16.25.1: colour the figure by its SIGN. The label's colour said
     // "green = highest", so a losing best arm read as a gain.
-    const signCls = d => d > 0 ? "pnl-pos" : (d < 0 ? "pnl-neg" : "");
+    // v16.36.0: a delta that PRINTS as $0.00 is not coloured either way.
+    const signCls = d => (d == null || Number.isNaN(d) || _printsZero(d, 2)) ? ""
+        : (d > 0 ? "pnl-pos" : "pnl-neg");
     document.getElementById("highest").innerHTML =
         `${displayModel(highest.display_name)} <b class="${signCls(hDelta)}">${hLabel}</b>`;
     document.getElementById("lowest").innerHTML =
@@ -1233,7 +1380,7 @@ function renderFeed(decisions, containerId, opts) {
     const feed = document.getElementById(containerId);
     feed.innerHTML = "";
     if (!decisions || !decisions.length) {
-        feed.innerHTML = `<div style="color:#64748b;padding:20px;text-align:center">No decisions yet</div>`;
+        feed.innerHTML = `<div style="color:var(--text-dim);padding:20px;text-align:center">No decisions yet</div>`;
         return;
     }
     const seen = _feedSeenIds[containerId];
@@ -1339,6 +1486,55 @@ async function refreshModel() {
         renderModelPositions(opens.open_positions);
         renderFeed(feed.decisions, "feed-model");
     } catch (e) { console.error("model refresh failed", e); }
+    // v16.36.0: fetched OUTSIDE the Promise.all above, on purpose. A public
+    // mirror published before this release has no daily.json, and one
+    // rejected fetch inside Promise.all blanks the whole Models tab (the
+    // v14.19.25 failure).
+    try {
+        const daily = await fetchJson(`/api/provider/${currentModel}/daily`);
+        renderModelDaily(daily.days || []);
+    } catch (e) {
+        renderModelDaily(null);
+        console.warn("daily breakdown unavailable", e);
+    }
+}
+
+// v16.36.0: the BY DAY table — the server's `day_row`s, every figure
+// already rounded once. A day whose trades closed before commission and
+// ECN booking began reads "not booked", never $0.00.
+function renderModelDaily(days) {
+    const tbody = document.querySelector("#model-daily tbody");
+    if (!tbody) return;
+    // v16.36.0: a day booked for only some of its trades (the switch-on, or
+    // a rollback, fell inside it) is said in words under the table, not
+    // only in a hover title that keyboard and touch readers cannot open.
+    const note = document.getElementById("model-daily-note");
+    if (note) {
+        const part = (days || []).filter(d => d.fees_booked && d.trades_unbooked);
+        note.textContent = part.map(d =>
+            `${d.weekday ? d.weekday + " " : ""}${d.day}: Comm $ and ECN $ cover `
+            + `${d.n_trades - d.trades_unbooked} of ${d.n_trades} trades; `
+            + `${d.trades_unbooked} closed before commission and ECN booking began.`).join(" ");
+        note.classList.toggle("hidden", !part.length);
+    }
+    if (!days || !days.length) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--text-dim);padding:8px">${days ? "No days yet" : "Not published yet"}</td></tr>`;
+        return;
+    }
+    tbody.innerHTML = days.map(d => {
+        const part = (d.fees_booked && d.trades_unbooked)
+            ? ` title="${d.trades_unbooked} of ${d.n_trades} trades closed before commission and ECN booking began; they carry none"` : "";
+        return `
+        <tr>
+            <td>${escapeHtml(d.weekday || "")} ${escapeHtml(d.day)}</td>
+            <td class="num">${d.n_trades}</td>
+            <td class="num ${pcls(d.pnl_usd)}">${money(d.pnl_usd, true)}</td>
+            <td class="num ${pcls(d.token_usd)}">${money(d.token_usd)}</td>
+            <td class="num ${feeCls(d.comm_usd)}"${part}>${feeCell(d.comm_usd)}</td>
+            <td class="num ${feeCls(d.ecn_usd)}"${part}>${feeCell(d.ecn_usd, true)}</td>
+            <td class="num lb-net ${pcls(d.net_usd)}">${money(d.net_usd, true)}</td>
+        </tr>`;
+    }).join("");
 }
 
 function renderModelStats(s) {
@@ -1349,7 +1545,7 @@ function renderModelStats(s) {
     const cards = [
         ["Total Trades", s.n_trades, "Closed trades (lifetime). Excludes still-open positions."],
         ["Win Rate", `${(s.win_rate * 100).toFixed(1)}%`, "Wins ÷ (Wins + Losses). Zero-P&L trades excluded."],
-        ["Total P&L", moneyC(s.total_pnl), "Sum of realized P&L across all closed trades. Does NOT include LLM cost — see Leaderboard for cost-adjusted equity."],
+        ["Total P&L", moneyC(s.total_pnl), "Price result only. Token spend, commission and ECN are in Net (Day) and Equity."],
         ["Avg Win", moneyC(s.avg_win), "Mean P&L of winning trades only. Compare to Avg Loss for risk/reward."],
         ["Avg Loss", moneyC(s.avg_loss), "Mean P&L of losing trades only (shown negative)."],
         ["Profit Factor", s.profit_factor != null ? s.profit_factor.toFixed(2) : "—", "Gross wins ÷ gross losses. >1 = net profitable. Industry rule of thumb: >1.5 healthy, >2.0 strong."],
@@ -1367,8 +1563,9 @@ function renderModelStats(s) {
 
 function moneyC(n) {
     if (n == null || Number.isNaN(n)) return "—";
-    const cls = n > 0 ? "pnl-pos" : (n < 0 ? "pnl-neg" : "pnl-zero");
-    return `<span class="${cls}">${money(n, true)}</span>`;
+    // v16.36.0: coloured by the figure AS PRINTED (`pcls`), like the day
+    // cells: -0.004 is an uncoloured $0.00, not a red one.
+    return `<span class="${pcls(n)}">${money(n, true)}</span>`;
 }
 
 const _tradesSorter = makeTableSorter("#model-trades",
@@ -1399,7 +1596,7 @@ function renderModelTrades(rows) {
             <td class="num">${money(r.exit_price)}</td>
             <td title="${r.exit_reason}">${prettyReason(r.exit_reason, r.tp_trailing_pct)}</td>
             <td class="num ${pcls(r.pnl_dollars)}">${money(r.pnl_dollars, true)}</td>
-            <td class="num ${pcls(r.pnl_pct)}">${r.pnl_pct.toFixed(2)}%</td>
+            <td class="num ${pcls(r.pnl_pct)}">${fmtPct(r.pnl_pct, false)}</td>
             <td class="num">${(r.hold_seconds / 60).toFixed(1)}m</td>
         `;
         tr.dataset.fillId = r.shadow_fill_id;
@@ -1440,7 +1637,7 @@ function renderModelPositions(rows) {
             <td class="num">${money(r.entry_price)}</td>
             <td class="num" title="${markTitle(r)}">${money(r.current_price)}</td>
             <td class="num ${pcls(r.unrealized_pnl)}">${money(r.unrealized_pnl, true)}</td>
-            <td class="num ${pcls(r.unrealized_pct)}">${r.unrealized_pct != null ? (r.unrealized_pct >= 0 ? '+' : '') + r.unrealized_pct.toFixed(2) + '%' : '—'}</td>
+            <td class="num ${pcls(r.unrealized_pct)}">${fmtPct(r.unrealized_pct, true)}</td>
             <td class="num">${money(r.notional)}</td>
             <td class="num">${r.invalidation != null ? money(r.invalidation) : '—'}${unguardedChip}</td>
             <td class="num">${tp}</td>
@@ -1575,7 +1772,7 @@ async function loadTradeChart() {
         ? `Entry ${money(t.entry_price)} · ${t.shares}sh`
         : `Entry ${money(t.entry_price)} · Exit ${money(t.exit_price)} · ${t.shares}sh · ${(t.hold_seconds/60).toFixed(1)}m`;
     const pnlHtml = t.pnl != null
-        ? `<span class="${pcls(t.pnl)}" style="margin-left:8px">${money(t.pnl, true)} · ${t.pnl_pct.toFixed(2)}%</span>` : "";
+        ? `<span class="${pcls(t.pnl)}" style="margin-left:8px">${money(t.pnl, true)} · ${fmtPct(t.pnl_pct, false)}</span>` : "";
     document.getElementById("chart-title").innerHTML =
         `<span style="font-size:14px;letter-spacing:.1em">${t.symbol}</span>
          <span class="${sideCls}" style="padding:1px 6px;border:1px solid;font-size:10px;letter-spacing:.1em">${t.direction}</span>
@@ -2062,7 +2259,7 @@ function openDrawer(decisionId) {
                 <dt>Timestamp</dt><dd>${ts}</dd>
                 ${obfuscated ? "" : `<dt>Latency</dt><dd>${fmtLatency(d.latency_ms)}</dd>
                 <dt>Tokens</dt><dd>${d.tokens_in || 0} in / ${d.tokens_out || 0} out</dd>`}
-                <dt title="LLM cost attributed to THIS specific decision. Zero when the vendor didn't return usage or the row was written before per-decision cost tracking landed.">Cost</dt><dd>${d.cost_usd ? "$" + d.cost_usd.toFixed(4) : "—"}</dd>
+                <dt title="Token spend on THIS decision's call, signed like the Token $ column: a charge is negative. A dash when the vendor returned no usage or the row predates per-decision tracking.">Token $</dt><dd class="${d.cost_usd ? pcls(-d.cost_usd, 4) : ""}">${tokenSpendCell(d.cost_usd)}</dd>
             </dl>
             <div class="drawer-two-col">
                 <div>
@@ -2256,22 +2453,54 @@ async function _fetchStatic(url) {
     return postFilter ? postFilter(body) : body;
 }
 
+// v16.36.0: every figure the page rounds, it rounds the way the server's
+// `day_figures.display_usd` does: cut to nine decimals first (a sum's binary
+// noise, -7.1949999999999905, must not decide the cent), then half-up from
+// that decimal string — so $1.315 is $1.32 here as on the server, where
+// toLocaleString alone rounds the binary 1.31499... to 1.31. The trade log,
+// the stats cards, the open positions and the chart title round here; the
+// day group's figures arrive rounded and come out unchanged.
+function _roundHalfUp(n, places) {
+    if (!Number.isFinite(n)) return n;
+    const s = Math.abs(n).toFixed(9);            // exact digits, nine places
+    const dot = s.indexOf(".");
+    let digits = s.slice(0, dot) + s.slice(dot + 1, dot + 1 + places);
+    let v = Number(digits);
+    if (s.charCodeAt(dot + 1 + places) >= 53) v += 1;     // next digit >= "5"
+    const out = v / Math.pow(10, places);
+    return out === 0 ? 0 : (n < 0 ? -out : out);
+}
+
 function fmt(n, decimals) {
     if (n === null || n === undefined) return "—";
-    return n.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+    return _roundHalfUp(n, decimals).toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
 }
 
-function money(n, sign) {
+// v16.36.0: ONE money format. Commas for thousands, a leading zero, "$" in
+// the cell, `places` decimals (2 unless asked), a leading minus for every
+// negative, a "+" only where `sign` asks for one — and a figure that PRINTS
+// as zero is "$0.00", with no sign, so neither "+$0.00" nor "-$0.00" (a
+// small negative rounded away) can appear.
+function _printsZero(n, places) {
+    return Number(fmt(Math.abs(n), places).replace(/,/g, "")) === 0;
+}
+
+function money(n, sign, places) {
     if (n == null || Number.isNaN(n)) return "—";
-    const s = sign && n >= 0 ? "+" : (n < 0 ? "-" : "");
-    const abs = Math.abs(n);
-    return `${s}$${fmt(abs, 2)}`;
+    const p = places == null ? 2 : places;
+    const body = fmt(Math.abs(n), p);
+    if (_printsZero(n, p)) return `$${body}`;
+    return `${n < 0 ? "-" : (sign ? "+" : "")}$${body}`;
 }
 
+// v16.36.0: the money rules for percents too — half-up, a leading minus,
+// a "+" only where asked, and a figure that PRINTS as zero is "0.00%" with
+// no sign ("+0.00%" and "-0.00%" were both on screen).
 function fmtPct(n, withSign) {
-    if (n === null || n === undefined) return "—";
-    const sign = withSign && n >= 0 ? "+" : "";
-    return `${sign}${n.toFixed(2)}%`;
+    if (n === null || n === undefined || Number.isNaN(n)) return "—";
+    const body = fmt(Math.abs(n), 2);
+    if (_printsZero(n, 2)) return `${body}%`;
+    return `${n < 0 ? "-" : (withSign ? "+" : "")}${body}%`;
 }
 
 // v14.19.43: EVERY timestamp renders in America/New_York (ET) regardless
@@ -2385,9 +2614,13 @@ function markTitle(r) {
          + ` Last moved ${when}`;
 }
 
-function pcls(n) {
-    if (n == null || Number.isNaN(n)) return "pnl-zero";
-    return n > 0 ? "pnl-pos" : (n < 0 ? "pnl-neg" : "pnl-zero");
+// v16.36.0: the colour follows the figure AS PRINTED (two decimals): one
+// that prints as zero is not coloured, whatever its sign underneath.
+// v16.36.1: `places` is the precision the cell prints at, so a figure shown as
+// -$0.0065 (Token $/Trade, four decimals) is coloured, not read as zero.
+function pcls(n, places = 2) {
+    if (n == null || Number.isNaN(n) || _printsZero(n, places)) return "pnl-zero";
+    return n > 0 ? "pnl-pos" : "pnl-neg";
 }
 
 function escapeHtml(s) {

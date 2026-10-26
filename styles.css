@@ -7,10 +7,18 @@
     --border: #1f2a37;
     --border-strong: #2a3948;
     --text: #cbd5e1;
-    --text-dim: #64748b;
+    /* v16.36.0: was #64748b, 3.75:1 on --panel — under the 4.5:1 WCAG
+       1.4.3 minimum for the 9-11px header and zero text it colours. #808ea4
+       is 5.37:1 on --panel, 5.82:1 on --bg, 5.51:1 on --panel-alt and
+       4.61:1 on a selected row. */
+    --text-dim: #808ea4;
     --text-bright: #f1f5f9;
     --green: #10b981;
-    --red: #ef4444;
+    /* v16.36.0: was #ef4444, 4.74:1 on --panel but 4.44:1 on a hovered row
+       and 4.07:1 on a selected one — under WCAG 1.4.3's 4.5:1 for the
+       negative P&L and Net (Day) it colours. #f56565 is 5.89:1 on --panel,
+       5.51:1 hovered and 5.05:1 selected. */
+    --red: #f56565;
     --amber: #f59e0b;
     --accent: #38bdf8;
     --purple: #a78bfa;
@@ -419,18 +427,56 @@ tbody tr:hover .drill-cue { opacity: 0.8; }
    1100px, hide secondary leaderboard columns so the primary ones stay
    readable. Below 720px, add a "view on desktop" hint (rare use case;
    most spectators will be on a phone via the shared public URL). */
-@media (max-width: 1100px) {
-    /* Hide secondary/derivative columns — keep the primary equity story. */
-    #leaderboard th:nth-child(8),  /* P&L (Total)  */
-    #leaderboard td:nth-child(8),
-    #leaderboard th:nth-child(9),  /* Cost (Day)   */
-    #leaderboard td:nth-child(9),
-    #leaderboard th:nth-child(14), /* Open         */
-    #leaderboard td:nth-child(14),
-    #leaderboard th:nth-child(15), /* BP Used      */
-    #leaderboard td:nth-child(15) { display: none; }
+@media (max-width: 1535px) {
+    /* v16.36.0, operator 2026-10-23: on laptop widths hide BP and Equity, keep
+       Open and BP Used ("Yes to BP, but no to the other two ... perhaps
+       Equity"). Each arm's equity stays on the chart's line labels. Measured
+       with the real rows (WeasyPrint): at 1,366 px the local leaderboard then
+       fits, where hiding BP alone left it 69 px too wide. */
+    #leaderboard .lb-bp,
+    #leaderboard .lb-equity { display: none; }
+}
+@media (max-width: 1365px) {
+    /* v16.36.0, operator 2026-10-23: "You can hide Real (Day) but NOT Unreal.
+       You can hide P&L Day since we have Net (Day)." P&L (Day) has its own
+       class, lb-pnlday, because lb-day also marks Token $, Comm $ and ECN $. */
+    #leaderboard .lb-real,
+    #leaderboard .lb-pnlday { display: none; }
+}
+@media (max-width: 1199px) {
+    /* Hide secondary/derivative columns — keep the primary equity story.
+       v16.36.0: BY CLASS, not by position (a position rule silently hides
+       whatever column lands there when the order changes — in the first
+       v16.36.0 order it would have hidden Net (Day)), and never the day
+       group. P&L (Total) stays at every width, right after Net (Day)
+       (operator 2026-10-23: "It should be after NET (Day). That is for all
+       views."). The breakpoint moved from 1100 to 1199 px so that 1,101-1,199
+       px windows fit (WeasyPrint on real rows). */
+    #leaderboard .lb-bp,
+    #leaderboard .lb-open,
+    #leaderboard .lb-bpused { display: none; }
     /* Chart legend can crowd narrow charts — pull it into a corner. */
     .chart-legend { max-width: 160px; font-size: 10px; }
+}
+@media (max-width: 1079px) {
+    /* v16.36.0: down to 768 px. #, Model, Unreal, Token $, Comm $, ECN $,
+       Net (Day), P&L (Total), Token $/Trade and Halt must fit, so OB, Real
+       (Day), Trades and Win% go. Unreal stays (operator 2026-10-23: "NOT
+       Unreal"); P&L (Day) is already hidden below 1,366 px. Token $/Trade
+       stays (ruling B asks for it, and the phone card is not shown above 767
+       px): its header wraps onto two lines and a long model name is cut with
+       an ellipsis (the full name is the cell's title) to make room. The
+       breakpoint moved from 900 to 1079 px so that 1,024 px windows fit. */
+    #leaderboard .lb-ob,
+    #leaderboard .lb-real,
+    #leaderboard .lb-trades,
+    #leaderboard .lb-win { display: none; }
+    #leaderboard th.lb-tpt { white-space: normal; }
+    #leaderboard td.lb-model {
+        max-width: 110px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
 @media (max-width: 720px) {
     /* v14.19.30: legacy "view on desktop" banner deleted — mobile is now
@@ -753,6 +799,97 @@ tbody tr:hover .drill-cue { opacity: 0.8; }
     cursor: help;
 }
 
+/* v16.36.0: the sidecar's clock-drift flag in the status bar. Red while the
+ * latest 5-minute rollup is over `clock_drift_warn_pct`; amber once it has
+ * recovered, so a breach that came and went stays visible. */
+.clock-drift-chip {
+    padding: 1px 8px;
+    border-radius: 3px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    cursor: help;
+}
+.clock-drift-chip.hidden { display: none; }
+.clock-drift-chip.now  { background: rgba(239, 68, 68, 0.18); color: var(--red); }
+.clock-drift-chip.seen { background: rgba(255, 152, 0, 0.18); color: #ff9800; }
+
+/* v16.36.0: the day group. A wider gap before Net (Day), in bold — the
+ * result the parts add up to. */
+#leaderboard th.lb-net, #leaderboard td.lb-net,
+#model-daily th.lb-net, #model-daily td.lb-net {
+    padding-left: 20px;
+    font-weight: 700;
+}
+
+/* v16.36.0: the rule above the leaderboard, and its definitions. */
+.lb-formula {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 2px 14px;
+    padding: 4px 12px;
+    font-size: 10px;
+    color: var(--text-dim);
+    border-bottom: 1px dashed var(--border);
+    flex-shrink: 0;
+}
+.lb-defs > summary { cursor: pointer; color: var(--accent); }
+.lb-defs[open] { flex-basis: 100%; }
+.lb-defs dl {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 2px 10px;
+    margin: 4px 0;
+    max-height: 30vh;
+    max-height: 30svh;
+    overflow-y: auto;
+}
+.lb-defs dt { color: var(--text); }
+
+/* v16.36.0: the one floating box every header definition opens in. Fixed,
+ * outside every scroll panel, so no panel clips it. */
+.def-tip {
+    position: fixed;
+    z-index: 1000;
+    max-width: 280px;
+    padding: 6px 8px;
+    background: var(--panel-alt);
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+    font-size: 11px;
+    line-height: 1.4;
+    white-space: normal;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+.def-tip.hidden { display: none; }
+[data-def] { cursor: help; }
+thead th[data-def][data-sort] { cursor: pointer; }
+[data-def]:focus-visible { outline: 1px solid var(--accent); outline-offset: -1px; }
+
+/* v16.36.0: the BY DAY table in the model drill-down. */
+.model-daily { border-top: 1px dashed var(--border); flex-shrink: 0; }
+/* The rule reads as a sentence, in its own case; only the panel's name is
+   set in capitals. */
+.model-daily > summary {
+    padding: 6px 12px;
+    color: var(--text-dim);
+    font-size: 10px;
+    cursor: pointer;
+}
+.model-daily-title {
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-right: 6px;
+}
+.model-daily-scroll { max-height: 150px; overflow-y: auto; }
+.model-daily-note {
+    margin: 4px 12px 6px;
+    font-size: 10px;
+    color: var(--text-dim);
+}
+.model-daily-note.hidden { display: none; }
+
 /* v15.7.0: RETIRED badge. A deprecated provider stops receiving decisions
  * but keeps its row, its history, and its (now flat) equity curve — this
  * marks why the line stopped moving. Deliberately muted: it is a status,
@@ -1032,6 +1169,52 @@ tbody tr:hover .drill-cue { opacity: 0.8; }
         font-size: 11px;
         font-weight: 700;
         font-variant-numeric: tabular-nums;
+    }
+    /* v16.36.0: ONE added line, Net (Day); the four parts open on tap. */
+    .m-lb-net {
+        grid-column: 2 / -1;
+        font-size: 11px;
+        font-variant-numeric: tabular-nums;
+    }
+    .m-lb-net > summary {
+        cursor: pointer;
+        font-weight: 700;
+        color: var(--text-bright);
+        padding: 2px 0;
+    }
+    .m-lb-net dl {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: 2px 12px;
+        margin: 2px 0 0 12px;
+    }
+    .m-lb-net dt { color: var(--text-dim); }
+    .m-lb-net dd { text-align: right; }
+    /* Token $/Trade, under the four parts and apart from them: it is a run
+       average, not part of the day's sum. */
+    .m-lb-net dl.m-lb-tpt {
+        margin-top: 4px;
+        padding-top: 3px;
+        border-top: 1px dashed var(--border);
+    }
+    /* v16.36.0: the BY DAY table is wider than a phone. Its Day column and
+       its Net (Day) column stay put while the parts between them scroll,
+       so every row shows which day it is and what it came to. */
+    #model-daily th:first-child, #model-daily td:first-child {
+        position: sticky;
+        left: 0;
+        z-index: 2;
+        background: var(--panel);
+    }
+    #model-daily th:last-child, #model-daily td:last-child {
+        position: sticky;
+        right: 0;
+        z-index: 2;
+        background: var(--panel);
+    }
+    #model-daily th:first-child, #model-daily th:last-child {
+        z-index: 3;
+        background: var(--panel-alt);
     }
     .m-lb-halt {
         grid-column: 1 / -1;
