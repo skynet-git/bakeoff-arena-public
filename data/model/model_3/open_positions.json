@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":3669,"entry_ts":"2026-10-26T13:33:36.830224","symbol":"AMKR","direction":"LONG","entry_price":37.97,"shares":52,"notional":1974.44,"invalidation":37.6,"take_profit_price":38.55,"take_profit_trailing_pct":null,"decision_id":52317,"stop_unguarded":false,"current_price":38.239999999999995,"mark_ts":"2026-10-26T18:15:05.015902+00:00","mark_basis":"nbbo_mid","mark_bid":38.23,"mark_ask":38.25,"unrealized_pnl":14.039999999999793,"unrealized_pct":0.7110877008164236}]}
+{"provider":"model_3","open_positions":[]}
