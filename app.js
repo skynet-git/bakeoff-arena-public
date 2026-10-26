@@ -1106,6 +1106,14 @@ function tokenPerTrade(v) {
     return v == null ? "no trades" : money(v, false, 4);
 }
 
+// v16.36.3: the run's win rate, as the leaderboard and the phone card print
+// it, or a dash when the server sent none. No fallback to today's rate any
+// more: the header says RUN and sorts on the run's rate (win_rate_total), so
+// the cell prints that rate or nothing.
+function runWinPct(rate) {
+    return (rate == null || Number.isNaN(rate)) ? "—" : `${(rate * 100).toFixed(0)}%`;
+}
+
 // v16.36.0: the drawer's Token $ for ONE decision. The row stores the spend
 // as a positive amount (`cost_usd`); on screen it is a charge, negative, as
 // in the Token $ column. A dash when there is none recorded.
@@ -1126,8 +1134,8 @@ function renderLeaderboard(rows) {
         const tr = document.createElement("tr");
         // v16.36.0: every money cell prints `r.display`, rounded ONCE on the
         // server (half-up, no negative zero); the page never rounds again.
-        // The day group stays together — Real (Day), Unreal, P&L (Day),
-        // Token $, Comm $, ECN $, then a gap and a bold Net (Day). v16.36.1:
+        // The day group stays together — Real, Unreal, P&L, Token $,
+        // Comm $, ECN $, then a gap and a bold Net. v16.36.1:
         // every signed figure is coloured by its sign (operator: charges are
         // negative and rebates positive, so a charge is red and a rebate green);
         // words ("not booked", "no trades") are never coloured.
@@ -1147,7 +1155,7 @@ function renderLeaderboard(rows) {
             <td class="num lb-total ${pcls(d.pnl_total)}">${money(d.pnl_total, true)}</td>
             <td class="num lb-tpt ${feeCls(d.token_per_trade_usd, 4)}">${tokenPerTrade(d.token_per_trade_usd)}</td>
             <td class="num lb-trades">${r.n_trades_day}/${r.n_trades_total}</td>
-            <td class="num lb-win" title="Lifetime win rate — wins ÷ closed trades. Fallback to today's rate on pre-v14.19.37 snapshots.">${(((r.win_rate_total != null ? r.win_rate_total : r.win_rate_day) * 100)).toFixed(0)}%</td>
+            <td class="num lb-win" title="The run's win rate: wins ÷ the run's closed trades.">${runWinPct(r.win_rate_total)}</td>
             <td class="num lb-open">${r.n_open_positions}${r.stops_unguarded_count > 0 ? ` <span class="stop-unguarded-chip" title="${r.stops_unguarded_count} position(s) currently UNGUARDED: price feed stale, stops silently skip">⚠ ${r.stops_unguarded_count}</span>` : ''}</td>
             <td class="num lb-bpused">${money(d.buying_power_used)}</td>
             <td class="num lb-equity ${pcls(d.equity != null ? d.equity - config.starting_capital : null)}">${money(d.equity)}</td>
@@ -1248,13 +1256,18 @@ function renderEquity(series) {
 
 // v14.19.31: mobile leaderboard cards. One card per model, glance-scannable
 // at 375px width. Fields:
-//   [rank] [color-dot MODEL NAME]            [equity $]
-//          [W%  trades  Token $/Trade]       [delta +/-%]
-//          [Net (Day) value — tap for the four parts]
+//   [rank] [color-dot MODEL NAME]                 [equity $]
+//          [RUN W%  DAY/RUN trades]               [RUN delta +/-%]
+//          [Net value — tap for the four parts, then RUN P&L and
+//           RUN Token $/Trade under a rule]
 //   [HALTED banner (only if halted)]
 // Tap → drill into the Models view for that model (same as desktop rows),
-// except on the Net (Day) line, which opens and closes its parts.
-// v16.36.0: providers whose Net (Day) parts are open, so a refresh does not
+// except on the Net line, which opens and closes its parts.
+// v16.36.3 (operator 2026-10-25): a figure with no period is today's, so the
+// card's three run figures say so — the win rate, the return since the
+// $10,000 the run began with, and the trade counts (today's/the run's) —
+// as the desktop headers do. A touch screen has no hover to explain them.
+// v16.36.0: providers whose Net parts are open, so a refresh does not
 // snap them shut under the reader's thumb.
 const _openNetCards = new Set();
 
@@ -1274,22 +1287,20 @@ function renderMobileLeaderboard(rows) {
         const deltaCls = _printsZero(deltaPct, 2) ? "pnl-zero"
             : (deltaPct > 0 ? "pnl-pos" : "pnl-neg");
         const rankCls = rank <= 3 ? `rank-${rank}` : "";
-        // v14.19.37: mobile card shows LIFETIME win rate, not today-only.
+        // v14.19.37: the card shows the RUN's win rate, not today's.
         // Today's rate is meaningless outside trading hours (and misleading
-        // on days a model didn't trade). Fall back to day rate if the
-        // server didn't return a total (pre-v14.19.37 snapshots).
-        const winRate = r.win_rate_total != null ? r.win_rate_total : r.win_rate_day;
-        const winPct = (winRate * 100).toFixed(0);
+        // on days a model didn't trade). v16.36.3: no fallback to today's
+        // rate, which would now print under a RUN marker (runWinPct).
         const card = document.createElement("div");
         card.className = "m-lb-card";
         // v14.19.37: rank tooltip explains the podium coloring so 1 (gold)
         // vs 3 (bronze) — which look similar on dark screens — is at least
-        // documented. Trades label clarifies day/total.
+        // documented.
         const rankTitle = rank <= 3
             ? `Rank ${rank} — ${rank === 1 ? 'gold' : rank === 2 ? 'silver' : 'bronze'} podium`
             : `Rank ${rank}`;
-        // v16.36.0: ONE added line, Net (Day); its four parts open on tap,
-        // with Token $/Trade under them. Token $/Trade is not on the meta
+        // v16.36.0: ONE added line, Net; its four parts open on tap, with
+        // the run figures under them. Token $/Trade is not on the meta
         // line: there it wrapped onto a line of its own on 375-412 px
         // phones, so every card grew by two lines instead of one.
         const d = r.display || {};
@@ -1301,20 +1312,21 @@ function renderMobileLeaderboard(rows) {
             </div>
             <div class="m-lb-equity">${money(d.equity != null ? d.equity : equity)}</div>
             <div class="m-lb-meta">
-                <span title="Lifetime win rate (wins ÷ closed trades)">W ${winPct}%</span>
-                <span title="Trades today / lifetime">T ${r.n_trades_day}/${r.n_trades_total}</span>
+                <span title="The run's win rate: wins ÷ the run's closed trades"><span class="m-lb-period">RUN</span> W ${runWinPct(r.win_rate_total)}</span>
+                <span title="Closed trades: today's / the run's"><span class="m-lb-period">DAY/RUN</span> T ${r.n_trades_day}/${r.n_trades_total}</span>
             </div>
-            <div class="m-lb-delta ${deltaCls}">${fmtPct(deltaPct, true)}</div>
+            <div class="m-lb-delta ${deltaCls}" title="Equity against the $10,000 the run began with"><span class="m-lb-period">RUN</span> ${fmtPct(deltaPct, true)}</div>
             <details class="m-lb-net"${_openNetCards.has(r.provider) ? " open" : ""}>
-                <summary>Net (Day) <span class="${pcls(d.net_pnl_day)}">${money(d.net_pnl_day, true)}</span></summary>
+                <summary>Net <span class="${pcls(d.net_pnl_day)}">${money(d.net_pnl_day, true)}</span></summary>
                 <dl>
-                    <dt>P&amp;L (Day)</dt><dd class="${pcls(d.pnl_day)}">${money(d.pnl_day, true)}</dd>
+                    <dt>P&amp;L</dt><dd class="${pcls(d.pnl_day)}">${money(d.pnl_day, true)}</dd>
                     <dt>Token $</dt><dd class="${pcls(d.token_day_usd)}">${money(d.token_day_usd)}</dd>
                     <dt>Comm $</dt><dd class="${feeCls(d.comm_day_usd)}">${feeCell(d.comm_day_usd)}</dd>
                     <dt>ECN $</dt><dd class="${feeCls(d.ecn_day_usd)}">${feeCell(d.ecn_day_usd, true)}</dd>
                 </dl>
-                <dl class="m-lb-tpt">
-                    <dt title="An average: all token spend since the run began, divided by the lifetime trade count (T). Zero or negative, like Token $.">Token $/Trade</dt><dd class="${feeCls(d.token_per_trade_usd, 4)}">${tokenPerTrade(d.token_per_trade_usd)}</dd>
+                <dl class="m-lb-run">
+                    <dt title="The price result since the run began: closed trades plus open positions. No fee is in it.">RUN P&amp;L</dt><dd class="${pcls(d.pnl_total)}">${money(d.pnl_total, true)}</dd>
+                    <dt title="An average: all token spend since the run began, divided by the run's trade count (T). Zero or negative, like Token $.">RUN Token $/Trade</dt><dd class="${feeCls(d.token_per_trade_usd, 4)}">${tokenPerTrade(d.token_per_trade_usd)}</dd>
                 </dl>
             </details>
             ${r.halted ? '<div class="m-lb-halt">⛔ HALTED</div>' : ''}
@@ -1324,8 +1336,8 @@ function renderMobileLeaderboard(rows) {
             if (net.open) _openNetCards.add(r.provider); else _openNetCards.delete(r.provider);
         });
         card.addEventListener("click", (e) => {
-            // v16.36.0: a tap on the Net (Day) line opens its parts; it
-            // must not also leave for the Models view.
+            // v16.36.0: a tap on the Net line opens its parts; it must not
+            // also leave for the Models view.
             if (e.target && e.target.closest && e.target.closest(".m-lb-net")) return;
             const sel = document.getElementById("model-selector");
             if (sel) sel.value = r.provider;
@@ -1470,7 +1482,7 @@ async function refreshModel() {
     }
     // 2026-08-28: chip-preset date filter applies to BOTH the closed-trade
     // log AND the per-model decision feed. Open positions and stats are
-    // unaffected (open positions = current state; stats = lifetime).
+    // unaffected (open positions = current state; stats = the run's).
     const { since, until } = _activeDateRange("model");
     const dateQs = (since ? `&since=${encodeURIComponent(since)}` : "")
                  + (until ? `&until=${encodeURIComponent(until)}` : "");
@@ -1543,9 +1555,9 @@ function renderModelStats(s) {
     // English definition. Prior version was label-only and readers had
     // to know finance terms to interpret each metric.
     const cards = [
-        ["Total Trades", s.n_trades, "Closed trades (lifetime). Excludes still-open positions."],
+        ["Total Trades", s.n_trades, "The run's closed trades. Excludes still-open positions."],
         ["Win Rate", `${(s.win_rate * 100).toFixed(1)}%`, "Wins ÷ (Wins + Losses). Zero-P&L trades excluded."],
-        ["Total P&L", moneyC(s.total_pnl), "Price result only. Token spend, commission and ECN are in Net (Day) and Equity."],
+        ["Total P&L", moneyC(s.total_pnl), "Price result only. The run's token spend, commission and ECN are in Equity; today's are also in Net."],
         ["Avg Win", moneyC(s.avg_win), "Mean P&L of winning trades only. Compare to Avg Loss for risk/reward."],
         ["Avg Loss", moneyC(s.avg_loss), "Mean P&L of losing trades only (shown negative)."],
         ["Profit Factor", s.profit_factor != null ? s.profit_factor.toFixed(2) : "—", "Gross wins ÷ gross losses. >1 = net profitable. Industry rule of thumb: >1.5 healthy, >2.0 strong."],
