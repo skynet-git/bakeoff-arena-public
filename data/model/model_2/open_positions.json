@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":3906,"entry_ts":"2026-10-27T09:49:54.715228","symbol":"GM","direction":"LONG","entry_price":80.11,"shares":37,"notional":2964.07,"invalidation":79.55,"take_profit_price":null,"take_profit_trailing_pct":0.4,"decision_id":55460,"stop_unguarded":false,"current_price":80.265,"mark_ts":"2026-10-27T13:55:06.851911+00:00","mark_basis":"nbbo_mid","mark_bid":80.25,"mark_ask":80.28,"unrealized_pnl":5.735000000000042,"unrealized_pct":0.19348395955561246}]}
