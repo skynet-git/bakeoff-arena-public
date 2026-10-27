@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":4104,"entry_ts":"2026-10-27T12:32:45.593841","symbol":"SKM","direction":"LONG","entry_price":31.92,"shares":124,"notional":3958.0800000000004,"invalidation":31.85,"take_profit_price":null,"take_profit_trailing_pct":0.25,"decision_id":58748,"stop_unguarded":false,"current_price":31.880000000000003,"mark_ts":"2026-10-27T16:34:29.222052+00:00","mark_basis":"nbbo_mid","mark_bid":31.87,"mark_ask":31.89,"unrealized_pnl":-4.959999999999894,"unrealized_pct":-0.12531328320801738}]}
