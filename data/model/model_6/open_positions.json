@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":4187,"entry_ts":"2026-10-27T15:42:04.947801","symbol":"GSAT","direction":"LONG","entry_price":84.03,"shares":3,"notional":252.09,"invalidation":83.94,"take_profit_price":84.3,"take_profit_trailing_pct":null,"decision_id":61383,"stop_unguarded":false,"current_price":84.015,"mark_ts":"2026-10-27T19:44:55.871697+00:00","mark_basis":"nbbo_mid","mark_bid":84.0,"mark_ask":84.03,"unrealized_pnl":-0.045000000000001705,"unrealized_pct":-0.017850767583006744}]}
