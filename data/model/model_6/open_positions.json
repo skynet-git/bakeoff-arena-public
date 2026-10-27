@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":4182,"entry_ts":"2026-10-27T15:29:03.485960","symbol":"UPS","direction":"LONG","entry_price":106.03,"shares":2,"notional":212.06,"invalidation":105.7,"take_profit_price":106.4,"take_profit_trailing_pct":null,"decision_id":61248,"stop_unguarded":false,"current_price":106.19,"mark_ts":"2026-10-27T19:35:04.181147+00:00","mark_basis":"nbbo_mid","mark_bid":106.16,"mark_ask":106.22,"unrealized_pnl":0.3199999999999932,"unrealized_pct":0.15090068848438798}]}
