@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":4067,"entry_ts":"2026-10-27T11:38:37.385547","symbol":"KNSA","direction":"LONG","entry_price":87.59,"shares":7,"notional":613.13,"invalidation":86.45,"take_profit_price":88.75,"take_profit_trailing_pct":null,"decision_id":57558,"stop_unguarded":false,"current_price":87.2,"mark_ts":"2026-10-27T15:45:07.495999+00:00","mark_basis":"nbbo_mid","mark_bid":87.0,"mark_ask":87.4,"unrealized_pnl":-2.730000000000004,"unrealized_pct":-0.4452563077976945}]}
+{"provider":"model_2","open_positions":[]}
