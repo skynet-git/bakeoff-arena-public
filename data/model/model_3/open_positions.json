@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":4045,"entry_ts":"2026-10-27T11:18:01.024524","symbol":"CTAS","direction":"LONG","entry_price":214.72,"shares":13,"notional":2791.36,"invalidation":212.5,"take_profit_price":217.5,"take_profit_trailing_pct":null,"decision_id":57196,"stop_unguarded":false,"current_price":216.22,"mark_ts":"2026-10-27T16:05:06.421256+00:00","mark_basis":"nbbo_mid","mark_bid":216.15,"mark_ask":216.29,"unrealized_pnl":19.5,"unrealized_pct":0.6985842026825633}]}
+{"provider":"model_3","open_positions":[]}
