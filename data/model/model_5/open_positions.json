@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":3991,"entry_ts":"2026-10-27T10:33:02.694368","symbol":"INOD","direction":"LONG","entry_price":45.25,"shares":33,"notional":1493.25,"invalidation":44.35,"take_profit_price":45.8,"take_profit_trailing_pct":null,"decision_id":56291,"stop_unguarded":false,"current_price":45.36,"mark_ts":"2026-10-27T14:35:08.149787+00:00","mark_basis":"nbbo_mid","mark_bid":45.32,"mark_ask":45.4,"unrealized_pnl":3.6299999999999812,"unrealized_pct":0.24309392265193247}]}
