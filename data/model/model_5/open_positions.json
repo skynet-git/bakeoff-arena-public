@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[{"shadow_fill_id":3839,"entry_ts":"2026-10-27T09:32:30.571875","symbol":"HSBC","direction":"SHORT","entry_price":85.2,"shares":44,"notional":3748.8,"invalidation":85.55,"take_profit_price":84.85,"take_profit_trailing_pct":null,"decision_id":55050,"stop_unguarded":false,"current_price":85.48,"mark_ts":"2026-10-27T13:40:08.523685+00:00","mark_basis":"nbbo_mid","mark_bid":85.45,"mark_ask":85.51,"unrealized_pnl":-12.32000000000005,"unrealized_pct":-0.32863849765258346}]}
+{"provider":"model_5","open_positions":[]}
