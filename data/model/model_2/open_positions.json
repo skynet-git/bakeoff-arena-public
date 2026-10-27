@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":4126,"entry_ts":"2026-10-27T13:03:23.711962","symbol":"MFIC","direction":"LONG","entry_price":10.36,"shares":63,"notional":652.68,"invalidation":10.33,"take_profit_price":null,"take_profit_trailing_pct":0.3,"decision_id":59282,"stop_unguarded":false,"current_price":10.364999999999998,"mark_ts":"2026-10-27T17:24:00.279423+00:00","mark_basis":"nbbo_mid","mark_bid":10.36,"mark_ask":10.37,"unrealized_pnl":0.31499999999993733,"unrealized_pct":0.04826254826253866}]}
+{"provider":"model_2","open_positions":[]}
