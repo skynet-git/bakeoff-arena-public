@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":4166,"entry_ts":"2026-10-27T14:36:14.602249","symbol":"CLS","direction":"LONG","entry_price":278.81,"shares":1,"notional":278.81,"invalidation":276.5,"take_profit_price":282.8,"take_profit_trailing_pct":null,"decision_id":60646,"stop_unguarded":false,"current_price":277.885,"mark_ts":"2026-10-27T18:40:00.147397+00:00","mark_basis":"nbbo_mid","mark_bid":277.78,"mark_ask":277.99,"unrealized_pnl":-0.9250000000000114,"unrealized_pct":-0.33176715325849554}]}
