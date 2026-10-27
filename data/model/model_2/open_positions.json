@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":4178,"entry_ts":"2026-10-27T15:05:58.855593","symbol":"SOFI","direction":"LONG","entry_price":16.53,"shares":20,"notional":330.6,"invalidation":16.47,"take_profit_price":16.72,"take_profit_trailing_pct":null,"decision_id":61022,"stop_unguarded":false,"current_price":16.505000000000003,"mark_ts":"2026-10-27T19:15:04.989464+00:00","mark_basis":"nbbo_mid","mark_bid":16.5,"mark_ask":16.51,"unrealized_pnl":-0.4999999999999716,"unrealized_pct":-0.1512401693889811}]}
+{"provider":"model_2","open_positions":[]}
