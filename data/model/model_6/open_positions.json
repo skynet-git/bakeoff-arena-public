@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":3870,"entry_ts":"2026-10-27T09:36:26.778237","symbol":"BRO","direction":"LONG","entry_price":68.53,"shares":72,"notional":4934.16,"invalidation":67.9,"take_profit_price":69.45,"take_profit_trailing_pct":null,"decision_id":55197,"stop_unguarded":false,"current_price":68.275,"mark_ts":"2026-10-27T13:40:08.523685+00:00","mark_basis":"nbbo_mid","mark_bid":68.15,"mark_ask":68.4,"unrealized_pnl":-18.359999999999673,"unrealized_pct":-0.3720998103020509}]}
