@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":4080,"entry_ts":"2026-10-27T11:48:24.547880","symbol":"RRC","direction":"LONG","entry_price":54.51,"shares":12,"notional":654.12,"invalidation":54.35,"take_profit_price":null,"take_profit_trailing_pct":0.4,"decision_id":57852,"stop_unguarded":false,"current_price":54.515,"mark_ts":"2026-10-27T15:55:07.120493+00:00","mark_basis":"nbbo_mid","mark_bid":54.5,"mark_ask":54.53,"unrealized_pnl":0.060000000000030695,"unrealized_pct":0.009172628875440392}]}
