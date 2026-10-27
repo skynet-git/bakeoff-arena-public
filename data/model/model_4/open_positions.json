@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[]}
+{"provider":"model_4","open_positions":[{"shadow_fill_id":4041,"entry_ts":"2026-10-27T11:08:48.233287","symbol":"WSO","direction":"LONG","entry_price":293.77,"shares":6,"notional":1762.62,"invalidation":291.5,"take_profit_price":298.5,"take_profit_trailing_pct":null,"decision_id":57049,"stop_unguarded":false,"current_price":295.43,"mark_ts":"2026-10-27T15:15:07.434994+00:00","mark_basis":"nbbo_mid","mark_bid":294.94,"mark_ask":295.92,"unrealized_pnl":9.96000000000015,"unrealized_pct":0.5650679102699476}]}
