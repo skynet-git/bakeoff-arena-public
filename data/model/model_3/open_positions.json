@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":4696,"entry_ts":"2026-10-28T12:32:34.580531","symbol":"BSX","direction":"LONG","entry_price":42.52,"shares":69,"notional":2933.88,"invalidation":42.1,"take_profit_price":43.15,"take_profit_trailing_pct":null,"decision_id":67772,"stop_unguarded":false,"current_price":42.435,"mark_ts":"2026-10-28T16:35:07.891733+00:00","mark_basis":"nbbo_mid","mark_bid":42.43,"mark_ask":42.44,"unrealized_pnl":-5.865000000000059,"unrealized_pct":-0.19990592662276777}]}
+{"provider":"model_3","open_positions":[]}
