@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":4951,"entry_ts":"2026-10-28T14:57:57.554576","symbol":"JMKE","direction":"SHORT","entry_price":16.84,"shares":117,"notional":1970.28,"invalidation":17.1,"take_profit_price":16.55,"take_profit_trailing_pct":null,"decision_id":71663,"stop_unguarded":false,"current_price":16.795,"mark_ts":"2026-10-28T19:00:00.027301+00:00","mark_basis":"nbbo_mid","mark_bid":16.78,"mark_ask":16.81,"unrealized_pnl":5.264999999999784,"unrealized_pct":0.26722090261281567}]}
