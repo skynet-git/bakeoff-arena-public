@@ -1309,13 +1309,10 @@ function renderMobileLeaderboard(rows) {
         // rate, which would now print under a RUN marker (runWinPct).
         const card = document.createElement("div");
         card.className = "m-lb-card";
-        // v14.19.37: rank tooltip explains the podium coloring so 1 (gold)
-        // vs 3 (bronze) — which look similar on dark screens — is at least
-        // documented.
-        const rankTitle = rank == null ? "No rank: no Equity figure"
-            : rank <= 3
-            ? `Rank ${rank} — ${rank === 1 ? 'gold' : rank === 2 ? 'silver' : 'bronze'} podium`
-            : `Rank ${rank}`;
+        // v16.36.5 (operator 2026-10-26): the rank's title says what the
+        // number is, for every rank. It called ranks 1-3 a gold, silver or
+        // bronze podium, a colour styles.css has not drawn since v15.7.7.
+        const rankTitle = rank == null ? "No rank: no Equity figure" : `Equity rank ${rank}`;
         // v16.36.0: ONE added line, Net; its four parts open on tap, with
         // the run figures under them. Token $/Trade is not on the meta
         // line: there it wrapped onto a line of its own on 375-412 px
