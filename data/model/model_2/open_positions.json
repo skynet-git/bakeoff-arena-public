@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":5012,"entry_ts":"2026-10-28T15:41:59.451855","symbol":"VRT","direction":"LONG","entry_price":243.15,"shares":8,"notional":1945.2,"invalidation":241.2,"take_profit_price":244.5,"take_profit_trailing_pct":null,"decision_id":72421,"stop_unguarded":false,"current_price":244.155,"mark_ts":"2026-10-28T19:45:08.540361+00:00","mark_basis":"nbbo_mid","mark_bid":244.05,"mark_ask":244.26,"unrealized_pnl":8.039999999999964,"unrealized_pct":0.4133251079580487}]}
