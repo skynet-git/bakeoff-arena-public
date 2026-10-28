@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":4575,"entry_ts":"2026-10-28T11:38:15.170433","symbol":"ODFL","direction":"LONG","entry_price":177.18,"shares":11,"notional":1948.98,"invalidation":175.4,"take_profit_price":179.5,"take_profit_trailing_pct":null,"decision_id":65746,"stop_unguarded":false,"current_price":178.135,"mark_ts":"2026-10-28T15:45:02.975224+00:00","mark_basis":"nbbo_mid","mark_bid":177.99,"mark_ask":178.28,"unrealized_pnl":10.504999999999825,"unrealized_pct":0.5389998871204336}]}
+{"provider":"model_3","open_positions":[]}
