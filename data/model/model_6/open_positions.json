@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":5015,"entry_ts":"2026-10-28T15:42:50.873135","symbol":"SKHY","direction":"LONG","entry_price":164.37,"shares":34,"notional":5588.58,"invalidation":163.2,"take_profit_price":165.4,"take_profit_trailing_pct":null,"decision_id":72452,"stop_unguarded":false,"current_price":164.05,"mark_ts":"2026-10-28T19:50:10.103365+00:00","mark_basis":"nbbo_mid","mark_bid":164.0,"mark_ask":164.1,"unrealized_pnl":-10.879999999999768,"unrealized_pct":-0.19468272799172184}]}
