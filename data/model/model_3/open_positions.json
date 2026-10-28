@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":4500,"entry_ts":"2026-10-28T11:03:43.876462","symbol":"HOOD","direction":"LONG","entry_price":92.09,"shares":43,"notional":3959.8700000000003,"invalidation":91.2,"take_profit_price":92.6,"take_profit_trailing_pct":null,"decision_id":64547,"stop_unguarded":false,"current_price":91.88499999999999,"mark_ts":"2026-10-28T15:10:06.707447+00:00","mark_basis":"nbbo_mid","mark_bid":91.83,"mark_ask":91.94,"unrealized_pnl":-8.815000000000538,"unrealized_pct":-0.22260831794984523}]}
