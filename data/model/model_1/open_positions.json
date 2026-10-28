@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[{"shadow_fill_id":4833,"entry_ts":"2026-10-28T13:41:14.557140","symbol":"AVTR","direction":"SHORT","entry_price":16.55,"shares":42,"notional":695.1,"invalidation":16.7,"take_profit_price":16.2,"take_profit_trailing_pct":null,"decision_id":70047,"stop_unguarded":false,"current_price":16.455,"mark_ts":"2026-10-28T17:49:57.523610+00:00","mark_basis":"nbbo_mid","mark_bid":16.45,"mark_ask":16.46,"unrealized_pnl":3.9900000000001015,"unrealized_pct":0.5740181268882322}]}
+{"provider":"model_1","open_positions":[]}
