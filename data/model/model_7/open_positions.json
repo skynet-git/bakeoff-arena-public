@@ -1,1 +1,1 @@
-{"provider":"model_7","open_positions":[{"shadow_fill_id":4456,"entry_ts":"2026-10-28T10:38:59.904503","symbol":"XYL","direction":"SHORT","entry_price":87.8,"shares":46,"notional":4038.7999999999997,"invalidation":88.46,"take_profit_price":86.25,"take_profit_trailing_pct":null,"decision_id":63709,"stop_unguarded":false,"current_price":87.86500000000001,"mark_ts":"2026-10-28T14:45:07.397258+00:00","mark_basis":"nbbo_mid","mark_bid":87.79,"mark_ask":87.94,"unrealized_pnl":-2.990000000000549,"unrealized_pct":-0.07403189066060585}]}
+{"provider":"model_7","open_positions":[]}
