@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":4257,"entry_ts":"2026-10-28T09:39:32.796694","symbol":"PPG","direction":"SHORT","entry_price":116.29,"shares":25,"notional":2907.25,"invalidation":117.9,"take_profit_price":114.8,"take_profit_trailing_pct":null,"decision_id":61757,"stop_unguarded":false,"current_price":115.81,"mark_ts":"2026-10-28T13:44:42.789984+00:00","mark_basis":"nbbo_mid","mark_bid":115.56,"mark_ask":116.06,"unrealized_pnl":12.0000000000001,"unrealized_pct":0.4127612004471614}]}
