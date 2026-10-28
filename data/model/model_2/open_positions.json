@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":4996,"entry_ts":"2026-10-28T15:24:31.427628","symbol":"UL","direction":"LONG","entry_price":64.08,"shares":60,"notional":3844.7999999999997,"invalidation":63.93,"take_profit_price":64.25,"take_profit_trailing_pct":null,"decision_id":72163,"stop_unguarded":false,"current_price":64.07499999999999,"mark_ts":"2026-10-28T19:30:03.836394+00:00","mark_basis":"nbbo_mid","mark_bid":64.07,"mark_ask":64.08,"unrealized_pnl":-0.3000000000005798,"unrealized_pct":-0.007802746566806592}]}
+{"provider":"model_2","open_positions":[]}
