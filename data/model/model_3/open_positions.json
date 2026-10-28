@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":4815,"entry_ts":"2026-10-28T13:35:52.776256","symbol":"GEV","direction":"LONG","entry_price":887.0,"shares":3,"notional":2661.0,"invalidation":883.0,"take_profit_price":893.5,"take_profit_trailing_pct":null,"decision_id":69834,"stop_unguarded":false,"current_price":888.475,"mark_ts":"2026-10-28T18:05:08.133597+00:00","mark_basis":"nbbo_mid","mark_bid":888.0,"mark_ask":888.95,"unrealized_pnl":4.425000000000068,"unrealized_pct":0.1662908680947038}]}
+{"provider":"model_3","open_positions":[]}
