@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[{"shadow_fill_id":4850,"entry_ts":"2026-10-28T13:51:09.543779","symbol":"CSGP","direction":"LONG","entry_price":27.82,"shares":71,"notional":1975.22,"invalidation":27.2,"take_profit_price":28.5,"take_profit_trailing_pct":null,"decision_id":70299,"stop_unguarded":false,"current_price":27.595,"mark_ts":"2026-10-28T18:00:10.679521+00:00","mark_basis":"nbbo_mid","mark_bid":27.58,"mark_ask":27.61,"unrealized_pnl":-15.975000000000101,"unrealized_pct":-0.8087706685837578}]}
+{"provider":"model_4","open_positions":[]}
