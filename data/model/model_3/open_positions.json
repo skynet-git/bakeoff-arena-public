@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":5022,"entry_ts":"2026-10-29T09:31:35.258238","symbol":"IOVA","direction":"LONG","entry_price":11.22,"shares":260,"notional":2917.2000000000003,"invalidation":10.85,"take_profit_price":11.65,"take_profit_trailing_pct":null,"decision_id":72586,"stop_unguarded":false,"current_price":11.235,"mark_ts":"2026-10-29T13:35:09.919705+00:00","mark_basis":"nbbo_mid","mark_bid":11.21,"mark_ask":11.26,"unrealized_pnl":3.899999999999686,"unrealized_pct":0.13368983957218172}]}
