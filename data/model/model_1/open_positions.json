@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[{"shadow_fill_id":5602,"entry_ts":"2026-10-29T14:33:15.543651","symbol":"CROX","direction":"SHORT","entry_price":150.37,"shares":2,"notional":300.74,"invalidation":151.44,"take_profit_price":148.0,"take_profit_trailing_pct":null,"decision_id":81859,"stop_unguarded":false,"current_price":149.925,"mark_ts":"2026-10-29T18:40:05.149190+00:00","mark_basis":"nbbo_mid","mark_bid":149.74,"mark_ask":150.11,"unrealized_pnl":0.8899999999999864,"unrealized_pct":0.29593668949923063}]}
+{"provider":"model_1","open_positions":[]}
