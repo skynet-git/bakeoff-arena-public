@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":5557,"entry_ts":"2026-10-29T13:35:04.474076","symbol":"BFAM","direction":"SHORT","entry_price":67.04,"shares":43,"notional":2882.7200000000003,"invalidation":67.65,"take_profit_price":66.2,"take_profit_trailing_pct":null,"decision_id":80686,"stop_unguarded":false,"current_price":67.095,"mark_ts":"2026-10-29T17:39:58.845273+00:00","mark_basis":"nbbo_mid","mark_bid":66.99,"mark_ask":67.2,"unrealized_pnl":-2.3649999999996822,"unrealized_pct":-0.08204057279235175}]}
