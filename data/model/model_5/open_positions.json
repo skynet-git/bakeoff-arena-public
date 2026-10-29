@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":5038,"entry_ts":"2026-10-29T09:32:17.950689","symbol":"NCLH","direction":"LONG","entry_price":17.71,"shares":175,"notional":3099.25,"invalidation":17.4,"take_profit_price":18.05,"take_profit_trailing_pct":null,"decision_id":72630,"stop_unguarded":false,"current_price":17.93,"mark_ts":"2026-10-29T13:40:09.596230+00:00","mark_basis":"nbbo_mid","mark_bid":17.92,"mark_ask":17.94,"unrealized_pnl":38.4999999999998,"unrealized_pct":1.242236024844714}]}
