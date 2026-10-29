@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[{"shadow_fill_id":5117,"entry_ts":"2026-10-29T09:51:25.471973","symbol":"HONA","direction":"SHORT","entry_price":156.28,"shares":20,"notional":3125.6,"invalidation":160.5,"take_profit_price":154.0,"take_profit_trailing_pct":null,"decision_id":73039,"stop_unguarded":false,"current_price":157.935,"mark_ts":"2026-10-29T13:55:00.019281+00:00","mark_basis":"nbbo_mid","mark_bid":157.6,"mark_ask":158.27,"unrealized_pnl":-33.10000000000002,"unrealized_pct":-1.058996672638854}]}
+{"provider":"model_1","open_positions":[]}

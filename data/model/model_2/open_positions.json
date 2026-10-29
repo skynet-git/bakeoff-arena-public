@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":5100,"entry_ts":"2026-10-29T09:43:48.659115","symbol":"EGO","direction":"LONG","entry_price":31.25,"shares":116,"notional":3625.0,"invalidation":31.04,"take_profit_price":31.68,"take_profit_trailing_pct":null,"decision_id":72909,"stop_unguarded":false,"current_price":31.395,"mark_ts":"2026-10-29T13:54:55.941762+00:00","mark_basis":"nbbo_mid","mark_bid":31.38,"mark_ask":31.41,"unrealized_pnl":16.81999999999995,"unrealized_pct":0.46399999999999864}]}
+{"provider":"model_2","open_positions":[]}
