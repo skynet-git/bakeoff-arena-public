@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":5512,"entry_ts":"2026-10-29T12:44:06.338276","symbol":"SIMO","direction":"LONG","entry_price":233.1,"shares":12,"notional":2797.2,"invalidation":231.0,"take_profit_price":236.8,"take_profit_trailing_pct":null,"decision_id":79214,"stop_unguarded":false,"current_price":233.07999999999998,"mark_ts":"2026-10-29T16:45:06.206970+00:00","mark_basis":"nbbo_mid","mark_bid":232.67,"mark_ask":233.49,"unrealized_pnl":-0.24000000000012278,"unrealized_pct":-0.00858000858001297}]}
