@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[{"shadow_fill_id":5633,"entry_ts":"2026-10-29T15:35:55.664609","symbol":"RUSHA","direction":"LONG","entry_price":43.25,"shares":6,"notional":259.5,"invalidation":43.14,"take_profit_price":43.5,"take_profit_trailing_pct":null,"decision_id":82622,"stop_unguarded":false,"current_price":43.235,"mark_ts":"2026-10-29T19:39:39.623277+00:00","mark_basis":"nbbo_mid","mark_bid":43.19,"mark_ask":43.28,"unrealized_pnl":-0.09000000000000341,"unrealized_pct":-0.034682080924856806}]}
+{"provider":"model_6","open_positions":[]}
