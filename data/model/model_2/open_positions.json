@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":5459,"entry_ts":"2026-10-29T12:08:19.122902","symbol":"PRCH","direction":"LONG","entry_price":20.77,"shares":216,"notional":4486.32,"invalidation":20.59,"take_profit_price":null,"take_profit_trailing_pct":0.8,"decision_id":77855,"stop_unguarded":false,"current_price":20.765,"mark_ts":"2026-10-29T16:10:06.953870+00:00","mark_basis":"last_trade","mark_bid":null,"mark_ask":null,"unrealized_pnl":-1.0799999999997851,"unrealized_pct":-0.02407318247471837}]}
