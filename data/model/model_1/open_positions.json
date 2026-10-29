@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[]}
+{"provider":"model_1","open_positions":[{"shadow_fill_id":5623,"entry_ts":"2026-10-29T15:08:08.024144","symbol":"RIO","direction":"LONG","entry_price":83.13,"shares":3,"notional":249.39,"invalidation":82.8,"take_profit_price":83.7,"take_profit_trailing_pct":null,"decision_id":82356,"stop_unguarded":false,"current_price":83.045,"mark_ts":"2026-10-29T19:15:07.934077+00:00","mark_basis":"nbbo_mid","mark_bid":83.04,"mark_ask":83.05,"unrealized_pnl":-0.25499999999998124,"unrealized_pct":-0.10224948875254872}]}

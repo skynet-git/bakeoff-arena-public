@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":5625,"entry_ts":"2026-10-29T15:10:37.827863","symbol":"GKOS","direction":"LONG","entry_price":240.81,"shares":2,"notional":481.62,"invalidation":239.95,"take_profit_price":243.5,"take_profit_trailing_pct":null,"decision_id":82382,"stop_unguarded":false,"current_price":240.20499999999998,"mark_ts":"2026-10-29T19:15:07.934077+00:00","mark_basis":"nbbo_mid","mark_bid":239.94,"mark_ask":240.47,"unrealized_pnl":-1.2100000000000364,"unrealized_pct":-0.2512354138117263}]}
