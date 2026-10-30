@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":6033,"entry_ts":"2026-10-30T11:55:24.402533","symbol":"ALNY","direction":"LONG","entry_price":169.11,"shares":17,"notional":2874.8700000000003,"invalidation":167.0,"take_profit_price":172.0,"take_profit_trailing_pct":null,"decision_id":86976,"stop_unguarded":false,"current_price":169.485,"mark_ts":"2026-10-30T15:59:56.511417+00:00","mark_basis":"nbbo_mid","mark_bid":169.35,"mark_ask":169.62,"unrealized_pnl":6.375,"unrealized_pct":0.22174915735320203}]}
