@@ -1,1 +1,1 @@
-{"tickers":[{"symbol":"SPY","last":754.67,"change_pct":-1.91},{"symbol":"QQQ","last":688.33,"change_pct":-3.78},{"symbol":"IWM","last":278.18,"change_pct":-2.05}],"cached_until_ts":1793382664.7908764}
+{"tickers":[{"symbol":"SPY","last":754,"change_pct":-2.0},{"symbol":"QQQ","last":687.46,"change_pct":-3.9},{"symbol":"IWM","last":278.11,"change_pct":-2.08}],"cached_until_ts":1793382965.480795}
