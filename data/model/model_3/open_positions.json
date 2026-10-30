@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":5716,"entry_ts":"2026-10-30T10:01:48.937389","symbol":"INTC","direction":"LONG","entry_price":65.52,"shares":44,"notional":2882.8799999999997,"invalidation":64.1,"take_profit_price":67.2,"take_profit_trailing_pct":null,"decision_id":83354,"stop_unguarded":false,"current_price":65.595,"mark_ts":"2026-10-30T14:05:08.924295+00:00","mark_basis":"nbbo_mid","mark_bid":65.59,"mark_ask":65.6,"unrealized_pnl":3.300000000000125,"unrealized_pct":0.11446886446886881}]}
