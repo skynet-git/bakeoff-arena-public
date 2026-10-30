@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":5693,"entry_ts":"2026-10-30T09:43:33.521571","symbol":"SPXC","direction":"LONG","entry_price":161.3,"shares":9,"notional":1451.7,"invalidation":155.5,"take_profit_price":162.5,"take_profit_trailing_pct":null,"decision_id":83090,"stop_unguarded":false,"current_price":158.755,"mark_ts":"2026-10-30T13:45:09.107095+00:00","mark_basis":"nbbo_mid","mark_bid":157.0,"mark_ask":160.51,"unrealized_pnl":-22.905000000000143,"unrealized_pct":-1.5778053316801088}]}
