@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[{"shadow_fill_id":5934,"entry_ts":"2026-10-30T11:14:46.658500","symbol":"KDP","direction":"LONG","entry_price":35.79,"shares":20,"notional":715.8,"invalidation":35.68,"take_profit_price":36.1,"take_profit_trailing_pct":null,"decision_id":85781,"stop_unguarded":false,"current_price":35.825,"mark_ts":"2026-10-30T15:25:07.199295+00:00","mark_basis":"nbbo_mid","mark_bid":35.82,"mark_ask":35.83,"unrealized_pnl":0.7000000000000739,"unrealized_pct":0.09779267951942916}]}
+{"provider":"model_6","open_positions":[]}
