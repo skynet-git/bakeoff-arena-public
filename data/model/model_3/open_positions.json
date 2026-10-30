@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":5815,"entry_ts":"2026-10-30T10:32:15.871244","symbol":"AMZN","direction":"LONG","entry_price":238.27,"shares":12,"notional":2859.2400000000002,"invalidation":236.5,"take_profit_price":240.1,"take_profit_trailing_pct":null,"decision_id":84210,"stop_unguarded":false,"current_price":239.06,"mark_ts":"2026-10-30T15:05:08.341320+00:00","mark_basis":"nbbo_mid","mark_bid":239.02,"mark_ask":239.1,"unrealized_pnl":9.479999999999905,"unrealized_pct":0.33155663742812436}]}
+{"provider":"model_3","open_positions":[]}
