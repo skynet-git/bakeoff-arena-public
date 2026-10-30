@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":6078,"entry_ts":"2026-10-30T12:12:18.940458","symbol":"PURR","direction":"SHORT","entry_price":11.18,"shares":21,"notional":234.78,"invalidation":11.31,"take_profit_price":10.92,"take_profit_trailing_pct":null,"decision_id":87695,"stop_unguarded":false,"current_price":11.155000000000001,"mark_ts":"2026-10-30T16:20:04.384451+00:00","mark_basis":"nbbo_mid","mark_bid":11.15,"mark_ask":11.16,"unrealized_pnl":0.5249999999999702,"unrealized_pct":0.22361359570660624}]}
