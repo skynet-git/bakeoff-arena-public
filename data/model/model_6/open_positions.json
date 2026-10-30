@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":6001,"entry_ts":"2026-10-30T11:39:20.994969","symbol":"GDYN","direction":"LONG","entry_price":12.61,"shares":19,"notional":239.58999999999997,"invalidation":12.45,"take_profit_price":13.0,"take_profit_trailing_pct":null,"decision_id":86440,"stop_unguarded":false,"current_price":12.594999999999999,"mark_ts":"2026-10-30T15:45:04.861670+00:00","mark_basis":"nbbo_mid","mark_bid":12.59,"mark_ask":12.6,"unrealized_pnl":-0.2850000000000108,"unrealized_pct":-0.11895321173672141}]}
