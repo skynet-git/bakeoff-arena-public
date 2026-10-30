@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[{"shadow_fill_id":5865,"entry_ts":"2026-10-30T10:45:59.790715","symbol":"MEOH","direction":"LONG","entry_price":69.84,"shares":3,"notional":209.52,"invalidation":69.08,"take_profit_price":71.0,"take_profit_trailing_pct":null,"decision_id":84796,"stop_unguarded":false,"current_price":70.25999999999999,"mark_ts":"2026-10-30T14:59:55.380826+00:00","mark_basis":"nbbo_mid","mark_bid":70.2,"mark_ask":70.32,"unrealized_pnl":1.2599999999999625,"unrealized_pct":0.6013745704467175}]}
+{"provider":"model_6","open_positions":[]}
