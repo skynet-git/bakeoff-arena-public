@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":6692,"entry_ts":"2026-11-02T11:34:05.945856","symbol":"EL","direction":"LONG","entry_price":108.7,"shares":17,"notional":1847.9,"invalidation":107.8,"take_profit_price":110.2,"take_profit_trailing_pct":null,"decision_id":97441,"stop_unguarded":false,"current_price":108.275,"mark_ts":"2026-11-02T16:40:05.143923+00:00","mark_basis":"nbbo_mid","mark_bid":108.13,"mark_ask":108.42,"unrealized_pnl":-7.224999999999952,"unrealized_pct":-0.39098436062557235}]}
+{"provider":"model_3","open_positions":[]}
