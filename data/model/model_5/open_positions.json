@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[{"shadow_fill_id":6795,"entry_ts":"2026-11-02T13:15:35.948637","symbol":"TAP","direction":"LONG","entry_price":42.31,"shares":63,"notional":2665.53,"invalidation":42.15,"take_profit_price":null,"take_profit_trailing_pct":0.3,"decision_id":99451,"stop_unguarded":false,"current_price":42.730000000000004,"mark_ts":"2026-11-02T18:39:58.692190+00:00","mark_basis":"nbbo_mid","mark_bid":42.72,"mark_ask":42.74,"unrealized_pnl":26.460000000000107,"unrealized_pct":0.9926731269203537}]}
+{"provider":"model_5","open_positions":[]}
