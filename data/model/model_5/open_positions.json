@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":6771,"entry_ts":"2026-11-02T12:56:03.911912","symbol":"FOXA","direction":"LONG","entry_price":63.17,"shares":42,"notional":2653.14,"invalidation":62.55,"take_profit_price":63.85,"take_profit_trailing_pct":null,"decision_id":99161,"stop_unguarded":false,"current_price":63.075,"mark_ts":"2026-11-02T18:00:09.215145+00:00","mark_basis":"nbbo_mid","mark_bid":63.06,"mark_ask":63.09,"unrealized_pnl":-3.9899999999999523,"unrealized_pct":-0.15038784233021826}]}
