@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":6869,"entry_ts":"2026-11-02T14:55:39.915033","symbol":"REPL","direction":"LONG","entry_price":18.94,"shares":120,"notional":2272.8,"invalidation":18.79,"take_profit_price":19.25,"take_profit_trailing_pct":null,"decision_id":101009,"stop_unguarded":false,"current_price":19.045,"mark_ts":"2026-11-02T20:00:03.141728+00:00","mark_basis":"nbbo_mid","mark_bid":19.04,"mark_ask":19.05,"unrealized_pnl":12.600000000000051,"unrealized_pct":0.5543822597676896}]}
