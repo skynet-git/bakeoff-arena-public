@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":6392,"entry_ts":"2026-11-02T09:33:26.521275","symbol":"BEKE","direction":"LONG","entry_price":18.11,"shares":241,"notional":4364.51,"invalidation":17.98,"take_profit_price":18.32,"take_profit_trailing_pct":null,"decision_id":93602,"stop_unguarded":false,"current_price":18.115000000000002,"mark_ts":"2026-11-02T14:39:54.306848+00:00","mark_basis":"nbbo_mid","mark_bid":18.11,"mark_ask":18.12,"unrealized_pnl":1.2050000000006165,"unrealized_pct":0.02760905577030678}]}
