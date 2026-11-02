@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[{"shadow_fill_id":6701,"entry_ts":"2026-11-02T11:36:23.776778","symbol":"PHG","direction":"LONG","entry_price":27.46,"shares":39,"notional":1070.94,"invalidation":27.32,"take_profit_price":null,"take_profit_trailing_pct":0.3,"decision_id":97546,"stop_unguarded":false,"current_price":27.475,"mark_ts":"2026-11-02T17:44:47.346867+00:00","mark_basis":"nbbo_mid","mark_bid":27.47,"mark_ask":27.48,"unrealized_pnl":0.5850000000000222,"unrealized_pct":0.05462490895848714}]}
+{"provider":"model_5","open_positions":[]}
