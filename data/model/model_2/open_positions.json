@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":6865,"entry_ts":"2026-11-02T14:43:14.374389","symbol":"HGV","direction":"LONG","entry_price":40.94,"shares":22,"notional":900.68,"invalidation":40.79,"take_profit_price":41.55,"take_profit_trailing_pct":null,"decision_id":100798,"stop_unguarded":false,"current_price":40.99,"mark_ts":"2026-11-02T19:44:45.199740+00:00","mark_basis":"nbbo_mid","mark_bid":40.96,"mark_ask":41.02,"unrealized_pnl":1.1000000000000938,"unrealized_pct":0.12212994626283408}]}
+{"provider":"model_2","open_positions":[]}
