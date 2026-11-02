@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":6837,"entry_ts":"2026-11-02T14:07:09.966489","symbol":"MGNI","direction":"LONG","entry_price":21.77,"shares":167,"notional":3635.59,"invalidation":21.55,"take_profit_price":22.3,"take_profit_trailing_pct":null,"decision_id":100191,"stop_unguarded":false,"current_price":21.765,"mark_ts":"2026-11-02T19:09:24.233561+00:00","mark_basis":"nbbo_mid","mark_bid":21.75,"mark_ask":21.78,"unrealized_pnl":-0.8349999999998339,"unrealized_pct":-0.022967386311433188}]}
