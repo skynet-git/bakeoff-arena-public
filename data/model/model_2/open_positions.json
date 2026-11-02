@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":6898,"entry_ts":"2026-11-02T15:38:13.413750","symbol":"IDXX","direction":"LONG","entry_price":667.44,"shares":2,"notional":1334.88,"invalidation":666.4,"take_profit_price":672.0,"take_profit_trailing_pct":null,"decision_id":101546,"stop_unguarded":false,"current_price":667.105,"mark_ts":"2026-11-02T20:40:05.145638+00:00","mark_basis":"nbbo_mid","mark_bid":666.86,"mark_ask":667.35,"unrealized_pnl":-0.6700000000000728,"unrealized_pct":-0.050191777538061304}]}
