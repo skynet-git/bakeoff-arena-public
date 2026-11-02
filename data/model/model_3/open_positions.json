@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":6714,"entry_ts":"2026-11-02T11:52:40.847707","symbol":"PUBM","direction":"SHORT","entry_price":15.92,"shares":122,"notional":1942.24,"invalidation":16.15,"take_profit_price":15.6,"take_profit_trailing_pct":null,"decision_id":97893,"stop_unguarded":false,"current_price":16.025,"mark_ts":"2026-11-02T16:53:12.013066+00:00","mark_basis":"nbbo_mid","mark_bid":16.0,"mark_ask":16.05,"unrealized_pnl":-12.809999999999835,"unrealized_pct":-0.6595477386934588}]}
+{"provider":"model_3","open_positions":[]}
