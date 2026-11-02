@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":6407,"entry_ts":"2026-11-02T09:35:16.784182","symbol":"MAR","direction":"SHORT","entry_price":421.33,"shares":6,"notional":2527.98,"invalidation":425.5,"take_profit_price":418.5,"take_profit_trailing_pct":null,"decision_id":93672,"stop_unguarded":false,"current_price":419.925,"mark_ts":"2026-11-02T14:40:08.660345+00:00","mark_basis":"nbbo_mid","mark_bid":419.38,"mark_ask":420.47,"unrealized_pnl":8.429999999999836,"unrealized_pct":0.33346782806825354}]}
+{"provider":"model_3","open_positions":[]}
