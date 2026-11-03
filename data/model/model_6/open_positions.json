@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":7026,"entry_ts":"2026-11-03T10:07:02.725759","symbol":"ORCL","direction":"SHORT","entry_price":124.26,"shares":1,"notional":124.26,"invalidation":125.3,"take_profit_price":123.3,"take_profit_trailing_pct":null,"decision_id":102679,"stop_unguarded":false,"current_price":124.39,"mark_ts":"2026-11-03T15:10:08.772110+00:00","mark_basis":"nbbo_mid","mark_bid":124.36,"mark_ask":124.42,"unrealized_pnl":-0.12999999999999545,"unrealized_pct":-0.10461934653146263}]}
