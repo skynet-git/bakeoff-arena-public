@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[{"shadow_fill_id":7424,"entry_ts":"2026-11-03T14:21:05.677125","symbol":"JAN","direction":"LONG","entry_price":29.66,"shares":16,"notional":474.56,"invalidation":29.52,"take_profit_price":29.95,"take_profit_trailing_pct":null,"decision_id":109466,"stop_unguarded":false,"current_price":29.689999999999998,"mark_ts":"2026-11-03T19:30:03.644668+00:00","mark_basis":"nbbo_mid","mark_bid":29.68,"mark_ask":29.7,"unrealized_pnl":0.47999999999996135,"unrealized_pct":0.10114632501684957}]}
+{"provider":"model_5","open_positions":[]}
