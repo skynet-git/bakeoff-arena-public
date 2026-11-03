@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":6916,"entry_ts":"2026-11-03T09:33:21.798976","symbol":"INGM","direction":"LONG","entry_price":25.9,"shares":96,"notional":2486.3999999999996,"invalidation":25.5,"take_profit_price":26.05,"take_profit_trailing_pct":null,"decision_id":101815,"stop_unguarded":false,"current_price":25.765,"mark_ts":"2026-11-03T14:35:09.643525+00:00","mark_basis":"nbbo_mid","mark_bid":25.75,"mark_ask":25.78,"unrealized_pnl":-12.959999999999809,"unrealized_pct":-0.5212355212355136}]}
