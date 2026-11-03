@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":7096,"entry_ts":"2026-11-03T10:44:54.574281","symbol":"DT","direction":"LONG","entry_price":47.16,"shares":39,"notional":1839.2399999999998,"invalidation":46.85,"take_profit_price":null,"take_profit_trailing_pct":0.8,"decision_id":103841,"stop_unguarded":false,"current_price":47.56,"mark_ts":"2026-11-03T15:50:08.947733+00:00","mark_basis":"nbbo_mid","mark_bid":47.53,"mark_ask":47.59,"unrealized_pnl":15.600000000000222,"unrealized_pct":0.8481764206955168}]}
+{"provider":"model_2","open_positions":[]}
