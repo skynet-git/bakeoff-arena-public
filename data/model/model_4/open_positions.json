@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[{"shadow_fill_id":7443,"entry_ts":"2026-11-03T15:32:55.315787","symbol":"WT","direction":"LONG","entry_price":19.96,"shares":252,"notional":5029.92,"invalidation":19.82,"take_profit_price":20.15,"take_profit_trailing_pct":null,"decision_id":110377,"stop_unguarded":false,"current_price":19.925,"mark_ts":"2026-11-03T20:39:59.699744+00:00","mark_basis":"nbbo_mid","mark_bid":19.92,"mark_ask":19.93,"unrealized_pnl":-8.820000000000036,"unrealized_pct":-0.17535070140280634}]}
+{"provider":"model_4","open_positions":[]}
