@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":6994,"entry_ts":"2026-11-03T10:02:00.258125","symbol":"UPST","direction":"LONG","entry_price":21.33,"shares":137,"notional":2922.2099999999996,"invalidation":20.95,"take_profit_price":21.95,"take_profit_trailing_pct":null,"decision_id":102462,"stop_unguarded":false,"current_price":21.225,"mark_ts":"2026-11-03T15:15:02.630967+00:00","mark_basis":"nbbo_mid","mark_bid":21.2,"mark_ask":21.25,"unrealized_pnl":-14.384999999999572,"unrealized_pct":-0.4922644163150346}]}
+{"provider":"model_3","open_positions":[]}
