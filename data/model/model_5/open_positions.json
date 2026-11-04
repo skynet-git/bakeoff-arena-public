@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":8279,"entry_ts":"2026-11-04T15:15:50.874646","symbol":"UNM","direction":"LONG","entry_price":74.02,"shares":9,"notional":666.18,"invalidation":73.75,"take_profit_price":74.5,"take_profit_trailing_pct":null,"decision_id":121555,"stop_unguarded":false,"current_price":74.3,"mark_ts":"2026-11-04T20:20:09.700503+00:00","mark_basis":"nbbo_mid","mark_bid":74.28,"mark_ask":74.32,"unrealized_pnl":2.5200000000000102,"unrealized_pct":0.37827614158335743}]}
