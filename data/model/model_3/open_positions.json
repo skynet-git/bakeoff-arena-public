@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":8236,"entry_ts":"2026-11-04T14:32:12.653541","symbol":"RIOT","direction":"LONG","entry_price":15.83,"shares":187,"notional":2960.21,"invalidation":15.65,"take_profit_price":16.1,"take_profit_trailing_pct":null,"decision_id":120825,"stop_unguarded":false,"current_price":15.795,"mark_ts":"2026-11-04T19:35:09.262404+00:00","mark_basis":"nbbo_mid","mark_bid":15.79,"mark_ask":15.8,"unrealized_pnl":-6.545000000000027,"unrealized_pct":-0.2210991787744797}]}
