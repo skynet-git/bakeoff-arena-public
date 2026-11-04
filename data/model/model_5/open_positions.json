@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[{"shadow_fill_id":7522,"entry_ts":"2026-11-04T09:42:14.729030","symbol":"DUOL","direction":"SHORT","entry_price":161.97,"shares":28,"notional":4535.16,"invalidation":162.5,"take_profit_price":158.0,"take_profit_trailing_pct":null,"decision_id":110886,"stop_unguarded":false,"current_price":161.19,"mark_ts":"2026-11-04T14:45:13.569469+00:00","mark_basis":"nbbo_mid","mark_bid":160.48,"mark_ask":161.9,"unrealized_pnl":21.840000000000032,"unrealized_pct":0.4815706612335625}]}
+{"provider":"model_5","open_positions":[]}
