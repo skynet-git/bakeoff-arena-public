@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[{"shadow_fill_id":8288,"entry_ts":"2026-11-04T15:31:40.411142","symbol":"PPTA","direction":"LONG","entry_price":16.21,"shares":139,"notional":2253.19,"invalidation":16.06,"take_profit_price":16.35,"take_profit_trailing_pct":null,"decision_id":121698,"stop_unguarded":false,"current_price":16.195,"mark_ts":"2026-11-04T20:35:02.329443+00:00","mark_basis":"nbbo_mid","mark_bid":16.19,"mark_ask":16.2,"unrealized_pnl":-2.085000000000079,"unrealized_pct":-0.09253547193091034}]}
+{"provider":"model_5","open_positions":[]}
