@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[{"shadow_fill_id":8177,"entry_ts":"2026-11-04T13:48:41.480850","symbol":"BRKR","direction":"LONG","entry_price":63.3,"shares":6,"notional":379.79999999999995,"invalidation":62.5,"take_profit_price":64.5,"take_profit_trailing_pct":null,"decision_id":119663,"stop_unguarded":false,"current_price":63.44,"mark_ts":"2026-11-04T19:25:10.582273+00:00","mark_basis":"nbbo_mid","mark_bid":63.38,"mark_ask":63.5,"unrealized_pnl":0.8400000000000034,"unrealized_pct":0.22116903633491403}]}
+{"provider":"model_1","open_positions":[]}
