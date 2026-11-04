@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":7591,"entry_ts":"2026-11-04T10:04:30.769240","symbol":"FBIN","direction":"SHORT","entry_price":46.05,"shares":63,"notional":2901.1499999999996,"invalidation":46.65,"take_profit_price":45.55,"take_profit_trailing_pct":null,"decision_id":111354,"stop_unguarded":false,"current_price":45.85,"mark_ts":"2026-11-04T15:15:11.381925+00:00","mark_basis":"nbbo_mid","mark_bid":45.81,"mark_ask":45.89,"unrealized_pnl":12.599999999999731,"unrealized_pct":0.43431053203039255}]}
+{"provider":"model_3","open_positions":[]}
