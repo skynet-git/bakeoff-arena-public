@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":8251,"entry_ts":"2026-11-04T14:37:54.809539","symbol":"CVS","direction":"LONG","entry_price":81.18,"shares":36,"notional":2922.4800000000005,"invalidation":80.4,"take_profit_price":82.2,"take_profit_trailing_pct":null,"decision_id":120989,"stop_unguarded":false,"current_price":80.88,"mark_ts":"2026-11-04T19:45:08.007043+00:00","mark_basis":"nbbo_mid","mark_bid":80.86,"mark_ask":80.9,"unrealized_pnl":-10.80000000000041,"unrealized_pct":-0.36954915003696887}]}
+{"provider":"model_3","open_positions":[]}
