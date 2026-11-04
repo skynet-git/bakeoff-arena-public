@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[]}
+{"provider":"model_1","open_positions":[{"shadow_fill_id":7454,"entry_ts":"2026-11-04T09:32:06.128446","symbol":"FSLR","direction":"SHORT","entry_price":212.0,"shares":3,"notional":636.0,"invalidation":214.0,"take_profit_price":205.5,"take_profit_trailing_pct":null,"decision_id":110635,"stop_unguarded":false,"current_price":211.32999999999998,"mark_ts":"2026-11-04T14:35:14.404258+00:00","mark_basis":"nbbo_mid","mark_bid":211.01,"mark_ask":211.65,"unrealized_pnl":2.0100000000000477,"unrealized_pct":0.3160377358490641}]}
