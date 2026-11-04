@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":7813,"entry_ts":"2026-11-04T11:09:42.446193","symbol":"FLYW","direction":"LONG","entry_price":21.15,"shares":93,"notional":1966.9499999999998,"invalidation":20.75,"take_profit_price":21.47,"take_profit_trailing_pct":null,"decision_id":113634,"stop_unguarded":false,"current_price":21.200000000000003,"mark_ts":"2026-11-04T16:19:51.104803+00:00","mark_basis":"nbbo_mid","mark_bid":21.19,"mark_ask":21.21,"unrealized_pnl":4.6500000000003965,"unrealized_pct":0.23640661938536295}]}
