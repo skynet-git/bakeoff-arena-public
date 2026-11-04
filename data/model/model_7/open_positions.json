@@ -1,1 +1,1 @@
-{"provider":"model_7","open_positions":[]}
+{"provider":"model_7","open_positions":[{"shadow_fill_id":8290,"entry_ts":"2026-11-04T15:32:25.762277","symbol":"FIS","direction":"SHORT","entry_price":29.69,"shares":85,"notional":2523.65,"invalidation":29.85,"take_profit_price":29.2,"take_profit_trailing_pct":null,"decision_id":121731,"stop_unguarded":false,"current_price":29.685000000000002,"mark_ts":"2026-11-04T20:35:10.701394+00:00","mark_basis":"nbbo_mid","mark_bid":29.68,"mark_ask":29.69,"unrealized_pnl":0.42499999999991545,"unrealized_pct":0.01684068710003033}]}
