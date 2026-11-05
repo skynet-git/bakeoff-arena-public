@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[]}
+{"provider":"model_4","open_positions":[{"shadow_fill_id":8325,"entry_ts":"2026-11-05T09:34:40.660052","symbol":"ZTS","direction":"LONG","entry_price":88.07,"shares":56,"notional":4931.92,"invalidation":84.5,"take_profit_price":89.2,"take_profit_trailing_pct":null,"decision_id":122071,"stop_unguarded":false,"current_price":86.63,"mark_ts":"2026-11-05T14:40:12.090001+00:00","mark_basis":"nbbo_mid","mark_bid":86.51,"mark_ask":86.75,"unrealized_pnl":-80.63999999999987,"unrealized_pct":-1.6350630180538184}]}
