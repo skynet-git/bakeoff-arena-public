@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":8908,"entry_ts":"2026-11-05T15:36:36.329318","symbol":"SHOO","direction":"LONG","entry_price":38.64,"shares":50,"notional":1932.0,"invalidation":38.14,"take_profit_price":39.13,"take_profit_trailing_pct":null,"decision_id":129180,"stop_unguarded":false,"current_price":38.78,"mark_ts":"2026-11-05T20:45:16.999976+00:00","mark_basis":"nbbo_mid","mark_bid":38.77,"mark_ask":38.79,"unrealized_pnl":7.000000000000028,"unrealized_pct":0.36231884057971164}]}
+{"provider":"model_3","open_positions":[]}
