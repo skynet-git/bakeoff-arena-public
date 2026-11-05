@@ -1,1 +1,1 @@
-{"provider":"model_7","open_positions":[{"shadow_fill_id":8330,"entry_ts":"2026-11-05T09:34:27.751018","symbol":"SONY","direction":"LONG","entry_price":28.22,"shares":81,"notional":2285.8199999999997,"invalidation":27.85,"take_profit_price":29.0,"take_profit_trailing_pct":null,"decision_id":122095,"stop_unguarded":false,"current_price":28.025,"mark_ts":"2026-11-05T14:45:15.965037+00:00","mark_basis":"nbbo_mid","mark_bid":28.02,"mark_ask":28.03,"unrealized_pnl":-15.795000000000023,"unrealized_pct":-0.6909992912827793}]}
+{"provider":"model_7","open_positions":[]}
