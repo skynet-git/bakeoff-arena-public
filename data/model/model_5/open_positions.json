@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":8534,"entry_ts":"2026-11-05T10:52:41.481389","symbol":"EXPE","direction":"LONG","entry_price":277.36,"shares":7,"notional":1941.52,"invalidation":272.3,"take_profit_price":null,"take_profit_trailing_pct":1.5,"decision_id":123925,"stop_unguarded":false,"current_price":279.46000000000004,"mark_ts":"2026-11-05T16:05:12.321891+00:00","mark_basis":"nbbo_mid","mark_bid":279.17,"mark_ask":279.75,"unrealized_pnl":14.70000000000016,"unrealized_pct":0.7571387366599448}]}

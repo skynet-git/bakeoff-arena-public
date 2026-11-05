@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":8527,"entry_ts":"2026-11-05T10:43:56.971014","symbol":"MSI","direction":"LONG","entry_price":546.45,"shares":2,"notional":1092.9,"invalidation":543.8,"take_profit_price":null,"take_profit_trailing_pct":0.65,"decision_id":123687,"stop_unguarded":false,"current_price":547.2249999999999,"mark_ts":"2026-11-05T16:00:09.520442+00:00","mark_basis":"nbbo_mid","mark_bid":546.52,"mark_ask":547.93,"unrealized_pnl":1.5499999999997272,"unrealized_pct":0.14182450361421237}]}
+{"provider":"model_2","open_positions":[]}
