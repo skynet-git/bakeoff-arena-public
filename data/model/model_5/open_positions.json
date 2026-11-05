@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[{"shadow_fill_id":8902,"entry_ts":"2026-11-05T15:32:13.748716","symbol":"VCYT","direction":"LONG","entry_price":23.23,"shares":17,"notional":394.91,"invalidation":22.75,"take_profit_price":23.7,"take_profit_trailing_pct":null,"decision_id":129075,"stop_unguarded":false,"current_price":23.36,"mark_ts":"2026-11-05T20:35:12.147953+00:00","mark_basis":"nbbo_mid","mark_bid":23.33,"mark_ask":23.39,"unrealized_pnl":2.209999999999983,"unrealized_pct":0.5596211795092509}]}
+{"provider":"model_5","open_positions":[]}
