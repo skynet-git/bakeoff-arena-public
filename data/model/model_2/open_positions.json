@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":8683,"entry_ts":"2026-11-05T12:21:26.079696","symbol":"DEO","direction":"SHORT","entry_price":100.14,"shares":14,"notional":1401.96,"invalidation":100.55,"take_profit_price":99.4,"take_profit_trailing_pct":null,"decision_id":125530,"stop_unguarded":false,"current_price":100.025,"mark_ts":"2026-11-05T17:45:02.712206+00:00","mark_basis":"nbbo_mid","mark_bid":99.98,"mark_ask":100.07,"unrealized_pnl":1.6099999999999284,"unrealized_pct":0.11483922508487607}]}
+{"provider":"model_2","open_positions":[]}
