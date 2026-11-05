@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":8592,"entry_ts":"2026-11-05T11:24:32.452006","symbol":"SNDK","direction":"LONG","entry_price":880.47,"shares":1,"notional":880.47,"invalidation":866.0,"take_profit_price":null,"take_profit_trailing_pct":1.8,"decision_id":124447,"stop_unguarded":false,"current_price":876.29,"mark_ts":"2026-11-05T16:40:10.546275+00:00","mark_basis":"nbbo_mid","mark_bid":876.18,"mark_ask":876.4,"unrealized_pnl":-4.180000000000064,"unrealized_pct":-0.47474644224108303}]}
