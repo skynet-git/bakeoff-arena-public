@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[{"shadow_fill_id":8737,"entry_ts":"2026-11-05T13:03:42.623087","symbol":"MELI","direction":"SHORT","entry_price":1510.19,"shares":1,"notional":1510.19,"invalidation":1517.2,"take_profit_price":1495.0,"take_profit_trailing_pct":null,"decision_id":126638,"stop_unguarded":false,"current_price":1508.175,"mark_ts":"2026-11-05T18:35:09.855796+00:00","mark_basis":"nbbo_mid","mark_bid":1507.0,"mark_ask":1509.35,"unrealized_pnl":2.0150000000001,"unrealized_pct":0.13342691979155605}]}
+{"provider":"model_5","open_positions":[]}
