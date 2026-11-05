@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[{"shadow_fill_id":8814,"entry_ts":"2026-11-05T13:53:46.267830","symbol":"TSM","direction":"SHORT","entry_price":358.35,"shares":26,"notional":9317.1,"invalidation":362.0,"take_profit_price":350.0,"take_profit_trailing_pct":null,"decision_id":127617,"stop_unguarded":false,"current_price":357.115,"mark_ts":"2026-11-05T19:05:08.467849+00:00","mark_basis":"nbbo_mid","mark_bid":357.06,"mark_ask":357.17,"unrealized_pnl":32.110000000000355,"unrealized_pct":0.3446351332496201}]}
+{"provider":"model_1","open_positions":[]}
