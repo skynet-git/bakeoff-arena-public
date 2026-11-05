@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[{"shadow_fill_id":8512,"entry_ts":"2026-11-05T10:42:53.923115","symbol":"ARM","direction":"SHORT","entry_price":169.93,"shares":24,"notional":4078.32,"invalidation":170.8,"take_profit_price":166.5,"take_profit_trailing_pct":null,"decision_id":123665,"stop_unguarded":false,"current_price":166.85500000000002,"mark_ts":"2026-11-05T15:50:14.691332+00:00","mark_basis":"nbbo_mid","mark_bid":166.81,"mark_ask":166.9,"unrealized_pnl":73.79999999999973,"unrealized_pct":1.8095686459130165}]}
+{"provider":"model_5","open_positions":[]}
