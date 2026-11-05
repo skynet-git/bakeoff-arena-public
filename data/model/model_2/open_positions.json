@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":8879,"entry_ts":"2026-11-05T15:03:59.044876","symbol":"AEHL","direction":"LONG","entry_price":18.0,"shares":62,"notional":1116.0,"invalidation":16.79,"take_profit_price":null,"take_profit_trailing_pct":1.8,"decision_id":128714,"stop_unguarded":false,"current_price":17.744999999999997,"mark_ts":"2026-11-05T20:05:12.090069+00:00","mark_basis":"nbbo_mid","mark_bid":17.63,"mark_ask":17.86,"unrealized_pnl":-15.810000000000159,"unrealized_pct":-1.4166666666666807}]}

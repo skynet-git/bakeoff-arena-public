@@ -1,1 +1,1 @@
-{"provider":"model_7","open_positions":[{"shadow_fill_id":8867,"entry_ts":"2026-11-05T14:39:51.401750","symbol":"ADMA","direction":"LONG","entry_price":13.29,"shares":288,"notional":3827.5199999999995,"invalidation":13.11,"take_profit_price":13.7,"take_profit_trailing_pct":null,"decision_id":128479,"stop_unguarded":false,"current_price":13.274999999999999,"mark_ts":"2026-11-05T20:00:11.200019+00:00","mark_basis":"nbbo_mid","mark_bid":13.27,"mark_ask":13.28,"unrealized_pnl":-4.320000000000164,"unrealized_pct":-0.1128668171557605}]}
+{"provider":"model_7","open_positions":[]}
