@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":9209,"entry_ts":"2026-11-06T11:06:27.628576","symbol":"WULF","direction":"SHORT","entry_price":10.32,"shares":380,"notional":3921.6,"invalidation":10.46,"take_profit_price":10.05,"take_profit_trailing_pct":null,"decision_id":131949,"stop_unguarded":false,"current_price":10.315000000000001,"mark_ts":"2026-11-06T16:10:12.470581+00:00","mark_basis":"nbbo_mid","mark_bid":10.31,"mark_ask":10.32,"unrealized_pnl":1.899999999999622,"unrealized_pct":0.04844961240309113}]}
+{"provider":"model_3","open_positions":[]}
