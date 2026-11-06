@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[{"shadow_fill_id":9535,"entry_ts":"2026-11-06T14:07:46.579799","symbol":"GMED","direction":"SHORT","entry_price":71.82,"shares":67,"notional":4811.94,"invalidation":72.6,"take_profit_price":70.8,"take_profit_trailing_pct":null,"decision_id":136787,"stop_unguarded":false,"current_price":72.075,"mark_ts":"2026-11-06T19:25:08.514902+00:00","mark_basis":"nbbo_mid","mark_bid":72.06,"mark_ask":72.09,"unrealized_pnl":-17.085000000000647,"unrealized_pct":-0.35505430242273694}]}
+{"provider":"model_4","open_positions":[]}

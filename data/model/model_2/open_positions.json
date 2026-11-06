@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":9533,"entry_ts":"2026-11-06T14:06:01.834035","symbol":"DKNG","direction":"LONG","entry_price":17.99,"shares":89,"notional":1601.11,"invalidation":17.85,"take_profit_price":18.35,"take_profit_trailing_pct":null,"decision_id":136760,"stop_unguarded":false,"current_price":18.205,"mark_ts":"2026-11-06T19:25:00.227446+00:00","mark_basis":"nbbo_mid","mark_bid":18.2,"mark_ask":18.21,"unrealized_pnl":19.134999999999987,"unrealized_pct":1.1951083935519726}]}
+{"provider":"model_2","open_positions":[]}
