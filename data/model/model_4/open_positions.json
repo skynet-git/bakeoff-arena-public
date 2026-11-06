@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[{"shadow_fill_id":9009,"entry_ts":"2026-11-06T10:02:02.307300","symbol":"CHTR","direction":"LONG","entry_price":118.93,"shares":16,"notional":1902.88,"invalidation":117.8,"take_profit_price":121.15,"take_profit_trailing_pct":null,"decision_id":130028,"stop_unguarded":false,"current_price":120.125,"mark_ts":"2026-11-06T15:05:14.237364+00:00","mark_basis":"nbbo_mid","mark_bid":119.94,"mark_ask":120.31,"unrealized_pnl":19.11999999999989,"unrealized_pct":1.004792735222394}]}
+{"provider":"model_4","open_positions":[]}
