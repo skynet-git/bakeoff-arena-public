@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":9605,"entry_ts":"2026-11-06T14:50:13.987722","symbol":"FROG","direction":"LONG","entry_price":101.45,"shares":14,"notional":1420.3,"invalidation":100.75,"take_profit_price":null,"take_profit_trailing_pct":0.8,"decision_id":137803,"stop_unguarded":false,"current_price":101.515,"mark_ts":"2026-11-06T19:55:08.561408+00:00","mark_basis":"nbbo_mid","mark_bid":101.4,"mark_ask":101.63,"unrealized_pnl":0.9099999999999682,"unrealized_pct":0.06407097092163404}]}
