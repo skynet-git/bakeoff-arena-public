@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[]}
+{"provider":"model_4","open_positions":[{"shadow_fill_id":9090,"entry_ts":"2026-11-06T10:31:46.138808","symbol":"BUD","direction":"LONG","entry_price":84.56,"shares":57,"notional":4819.92,"invalidation":84.1,"take_profit_price":85.2,"take_profit_trailing_pct":null,"decision_id":130773,"stop_unguarded":false,"current_price":84.515,"mark_ts":"2026-11-06T15:35:12.591924+00:00","mark_basis":"nbbo_mid","mark_bid":84.5,"mark_ask":84.53,"unrealized_pnl":-2.565000000000097,"unrealized_pct":-0.053216650898772117}]}
