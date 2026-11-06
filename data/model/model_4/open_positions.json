@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[{"shadow_fill_id":9649,"entry_ts":"2026-11-06T15:35:08.519538","symbol":"GH","direction":"LONG","entry_price":150.69,"shares":32,"notional":4822.08,"invalidation":148.4,"take_profit_price":152.5,"take_profit_trailing_pct":null,"decision_id":138591,"stop_unguarded":false,"current_price":151.565,"mark_ts":"2026-11-06T20:50:12.447937+00:00","mark_basis":"nbbo_mid","mark_bid":151.37,"mark_ask":151.76,"unrealized_pnl":28.0,"unrealized_pct":0.580662286813989}]}
+{"provider":"model_4","open_positions":[]}
