@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":9510,"entry_ts":"2026-11-06T13:56:44.882648","symbol":"LION","direction":"LONG","entry_price":14.12,"shares":133,"notional":1877.9599999999998,"invalidation":14.02,"take_profit_price":14.25,"take_profit_trailing_pct":null,"decision_id":136524,"stop_unguarded":false,"current_price":14.105,"mark_ts":"2026-11-06T19:00:09.912655+00:00","mark_basis":"nbbo_mid","mark_bid":14.1,"mark_ask":14.11,"unrealized_pnl":-1.9949999999998393,"unrealized_pct":-0.1062322946175552}]}
