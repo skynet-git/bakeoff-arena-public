@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[]}
+{"provider":"model_1","open_positions":[{"shadow_fill_id":8920,"entry_ts":"2026-11-06T09:32:01.705643","symbol":"FLY","direction":"SHORT","entry_price":16.51,"shares":19,"notional":313.69000000000005,"invalidation":17.3,"take_profit_price":15.8,"take_profit_trailing_pct":null,"decision_id":129426,"stop_unguarded":false,"current_price":16.58,"mark_ts":"2026-11-06T14:35:11.005422+00:00","mark_basis":"nbbo_mid","mark_bid":16.52,"mark_ask":16.64,"unrealized_pnl":-1.329999999999938,"unrealized_pct":-0.42398546335552223}]}
