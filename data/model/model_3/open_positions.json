@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":9269,"entry_ts":"2026-11-06T11:33:47.461416","symbol":"FIVN","direction":"LONG","entry_price":27.87,"shares":105,"notional":2926.35,"invalidation":27.35,"take_profit_price":28.55,"take_profit_trailing_pct":null,"decision_id":132749,"stop_unguarded":false,"current_price":28.36,"mark_ts":"2026-11-06T17:35:01.381017+00:00","mark_basis":"nbbo_mid","mark_bid":28.34,"mark_ask":28.38,"unrealized_pnl":51.44999999999983,"unrealized_pct":1.7581628991747342}]}
+{"provider":"model_3","open_positions":[]}
