@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[{"shadow_fill_id":9494,"entry_ts":"2026-11-06T13:41:56.734028","symbol":"MCHP","direction":"LONG","entry_price":56.91,"shares":33,"notional":1878.03,"invalidation":56.35,"take_profit_price":null,"take_profit_trailing_pct":0.5,"decision_id":136305,"stop_unguarded":false,"current_price":57.2,"mark_ts":"2026-11-06T18:45:10.661950+00:00","mark_basis":"nbbo_mid","mark_bid":57.18,"mark_ask":57.22,"unrealized_pnl":9.570000000000206,"unrealized_pct":0.509576524336683}]}
+{"provider":"model_5","open_positions":[]}
