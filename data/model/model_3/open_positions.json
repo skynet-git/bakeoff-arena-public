@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":9746,"entry_ts":"2026-11-09T09:53:09.357808","symbol":"PGY","direction":"LONG","entry_price":18.22,"shares":107,"notional":1949.54,"invalidation":17.94,"take_profit_price":18.45,"take_profit_trailing_pct":null,"decision_id":139360,"stop_unguarded":false,"current_price":18.215,"mark_ts":"2026-11-09T14:55:06.820261+00:00","mark_basis":"nbbo_mid","mark_bid":18.16,"mark_ask":18.27,"unrealized_pnl":-0.5349999999998936,"unrealized_pct":-0.027442371020850745}]}
+{"provider":"model_3","open_positions":[]}
