@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[{"shadow_fill_id":10254,"entry_ts":"2026-11-09T14:47:08.403826","symbol":"LINC","direction":"SHORT","entry_price":21.69,"shares":7,"notional":151.83,"invalidation":21.99,"take_profit_price":21.2,"take_profit_trailing_pct":null,"decision_id":148835,"stop_unguarded":false,"current_price":21.805,"mark_ts":"2026-11-09T19:54:52.669748+00:00","mark_basis":"nbbo_mid","mark_bid":21.77,"mark_ask":21.84,"unrealized_pnl":-0.8049999999999891,"unrealized_pct":-0.5301982480405645}]}
+{"provider":"model_5","open_positions":[]}
