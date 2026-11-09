@@ -1,1 +1,1 @@
-{"provider":"model_7","open_positions":[]}
+{"provider":"model_7","open_positions":[{"shadow_fill_id":10313,"entry_ts":"2026-11-09T15:52:03.202028","symbol":"JANX","direction":"SHORT","entry_price":12.88,"shares":226,"notional":2910.88,"invalidation":13.02,"take_profit_price":12.45,"take_profit_trailing_pct":null,"decision_id":149981,"stop_unguarded":false,"current_price":12.85,"mark_ts":"2026-11-09T20:55:11.910746+00:00","mark_basis":"nbbo_mid","mark_bid":12.84,"mark_ask":12.86,"unrealized_pnl":6.780000000000257,"unrealized_pct":0.23291925465839391}]}
