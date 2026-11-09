@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[{"shadow_fill_id":10046,"entry_ts":"2026-11-09T12:01:51.839094","symbol":"IONS","direction":"LONG","entry_price":28.68,"shares":11,"notional":315.48,"invalidation":28.55,"take_profit_price":29.1,"take_profit_trailing_pct":null,"decision_id":143915,"stop_unguarded":false,"current_price":28.865000000000002,"mark_ts":"2026-11-09T17:20:02.616854+00:00","mark_basis":"nbbo_mid","mark_bid":28.84,"mark_ask":28.89,"unrealized_pnl":2.035000000000025,"unrealized_pct":0.6450488145048894}]}
+{"provider":"model_5","open_positions":[]}
