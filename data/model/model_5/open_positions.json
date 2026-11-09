@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[{"shadow_fill_id":9928,"entry_ts":"2026-11-09T11:02:48.730749","symbol":"SGI","direction":"LONG","entry_price":64.43,"shares":10,"notional":644.3000000000001,"invalidation":63.85,"take_profit_price":65.5,"take_profit_trailing_pct":null,"decision_id":141671,"stop_unguarded":false,"current_price":65.355,"mark_ts":"2026-11-09T16:15:09.652610+00:00","mark_basis":"nbbo_mid","mark_bid":65.31,"mark_ask":65.4,"unrealized_pnl":9.249999999999972,"unrealized_pct":1.4356666149309283}]}
+{"provider":"model_5","open_positions":[]}
