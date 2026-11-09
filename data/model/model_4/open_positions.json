@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[]}
+{"provider":"model_4","open_positions":[{"shadow_fill_id":10297,"entry_ts":"2026-11-09T15:33:03.824028","symbol":"ARWR","direction":"LONG","entry_price":49.26,"shares":101,"notional":4975.26,"invalidation":48.7,"take_profit_price":50.5,"take_profit_trailing_pct":null,"decision_id":149773,"stop_unguarded":false,"current_price":49.225,"mark_ts":"2026-11-09T20:40:09.770410+00:00","mark_basis":"nbbo_mid","mark_bid":49.21,"mark_ask":49.24,"unrealized_pnl":-3.5349999999996555,"unrealized_pct":-0.07105156313438203}]}

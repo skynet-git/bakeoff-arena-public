@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":10262,"entry_ts":"2026-11-09T15:02:08.613433","symbol":"NVDA","direction":"LONG","entry_price":177.25,"shares":16,"notional":2836.0,"invalidation":176.6,"take_profit_price":178.8,"take_profit_trailing_pct":null,"decision_id":149103,"stop_unguarded":false,"current_price":177.92000000000002,"mark_ts":"2026-11-09T20:35:08.823869+00:00","mark_basis":"nbbo_mid","mark_bid":177.91,"mark_ask":177.93,"unrealized_pnl":10.720000000000255,"unrealized_pct":0.3779971791255379}]}
+{"provider":"model_3","open_positions":[]}
