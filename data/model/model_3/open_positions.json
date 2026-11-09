@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":10093,"entry_ts":"2026-11-09T12:35:56.763996","symbol":"TGTX","direction":"LONG","entry_price":56.38,"shares":34,"notional":1916.92,"invalidation":55.5,"take_profit_price":57.4,"take_profit_trailing_pct":null,"decision_id":145182,"stop_unguarded":false,"current_price":56.985,"mark_ts":"2026-11-09T18:20:08.430777+00:00","mark_basis":"nbbo_mid","mark_bid":56.91,"mark_ask":57.06,"unrealized_pnl":20.569999999999894,"unrealized_pct":1.0730755587087564}]}
+{"provider":"model_3","open_positions":[]}
