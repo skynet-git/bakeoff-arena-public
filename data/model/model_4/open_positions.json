@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[{"shadow_fill_id":10255,"entry_ts":"2026-11-09T14:51:17.842527","symbol":"AXON","direction":"LONG","entry_price":302.53,"shares":16,"notional":4840.48,"invalidation":298.5,"take_profit_price":308.5,"take_profit_trailing_pct":null,"decision_id":148933,"stop_unguarded":false,"current_price":303.935,"mark_ts":"2026-11-09T20:15:09.940900+00:00","mark_basis":"nbbo_mid","mark_bid":303.86,"mark_ask":304.01,"unrealized_pnl":22.480000000000473,"unrealized_pct":0.464416752057657}]}
+{"provider":"model_4","open_positions":[]}
