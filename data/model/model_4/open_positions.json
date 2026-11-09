@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[{"shadow_fill_id":9730,"entry_ts":"2026-11-09T09:47:00.466870","symbol":"SSL","direction":"LONG","entry_price":13.83,"shares":144,"notional":1991.52,"invalidation":13.64,"take_profit_price":14.1,"take_profit_trailing_pct":null,"decision_id":139237,"stop_unguarded":false,"current_price":13.885000000000002,"mark_ts":"2026-11-09T19:40:08.649298+00:00","mark_basis":"nbbo_mid","mark_bid":13.88,"mark_ask":13.89,"unrealized_pnl":7.920000000000215,"unrealized_pct":0.3976861894432501}]}
+{"provider":"model_4","open_positions":[]}

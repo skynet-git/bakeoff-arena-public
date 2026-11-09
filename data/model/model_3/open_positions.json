@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":10240,"entry_ts":"2026-11-09T14:39:42.219087","symbol":"AKAM","direction":"LONG","entry_price":81.48,"shares":35,"notional":2851.8,"invalidation":80.6,"take_profit_price":82.8,"take_profit_trailing_pct":null,"decision_id":148728,"stop_unguarded":false,"current_price":81.22,"mark_ts":"2026-11-09T19:45:08.967342+00:00","mark_basis":"nbbo_mid","mark_bid":81.2,"mark_ask":81.24,"unrealized_pnl":-9.100000000000179,"unrealized_pct":-0.3190967108492944}]}
