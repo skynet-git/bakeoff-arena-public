@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":9999,"entry_ts":"2026-11-09T11:32:24.844773","symbol":"LFST","direction":"LONG","entry_price":14.21,"shares":205,"notional":2913.05,"invalidation":13.98,"take_profit_price":14.45,"take_profit_trailing_pct":null,"decision_id":142749,"stop_unguarded":false,"current_price":14.225000000000001,"mark_ts":"2026-11-09T16:35:04.078146+00:00","mark_basis":"nbbo_mid","mark_bid":14.22,"mark_ask":14.23,"unrealized_pnl":3.0750000000001165,"unrealized_pct":0.10555946516538049}]}
