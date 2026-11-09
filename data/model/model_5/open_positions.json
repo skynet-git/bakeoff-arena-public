@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":10115,"entry_ts":"2026-11-09T12:55:55.197379","symbol":"COHR","direction":"SHORT","entry_price":227.09,"shares":1,"notional":227.09,"invalidation":228.25,"take_profit_price":224.5,"take_profit_trailing_pct":null,"decision_id":145788,"stop_unguarded":false,"current_price":227.08499999999998,"mark_ts":"2026-11-09T18:00:13.363815+00:00","mark_basis":"nbbo_mid","mark_bid":227.0,"mark_ask":227.17,"unrealized_pnl":0.005000000000023874,"unrealized_pct":0.0022017702232700136}]}
