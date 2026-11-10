@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":10642,"entry_ts":"2026-11-10T11:25:29.578260","symbol":"JHX","direction":"SHORT","entry_price":29.07,"shares":100,"notional":2907.0,"invalidation":29.22,"take_profit_price":28.82,"take_profit_trailing_pct":null,"decision_id":153455,"stop_unguarded":false,"current_price":29.045,"mark_ts":"2026-11-10T16:30:08.574873+00:00","mark_basis":"nbbo_mid","mark_bid":29.04,"mark_ask":29.05,"unrealized_pnl":2.499999999999858,"unrealized_pct":0.08599931200549907}]}
