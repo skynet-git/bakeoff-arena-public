@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":10874,"entry_ts":"2026-11-10T13:09:41.643427","symbol":"SANM","direction":"SHORT","entry_price":152.22,"shares":6,"notional":913.3199999999999,"invalidation":153.85,"take_profit_price":null,"take_profit_trailing_pct":0.8,"decision_id":157223,"stop_unguarded":false,"current_price":151.26,"mark_ts":"2026-11-10T18:30:04.408448+00:00","mark_basis":"nbbo_mid","mark_bid":150.93,"mark_ask":151.59,"unrealized_pnl":5.760000000000048,"unrealized_pct":0.6306661411115544}]}
+{"provider":"model_2","open_positions":[]}
