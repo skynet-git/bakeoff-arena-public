@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":11109,"entry_ts":"2026-11-10T15:24:53.573896","symbol":"BV","direction":"LONG","entry_price":11.63,"shares":251,"notional":2919.13,"invalidation":11.43,"take_profit_price":11.85,"take_profit_trailing_pct":null,"decision_id":161121,"stop_unguarded":false,"current_price":11.645,"mark_ts":"2026-11-10T20:28:57.244644+00:00","mark_basis":"nbbo_mid","mark_bid":11.63,"mark_ask":11.66,"unrealized_pnl":3.764999999999697,"unrealized_pct":0.1289767841788374}]}
+{"provider":"model_3","open_positions":[]}
