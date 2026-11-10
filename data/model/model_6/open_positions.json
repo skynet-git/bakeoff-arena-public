@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":11118,"entry_ts":"2026-11-10T15:34:14.503072","symbol":"DBX","direction":"LONG","entry_price":32.31,"shares":90,"notional":2907.9,"invalidation":32.17,"take_profit_price":32.47,"take_profit_trailing_pct":null,"decision_id":161285,"stop_unguarded":false,"current_price":32.345,"mark_ts":"2026-11-10T20:40:10.096390+00:00","mark_basis":"nbbo_mid","mark_bid":32.34,"mark_ask":32.35,"unrealized_pnl":3.149999999999693,"unrealized_pct":0.10832559579076628}]}
