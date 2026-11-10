@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":10803,"entry_ts":"2026-11-10T12:36:30.369516","symbol":"SMA","direction":"LONG","entry_price":37.89,"shares":50,"notional":1894.5,"invalidation":37.74,"take_profit_price":38.22,"take_profit_trailing_pct":null,"decision_id":156183,"stop_unguarded":false,"current_price":37.93,"mark_ts":"2026-11-10T17:39:59.684221+00:00","mark_basis":"nbbo_mid","mark_bid":37.92,"mark_ask":37.94,"unrealized_pnl":1.9999999999999574,"unrealized_pct":0.1055687516495095}]}
