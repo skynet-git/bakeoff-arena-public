@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[{"shadow_fill_id":11115,"entry_ts":"2026-11-10T15:34:16.694248","symbol":"HROW","direction":"SHORT","entry_price":30.27,"shares":4,"notional":121.08,"invalidation":30.55,"take_profit_price":29.0,"take_profit_trailing_pct":null,"decision_id":161253,"stop_unguarded":false,"current_price":30.235,"mark_ts":"2026-11-10T20:39:40.891126+00:00","mark_basis":"nbbo_mid","mark_bid":30.19,"mark_ask":30.28,"unrealized_pnl":0.14000000000000057,"unrealized_pct":0.11562603237528955}]}
+{"provider":"model_1","open_positions":[]}
