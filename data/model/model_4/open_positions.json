@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[{"shadow_fill_id":10419,"entry_ts":"2026-11-10T10:01:55.307164","symbol":"GFL","direction":"LONG","entry_price":41.72,"shares":49,"notional":2044.28,"invalidation":41.45,"take_profit_price":42.3,"take_profit_trailing_pct":null,"decision_id":150687,"stop_unguarded":false,"current_price":41.65,"mark_ts":"2026-11-10T15:10:12.166857+00:00","mark_basis":"nbbo_mid","mark_bid":41.64,"mark_ask":41.66,"unrealized_pnl":-3.430000000000014,"unrealized_pct":-0.16778523489932956}]}
+{"provider":"model_4","open_positions":[]}
