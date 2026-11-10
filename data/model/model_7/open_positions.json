@@ -1,1 +1,1 @@
-{"provider":"model_7","open_positions":[]}
+{"provider":"model_7","open_positions":[{"shadow_fill_id":11100,"entry_ts":"2026-11-10T15:17:59.755645","symbol":"ETOR","direction":"SHORT","entry_price":21.64,"shares":366,"notional":7920.24,"invalidation":21.85,"take_profit_price":21.35,"take_profit_trailing_pct":null,"decision_id":160997,"stop_unguarded":false,"current_price":21.665,"mark_ts":"2026-11-10T20:20:05.809659+00:00","mark_basis":"nbbo_mid","mark_bid":21.65,"mark_ask":21.68,"unrealized_pnl":-9.14999999999948,"unrealized_pct":-0.11552680221810804}]}
