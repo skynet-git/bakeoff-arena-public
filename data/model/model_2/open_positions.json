@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":11060,"entry_ts":"2026-11-10T14:44:52.233698","symbol":"AAON","direction":"SHORT","entry_price":75.09,"shares":11,"notional":825.99,"invalidation":75.6,"take_profit_price":74.0,"take_profit_trailing_pct":null,"decision_id":160259,"stop_unguarded":false,"current_price":75.555,"mark_ts":"2026-11-10T19:50:00.594897+00:00","mark_basis":"nbbo_mid","mark_bid":75.45,"mark_ask":75.66,"unrealized_pnl":-5.1150000000000375,"unrealized_pct":-0.6192568917299286}]}
+{"provider":"model_2","open_positions":[]}
