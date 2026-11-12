@@ -1,1 +1,1 @@
-{"provider":"model_3","trades":[]}
+{"provider":"model_3","trades":[{"entry_ts":"2026-11-12T09:35:20.830636","exit_ts":"2026-11-12T09:49:36.695921","symbol":"TSM","direction":"LONG","shares":7,"entry_price":404.69,"exit_price":404.66,"exit_reason":"TP","pnl_dollars":-0.21,"pnl_pct":-0.007413081618021873,"hold_seconds":855,"notional":2832.83,"decision_id":161743,"flip_to_fill_id":null,"shadow_fill_id":11183,"tp_trailing_pct":1.2}]}
