@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":11566,"entry_ts":"2026-11-12T12:42:24.361210","symbol":"AVGO","direction":"LONG","entry_price":365.42,"shares":1,"notional":365.42,"invalidation":363.3,"take_profit_price":369.5,"take_profit_trailing_pct":null,"decision_id":166541,"stop_unguarded":false,"current_price":365.205,"mark_ts":"2026-11-12T17:45:11.689572+00:00","mark_basis":"nbbo_mid","mark_bid":365.13,"mark_ask":365.28,"unrealized_pnl":-0.21500000000003183,"unrealized_pct":-0.05883640742160577}]}
