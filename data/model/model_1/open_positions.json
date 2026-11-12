@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[{"shadow_fill_id":11811,"entry_ts":"2026-11-12T15:47:16.489230","symbol":"CAE","direction":"LONG","entry_price":28.3,"shares":70,"notional":1981.0,"invalidation":28.2,"take_profit_price":28.48,"take_profit_trailing_pct":null,"decision_id":170674,"stop_unguarded":false,"current_price":28.265,"mark_ts":"2026-11-12T20:50:13.183992+00:00","mark_basis":"nbbo_mid","mark_bid":28.26,"mark_ask":28.27,"unrealized_pnl":-2.45000000000001,"unrealized_pct":-0.12367491166077789}]}
+{"provider":"model_1","open_positions":[]}
