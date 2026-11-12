@@ -1429,7 +1429,10 @@ function renderFeed(decisions, containerId, opts) {
         const dirCls = d.direction === "LONG" ? "dir-LONG" : d.direction === "SHORT" ? "dir-SHORT" : "";
         const dirText = d.direction && d.direction !== "NONE" ? ` ${d.direction}` : "";
         // 2026-08-28: labels expanded so a non-author can read the row.
-        // "kind" is entry|exit LLM prompt; "conf" is 0-1 model self-report;
+        // "kind" is entry|exit LLM prompt; "conf" is 0-1 model self-report
+        // (v16.47.0: absent from the row under prompt variants B and D, which
+        // ask for none — then nothing is shown, here, in the symbol panel
+        // and in the drawer);
         // "size" is % of buying power; latency now human-friendly seconds
         // above 1s (reasoning models genuinely run 30-120s).
         //
@@ -2281,7 +2284,7 @@ function openDrawer(decisionId) {
                 <dt>Size %</dt><dd>${d.size_pct != null ? d.size_pct.toFixed(1) + '%' : '—'}</dd>
                 <dt>Invalidation</dt><dd>${d.invalidation != null ? '$' + d.invalidation.toFixed(2) : '—'}</dd>
                 <dt>Take Profit</dt><dd>${d.take_profit_price != null ? '$' + d.take_profit_price.toFixed(2) : (d.take_profit_trailing_pct != null ? 'trailing ' + d.take_profit_trailing_pct + '%' : '—')}</dd>
-                <dt>Confidence</dt><dd>${d.confidence != null ? d.confidence.toFixed(2) : '—'}</dd>
+                ${"confidence" in d ? `<dt>Confidence</dt><dd>${d.confidence != null ? d.confidence.toFixed(2) : '—'}</dd>` : ""}
                 <dt>Timestamp</dt><dd>${ts}</dd>
                 ${obfuscated ? "" : `<dt>Latency</dt><dd>${fmtLatency(d.latency_ms)}</dd>
                 <dt>Tokens</dt><dd>${d.tokens_in || 0} in / ${d.tokens_out || 0} out</dd>`}
