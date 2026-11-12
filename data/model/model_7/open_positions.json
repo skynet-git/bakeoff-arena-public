@@ -1,1 +1,1 @@
-{"provider":"model_7","open_positions":[]}
+{"provider":"model_7","open_positions":[{"shadow_fill_id":11555,"entry_ts":"2026-11-12T12:36:55.074119","symbol":"TTEK","direction":"SHORT","entry_price":39.03,"shares":384,"notional":14987.52,"invalidation":39.3,"take_profit_price":38.25,"take_profit_trailing_pct":null,"decision_id":166343,"stop_unguarded":false,"current_price":39.045,"mark_ts":"2026-11-12T17:40:05.446267+00:00","mark_basis":"nbbo_mid","mark_bid":39.02,"mark_ask":39.07,"unrealized_pnl":-5.760000000000218,"unrealized_pct":-0.0384319754035372}]}
