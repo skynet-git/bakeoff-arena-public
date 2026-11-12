@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":11576,"entry_ts":"2026-11-12T12:48:51.699372","symbol":"JBS","direction":"LONG","entry_price":11.57,"shares":518,"notional":5993.26,"invalidation":11.48,"take_profit_price":11.69,"take_profit_trailing_pct":null,"decision_id":166828,"stop_unguarded":false,"current_price":11.665,"mark_ts":"2026-11-12T17:55:07.978496+00:00","mark_basis":"nbbo_mid","mark_bid":11.66,"mark_ask":11.67,"unrealized_pnl":49.20999999999941,"unrealized_pct":0.8210890233362045}]}
+{"provider":"model_2","open_positions":[]}
