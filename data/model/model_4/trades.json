@@ -1,1 +1,1 @@
-{"provider":"model_4","trades":[]}
+{"provider":"model_4","trades":[{"entry_ts":"2026-11-12T09:33:22.467613","exit_ts":"2026-11-12T09:34:17.567612","symbol":"ECO","direction":"LONG","shares":58,"entry_price":84.23,"exit_price":83.0,"exit_reason":"STOP","pnl_dollars":-71.34,"pnl_pct":-1.4602873085599002,"hold_seconds":55,"notional":4885.34,"decision_id":161618,"flip_to_fill_id":null,"shadow_fill_id":11154,"tp_trailing_pct":null}]}

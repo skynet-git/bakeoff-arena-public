@@ -1,1 +1,1 @@
-{"provider":"model_7","open_positions":[]}
+{"provider":"model_7","open_positions":[{"shadow_fill_id":11184,"entry_ts":"2026-11-12T09:35:38.151289","symbol":"ECO","direction":"SHORT","entry_price":82.51,"shares":182,"notional":15016.820000000002,"invalidation":83.85,"take_profit_price":80.5,"take_profit_trailing_pct":null,"decision_id":161744,"stop_unguarded":false,"current_price":82.64,"mark_ts":"2026-11-12T14:45:08.126327+00:00","mark_basis":"nbbo_mid","mark_bid":82.47,"mark_ask":82.81,"unrealized_pnl":-23.659999999999172,"unrealized_pct":-0.15755665979880673}]}

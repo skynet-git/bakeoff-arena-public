@@ -1,1 +1,1 @@
-{"provider":"model_6","n_trades":1,"win_rate":1.0,"avg_win":18.48,"avg_loss":0.0,"profit_factor":null,"expectancy":18.48,"max_drawdown":0.0,"sharpe":null,"total_pnl":18.48,"best_trade":18.48,"worst_trade":18.48,"avg_hold_minutes":5.116666666666666}
+{"provider":"model_6","n_trades":4,"win_rate":0.5,"avg_win":61.77,"avg_loss":-67.395,"profit_factor":0.9165368350767862,"expectancy":-2.812499999999999,"max_drawdown":-134.79,"sharpe":-0.03390942888158812,"total_pnl":-11.249999999999996,"best_trade":105.06,"worst_trade":-77.55,"avg_hold_minutes":2.370833333333333}
