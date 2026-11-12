@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[]}
+{"provider":"model_1","open_positions":[{"shadow_fill_id":11137,"entry_ts":"2026-11-12T09:31:32.262449","symbol":"CTRE","direction":"SHORT","entry_price":37.88,"shares":132,"notional":5000.160000000001,"invalidation":38.1,"take_profit_price":37.55,"take_profit_trailing_pct":null,"decision_id":161566,"stop_unguarded":false,"current_price":38.015,"mark_ts":"2026-11-12T14:35:07.778944+00:00","mark_basis":"nbbo_mid","mark_bid":38.0,"mark_ask":38.03,"unrealized_pnl":-17.819999999999737,"unrealized_pct":-0.3563885955649366}]}

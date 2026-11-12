@@ -1,1 +1,1 @@
-{"provider":"model_1","trades":[]}
+{"provider":"model_1","trades":[{"entry_ts":"2026-11-12T09:32:17.518244","exit_ts":"2026-11-12T09:33:00.618244","symbol":"EPR","direction":"SHORT","shares":84,"entry_price":59.65,"exit_price":59.92,"exit_reason":"STOP","pnl_dollars":-22.68,"pnl_pct":-0.4526404023470296,"hold_seconds":43,"notional":5010.599999999999,"decision_id":161562,"flip_to_fill_id":null,"shadow_fill_id":11136,"tp_trailing_pct":null}]}
