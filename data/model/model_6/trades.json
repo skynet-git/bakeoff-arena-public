@@ -1,1 +1,1 @@
-{"provider":"model_6","trades":[]}
+{"provider":"model_6","trades":[{"entry_ts":"2026-11-12T09:31:58.634842","exit_ts":"2026-11-12T09:37:05.734842","symbol":"CTRE","direction":"LONG","shares":264,"entry_price":37.86,"exit_price":37.93,"exit_reason":"TP","pnl_dollars":18.48,"pnl_pct":0.1848917062863188,"hold_seconds":307,"notional":9995.039999999999,"decision_id":161588,"flip_to_fill_id":null,"shadow_fill_id":11145,"tp_trailing_pct":0.3}]}
