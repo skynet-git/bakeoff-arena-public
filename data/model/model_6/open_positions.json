@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[{"shadow_fill_id":11690,"entry_ts":"2026-11-12T14:06:04.081225","symbol":"OXY","direction":"LONG","entry_price":58.84,"shares":8,"notional":470.72,"invalidation":58.68,"take_profit_price":59.05,"take_profit_trailing_pct":null,"decision_id":168782,"stop_unguarded":false,"current_price":58.754999999999995,"mark_ts":"2026-11-12T19:10:07.525636+00:00","mark_basis":"nbbo_mid","mark_bid":58.75,"mark_ask":58.76,"unrealized_pnl":-0.6800000000000637,"unrealized_pct":-0.14445955132564234}]}
+{"provider":"model_6","open_positions":[]}
