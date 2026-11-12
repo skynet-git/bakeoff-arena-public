@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[{"shadow_fill_id":11668,"entry_ts":"2026-11-12T14:01:49.126720","symbol":"SONO","direction":"SHORT","entry_price":18.8,"shares":106,"notional":1992.8000000000002,"invalidation":19.15,"take_profit_price":18.5,"take_profit_trailing_pct":null,"decision_id":168580,"stop_unguarded":false,"current_price":18.585,"mark_ts":"2026-11-12T20:05:05.931473+00:00","mark_basis":"nbbo_mid","mark_bid":18.58,"mark_ask":18.59,"unrealized_pnl":22.789999999999985,"unrealized_pct":1.143617021276595}]}
+{"provider":"model_4","open_positions":[]}
