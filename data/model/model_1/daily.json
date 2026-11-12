@@ -1,1 +1,1 @@
-{"provider":"model_1","days":[{"day":"2026-11-12","weekday":"Thu","n_trades":223,"fees_booked":true,"trades_unbooked":0,"pnl_usd":-267.4,"token_usd":-1.31,"comm_usd":-20.68,"ecn_usd":70.32,"net_usd":-219.07}]}
+{"provider":"model_1","days":[{"day":"2026-11-12","weekday":"Thu","n_trades":225,"fees_booked":true,"trades_unbooked":0,"pnl_usd":-257.31,"token_usd":-1.33,"comm_usd":-21.21,"ecn_usd":70.89,"net_usd":-208.96}]}
