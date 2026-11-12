@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":11519,"entry_ts":"2026-11-12T12:11:33.044382","symbol":"FIGR","direction":"LONG","entry_price":26.99,"shares":51,"notional":1376.49,"invalidation":26.87,"take_profit_price":27.47,"take_profit_trailing_pct":null,"decision_id":165564,"stop_unguarded":false,"current_price":27.08,"mark_ts":"2026-11-12T17:14:58.583445+00:00","mark_basis":"nbbo_mid","mark_bid":27.05,"mark_ask":27.11,"unrealized_pnl":4.589999999999993,"unrealized_pct":0.3334568358651347}]}
