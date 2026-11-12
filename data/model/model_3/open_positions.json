@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":11167,"entry_ts":"2026-11-12T09:33:03.719438","symbol":"CRWV","direction":"LONG","entry_price":52.35,"shares":57,"notional":2983.9500000000003,"invalidation":50.17,"take_profit_price":null,"take_profit_trailing_pct":2.5,"decision_id":161673,"stop_unguarded":false,"current_price":56.06,"mark_ts":"2026-11-12T14:55:07.781260+00:00","mark_basis":"nbbo_mid","mark_bid":56.05,"mark_ask":56.07,"unrealized_pnl":211.47000000000006,"unrealized_pct":7.086914995224452}]}
+{"provider":"model_3","open_positions":[]}
