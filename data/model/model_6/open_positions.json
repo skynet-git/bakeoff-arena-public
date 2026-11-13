@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":11865,"entry_ts":"2026-11-13T09:36:49.451170","symbol":"SAP","direction":"SHORT","entry_price":234.83,"shares":57,"notional":13385.310000000001,"invalidation":236.21,"take_profit_price":234.06,"take_profit_trailing_pct":null,"decision_id":170942,"stop_unguarded":false,"current_price":235.295,"mark_ts":"2026-11-13T14:40:10.528825+00:00","mark_basis":"nbbo_mid","mark_bid":235.2,"mark_ask":235.39,"unrealized_pnl":-26.504999999998574,"unrealized_pct":-0.19801558574286715}]}
