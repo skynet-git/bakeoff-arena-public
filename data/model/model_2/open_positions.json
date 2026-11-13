@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":12276,"entry_ts":"2026-11-13T12:37:42.260166","symbol":"CBRS","direction":"SHORT","entry_price":107.79,"shares":52,"notional":5605.08,"invalidation":109.15,"take_profit_price":104.8,"take_profit_trailing_pct":null,"decision_id":176719,"stop_unguarded":false,"current_price":108.255,"mark_ts":"2026-11-13T17:45:10.873837+00:00","mark_basis":"nbbo_mid","mark_bid":108.2,"mark_ask":108.31,"unrealized_pnl":-24.17999999999944,"unrealized_pct":-0.4313943779571288}]}
+{"provider":"model_2","open_positions":[]}
