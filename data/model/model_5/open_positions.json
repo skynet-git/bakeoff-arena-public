@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":12475,"entry_ts":"2026-11-13T15:41:45.505600","symbol":"YETI","direction":"SHORT","entry_price":39.18,"shares":121,"notional":4740.78,"invalidation":39.36,"take_profit_price":null,"take_profit_trailing_pct":0.3,"decision_id":181280,"stop_unguarded":false,"current_price":39.120000000000005,"mark_ts":"2026-11-13T20:45:11.581035+00:00","mark_basis":"nbbo_mid","mark_bid":39.11,"mark_ask":39.13,"unrealized_pnl":7.259999999999415,"unrealized_pct":0.15313935681468904}]}
