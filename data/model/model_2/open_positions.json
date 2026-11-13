@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":11867,"entry_ts":"2026-11-13T09:38:42.856911","symbol":"BNY","direction":"SHORT","entry_price":152.83,"shares":21,"notional":3209.4300000000003,"invalidation":153.75,"take_profit_price":null,"take_profit_trailing_pct":0.35,"decision_id":170953,"stop_unguarded":false,"current_price":152.44,"mark_ts":"2026-11-13T14:55:09.507466+00:00","mark_basis":"nbbo_mid","mark_bid":152.31,"mark_ask":152.57,"unrealized_pnl":8.19000000000031,"unrealized_pct":0.25518550022902226}]}
+{"provider":"model_2","open_positions":[]}

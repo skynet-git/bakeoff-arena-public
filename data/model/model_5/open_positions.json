@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":11916,"entry_ts":"2026-11-13T09:55:16.453635","symbol":"BZ","direction":"LONG","entry_price":12.64,"shares":376,"notional":4752.64,"invalidation":12.48,"take_profit_price":null,"take_profit_trailing_pct":0.8,"decision_id":171336,"stop_unguarded":false,"current_price":12.675,"mark_ts":"2026-11-13T15:00:07.676198+00:00","mark_basis":"nbbo_mid","mark_bid":12.67,"mark_ask":12.68,"unrealized_pnl":13.160000000000053,"unrealized_pct":0.2768987341772163}]}
