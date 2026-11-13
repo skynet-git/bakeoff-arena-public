@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":12339,"entry_ts":"2026-11-13T13:21:19.456270","symbol":"CLBT","direction":"LONG","entry_price":11.61,"shares":245,"notional":2844.45,"invalidation":11.54,"take_profit_price":11.82,"take_profit_trailing_pct":null,"decision_id":178077,"stop_unguarded":false,"current_price":11.625,"mark_ts":"2026-11-13T18:25:09.235970+00:00","mark_basis":"nbbo_mid","mark_bid":11.62,"mark_ask":11.63,"unrealized_pnl":3.6750000000001393,"unrealized_pct":0.12919896640827364}]}
+{"provider":"model_2","open_positions":[]}
