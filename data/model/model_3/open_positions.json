@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":11992,"entry_ts":"2026-11-13T10:17:43.506210","symbol":"KLAR","direction":"LONG","entry_price":13.41,"shares":227,"notional":3044.07,"invalidation":13.22,"take_profit_price":null,"take_profit_trailing_pct":1.2,"decision_id":171999,"stop_unguarded":false,"current_price":13.415,"mark_ts":"2026-11-13T15:25:11.600510+00:00","mark_basis":"nbbo_mid","mark_bid":13.41,"mark_ask":13.42,"unrealized_pnl":1.1349999999997742,"unrealized_pct":0.03728560775539899}]}
