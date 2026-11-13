@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[{"shadow_fill_id":12429,"entry_ts":"2026-11-13T14:55:00.022999","symbol":"MAZE","direction":"LONG","entry_price":34.85,"shares":141,"notional":4913.85,"invalidation":34.65,"take_profit_price":35.3,"take_profit_trailing_pct":null,"decision_id":180481,"stop_unguarded":false,"current_price":34.79,"mark_ts":"2026-11-13T20:04:29.412259+00:00","mark_basis":"nbbo_mid","mark_bid":34.75,"mark_ask":34.83,"unrealized_pnl":-8.46000000000032,"unrealized_pct":-0.17216642754663491}]}
+{"provider":"model_4","open_positions":[]}

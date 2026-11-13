@@ -1,1 +1,1 @@
-{"provider":"model_7","open_positions":[]}
+{"provider":"model_7","open_positions":[{"shadow_fill_id":12445,"entry_ts":"2026-11-13T15:06:39.873249","symbol":"HAWK","direction":"LONG","entry_price":18.02,"shares":500,"notional":9010.0,"invalidation":17.85,"take_profit_price":18.45,"take_profit_trailing_pct":null,"decision_id":180737,"stop_unguarded":false,"current_price":18.03,"mark_ts":"2026-11-13T20:10:12.523789+00:00","mark_basis":"nbbo_mid","mark_bid":18.02,"mark_ask":18.04,"unrealized_pnl":5.000000000000782,"unrealized_pct":0.055493895671484814}]}
