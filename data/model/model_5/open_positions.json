@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":12003,"entry_ts":"2026-11-13T10:32:40.328261","symbol":"LFTO","direction":"SHORT","entry_price":23.06,"shares":207,"notional":4773.42,"invalidation":23.35,"take_profit_price":null,"take_profit_trailing_pct":1.5,"decision_id":172341,"stop_unguarded":false,"current_price":23.125,"mark_ts":"2026-11-13T15:35:03.940909+00:00","mark_basis":"nbbo_mid","mark_bid":23.08,"mark_ask":23.17,"unrealized_pnl":-13.455000000000265,"unrealized_pct":-0.28187337380746436}]}
