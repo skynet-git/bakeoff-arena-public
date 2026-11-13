@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[]}
+{"provider":"model_1","open_positions":[{"shadow_fill_id":11813,"entry_ts":"2026-11-13T09:33:40.734112","symbol":"LYV","direction":"SHORT","entry_price":180.22,"shares":26,"notional":4685.72,"invalidation":181.3,"take_profit_price":180.4,"take_profit_trailing_pct":null,"decision_id":170755,"stop_unguarded":false,"current_price":180.85,"mark_ts":"2026-11-13T14:35:00.932641+00:00","mark_basis":"nbbo_mid","mark_bid":180.23,"mark_ask":181.47,"unrealized_pnl":-16.37999999999988,"unrealized_pct":-0.34957274442347985}]}
