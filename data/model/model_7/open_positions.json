@@ -1,1 +1,1 @@
-{"provider":"model_7","open_positions":[]}
+{"provider":"model_7","open_positions":[{"shadow_fill_id":13166,"entry_ts":"2026-11-16T15:33:30.140263","symbol":"PSNL","direction":"SHORT","entry_price":14.87,"shares":175,"notional":2602.25,"invalidation":14.91,"take_profit_price":14.8,"take_profit_trailing_pct":null,"decision_id":190735,"stop_unguarded":false,"current_price":14.855,"mark_ts":"2026-11-16T20:39:57.125347+00:00","mark_basis":"nbbo_mid","mark_bid":14.85,"mark_ask":14.86,"unrealized_pnl":2.6249999999997886,"unrealized_pct":0.10087424344316605}]}
