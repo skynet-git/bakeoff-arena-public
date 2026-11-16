@@ -1,1 +1,1 @@
-{"provider":"model_7","open_positions":[{"shadow_fill_id":12567,"entry_ts":"2026-11-16T09:44:13.615315","symbol":"AMD","direction":"LONG","entry_price":525.09,"shares":24,"notional":12602.16,"invalidation":517.8,"take_profit_price":534.0,"take_profit_trailing_pct":null,"decision_id":181776,"stop_unguarded":false,"current_price":520.98,"mark_ts":"2026-11-16T14:55:12.738319+00:00","mark_basis":"nbbo_mid","mark_bid":520.85,"mark_ask":521.11,"unrealized_pnl":-98.64000000000033,"unrealized_pct":-0.7827229617779836}]}
+{"provider":"model_7","open_positions":[]}
