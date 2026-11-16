@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":12571,"entry_ts":"2026-11-16T09:47:05.670882","symbol":"DLB","direction":"SHORT","entry_price":60.99,"shares":74,"notional":4513.26,"invalidation":61.75,"take_profit_price":null,"take_profit_trailing_pct":0.5,"decision_id":181815,"stop_unguarded":false,"current_price":60.675,"mark_ts":"2026-11-16T14:50:10.058382+00:00","mark_basis":"nbbo_mid","mark_bid":60.44,"mark_ask":60.91,"unrealized_pnl":23.310000000000358,"unrealized_pct":0.5164781111657728}]}
