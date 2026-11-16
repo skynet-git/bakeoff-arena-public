@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":12984,"entry_ts":"2026-11-16T13:02:53.332280","symbol":"CGON","direction":"LONG","entry_price":86.78,"shares":64,"notional":5553.92,"invalidation":85.5,"take_profit_price":null,"take_profit_trailing_pct":2.0,"decision_id":187354,"stop_unguarded":false,"current_price":86.705,"mark_ts":"2026-11-16T18:05:07.131057+00:00","mark_basis":"nbbo_mid","mark_bid":86.57,"mark_ask":86.84,"unrealized_pnl":-4.800000000000182,"unrealized_pct":-0.08642544365061401}]}
+{"provider":"model_2","open_positions":[]}
