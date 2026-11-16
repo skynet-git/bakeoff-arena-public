@@ -1,1 +1,1 @@
-{"provider":"model_7","open_positions":[{"shadow_fill_id":12888,"entry_ts":"2026-11-16T12:00:14.075527","symbol":"POWL","direction":"LONG","entry_price":153.48,"shares":11,"notional":1688.28,"invalidation":152.2,"take_profit_price":157.5,"take_profit_trailing_pct":null,"decision_id":185542,"stop_unguarded":false,"current_price":154.39499999999998,"mark_ts":"2026-11-16T17:19:52.788108+00:00","mark_basis":"nbbo_mid","mark_bid":153.95,"mark_ask":154.84,"unrealized_pnl":10.064999999999912,"unrealized_pct":0.5961688819390097}]}
+{"provider":"model_7","open_positions":[]}
