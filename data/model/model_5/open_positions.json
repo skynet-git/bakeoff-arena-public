@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[{"shadow_fill_id":13533,"entry_ts":"2026-11-17T14:04:15.241097","symbol":"ED","direction":"SHORT","entry_price":120.04,"shares":36,"notional":4321.4400000000005,"invalidation":120.18,"take_profit_price":null,"take_profit_trailing_pct":0.15,"decision_id":195455,"stop_unguarded":false,"current_price":120.005,"mark_ts":"2026-11-17T19:15:11.670121+00:00","mark_basis":"nbbo_mid","mark_bid":120.0,"mark_ask":120.01,"unrealized_pnl":1.2600000000003888,"unrealized_pct":0.029156947684114295}]}
+{"provider":"model_5","open_positions":[]}
