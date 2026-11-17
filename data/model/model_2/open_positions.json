@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":13473,"entry_ts":"2026-11-17T11:42:03.573311","symbol":"FRSH","direction":"LONG","entry_price":13.0,"shares":417,"notional":5421.0,"invalidation":12.89,"take_profit_price":13.25,"take_profit_trailing_pct":null,"decision_id":193770,"stop_unguarded":false,"current_price":13.024999999999999,"mark_ts":"2026-11-17T16:50:05.834908+00:00","mark_basis":"nbbo_mid","mark_bid":13.02,"mark_ask":13.03,"unrealized_pnl":10.424999999999407,"unrealized_pct":0.19230769230768135}]}
+{"provider":"model_2","open_positions":[]}
