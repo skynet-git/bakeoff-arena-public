@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":13556,"entry_ts":"2026-11-17T15:27:13.649799","symbol":"ENR","direction":"LONG","entry_price":27.25,"shares":64,"notional":1744.0,"invalidation":26.9,"take_profit_price":null,"take_profit_trailing_pct":0.3,"decision_id":196195,"stop_unguarded":false,"current_price":27.245,"mark_ts":"2026-11-17T20:29:48.968269+00:00","mark_basis":"nbbo_mid","mark_bid":27.21,"mark_ask":27.28,"unrealized_pnl":-0.31999999999993634,"unrealized_pct":-0.018348623853207357}]}
