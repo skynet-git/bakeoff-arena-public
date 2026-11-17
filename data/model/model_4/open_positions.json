@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[]}
+{"provider":"model_4","open_positions":[{"shadow_fill_id":13204,"entry_ts":"2026-11-17T09:33:02.506624","symbol":"HD","direction":"LONG","entry_price":341.36,"shares":14,"notional":4779.04,"invalidation":334.0,"take_profit_price":346.5,"take_profit_trailing_pct":null,"decision_id":191111,"stop_unguarded":false,"current_price":338.4,"mark_ts":"2026-11-17T14:40:10.776320+00:00","mark_basis":"nbbo_mid","mark_bid":338.06,"mark_ask":338.74,"unrealized_pnl":-41.44000000000051,"unrealized_pct":-0.8671197562690521}]}

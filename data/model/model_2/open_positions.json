@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":13230,"entry_ts":"2026-11-17T09:37:43.830100","symbol":"BBIO","direction":"SHORT","entry_price":75.81,"shares":66,"notional":5003.46,"invalidation":76.45,"take_profit_price":75.3,"take_profit_trailing_pct":null,"decision_id":191231,"stop_unguarded":false,"current_price":75.465,"mark_ts":"2026-11-17T14:40:10.776320+00:00","mark_basis":"nbbo_mid","mark_bid":75.24,"mark_ask":75.69,"unrealized_pnl":22.769999999999925,"unrealized_pct":0.4550850811238608}]}
