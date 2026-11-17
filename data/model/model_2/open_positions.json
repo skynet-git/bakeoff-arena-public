@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":13278,"entry_ts":"2026-11-17T09:56:50.369417","symbol":"VIV","direction":"LONG","entry_price":12.18,"shares":342,"notional":4165.5599999999995,"invalidation":12.15,"take_profit_price":12.25,"take_profit_trailing_pct":null,"decision_id":191540,"stop_unguarded":false,"current_price":12.184999999999999,"mark_ts":"2026-11-17T15:00:11.532057+00:00","mark_basis":"nbbo_mid","mark_bid":12.18,"mark_ask":12.19,"unrealized_pnl":1.7099999999996598,"unrealized_pct":0.041050903119860475}]}
