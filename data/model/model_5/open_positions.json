@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":13293,"entry_ts":"2026-11-17T10:03:37.619662","symbol":"VIK","direction":"SHORT","entry_price":91.1,"shares":48,"notional":4372.799999999999,"invalidation":91.65,"take_profit_price":null,"take_profit_trailing_pct":0.8,"decision_id":191625,"stop_unguarded":false,"current_price":90.66,"mark_ts":"2026-11-17T15:05:10.828388+00:00","mark_basis":"nbbo_mid","mark_bid":90.58,"mark_ask":90.74,"unrealized_pnl":21.11999999999989,"unrealized_pct":0.48298572996706673}]}
