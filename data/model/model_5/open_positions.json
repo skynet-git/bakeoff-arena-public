@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":13552,"entry_ts":"2026-11-17T14:56:43.342874","symbol":"JBIO","direction":"LONG","entry_price":15.02,"shares":117,"notional":1757.34,"invalidation":14.92,"take_profit_price":null,"take_profit_trailing_pct":0.5,"decision_id":195928,"stop_unguarded":false,"current_price":15.01,"mark_ts":"2026-11-17T20:00:06.622085+00:00","mark_basis":"nbbo_mid","mark_bid":14.99,"mark_ask":15.03,"unrealized_pnl":-1.169999999999975,"unrealized_pct":-0.06657789613848061}]}
