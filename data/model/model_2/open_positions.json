@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":13456,"entry_ts":"2026-11-17T11:33:45.354522","symbol":"CRM","direction":"LONG","entry_price":194.83,"shares":12,"notional":2337.96,"invalidation":193.89,"take_profit_price":196.75,"take_profit_trailing_pct":null,"decision_id":193569,"stop_unguarded":false,"current_price":194.95,"mark_ts":"2026-11-17T16:35:12.359030+00:00","mark_basis":"nbbo_mid","mark_bid":194.82,"mark_ask":195.08,"unrealized_pnl":1.4399999999997135,"unrealized_pct":0.06159215726529596}]}
