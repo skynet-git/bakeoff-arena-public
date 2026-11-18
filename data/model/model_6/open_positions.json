@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[{"shadow_fill_id":14027,"entry_ts":"2026-11-18T12:57:58.766251","symbol":"BETA","direction":"LONG","entry_price":19.36,"shares":175,"notional":3388.0,"invalidation":19.1,"take_profit_price":19.75,"take_profit_trailing_pct":null,"decision_id":202025,"stop_unguarded":false,"current_price":19.31,"mark_ts":"2026-11-18T18:00:10.723180+00:00","mark_basis":"nbbo_mid","mark_bid":19.29,"mark_ask":19.33,"unrealized_pnl":-8.750000000000124,"unrealized_pct":-0.258264462809921}]}
+{"provider":"model_6","open_positions":[]}

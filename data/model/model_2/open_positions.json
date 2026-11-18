@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":14029,"entry_ts":"2026-11-18T13:03:05.365698","symbol":"MDLN","direction":"LONG","entry_price":39.27,"shares":86,"notional":3377.2200000000003,"invalidation":39.05,"take_profit_price":null,"take_profit_trailing_pct":0.4,"decision_id":202134,"stop_unguarded":false,"current_price":39.254999999999995,"mark_ts":"2026-11-18T18:05:09.635172+00:00","mark_basis":"nbbo_mid","mark_bid":39.25,"mark_ask":39.26,"unrealized_pnl":-1.29000000000066,"unrealized_pct":-0.03819709702064597}]}
