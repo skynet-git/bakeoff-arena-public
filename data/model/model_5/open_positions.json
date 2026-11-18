@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":14024,"entry_ts":"2026-11-18T12:53:47.807029","symbol":"CVE","direction":"SHORT","entry_price":27.08,"shares":150,"notional":4061.9999999999995,"invalidation":27.22,"take_profit_price":26.8,"take_profit_trailing_pct":null,"decision_id":201973,"stop_unguarded":false,"current_price":27.025,"mark_ts":"2026-11-18T18:00:12.810446+00:00","mark_basis":"nbbo_mid","mark_bid":27.02,"mark_ask":27.03,"unrealized_pnl":8.249999999999957,"unrealized_pct":0.20310192023633578}]}
