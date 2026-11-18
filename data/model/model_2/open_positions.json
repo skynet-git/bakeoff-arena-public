@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":14060,"entry_ts":"2026-11-18T13:41:03.341023","symbol":"BLLN","direction":"LONG","entry_price":91.73,"shares":49,"notional":4494.77,"invalidation":91.29,"take_profit_price":93.65,"take_profit_trailing_pct":null,"decision_id":202739,"stop_unguarded":false,"current_price":91.96000000000001,"mark_ts":"2026-11-18T18:50:11.347113+00:00","mark_basis":"nbbo_mid","mark_bid":91.86,"mark_ask":92.06,"unrealized_pnl":11.270000000000195,"unrealized_pct":0.2507358552273018}]}
+{"provider":"model_2","open_positions":[]}
