@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":14116,"entry_ts":"2026-11-18T14:46:07.297317","symbol":"WPM","direction":"LONG","entry_price":119.13,"shares":28,"notional":3335.64,"invalidation":118.15,"take_profit_price":120.25,"take_profit_trailing_pct":null,"decision_id":203629,"stop_unguarded":false,"current_price":119.28999999999999,"mark_ts":"2026-11-18T20:00:09.217917+00:00","mark_basis":"nbbo_mid","mark_bid":119.22,"mark_ask":119.36,"unrealized_pnl":4.4799999999999045,"unrealized_pct":0.1343070595148129}]}
+{"provider":"model_2","open_positions":[]}
