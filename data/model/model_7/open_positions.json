@@ -1,1 +1,1 @@
-{"provider":"model_7","open_positions":[{"shadow_fill_id":14138,"entry_ts":"2026-11-18T15:35:16.955600","symbol":"PRMB","direction":"LONG","entry_price":22.87,"shares":628,"notional":14362.36,"invalidation":22.8,"take_profit_price":23.05,"take_profit_trailing_pct":null,"decision_id":204158,"stop_unguarded":false,"current_price":22.975,"mark_ts":"2026-11-18T20:50:05.847175+00:00","mark_basis":"nbbo_mid","mark_bid":22.97,"mark_ask":22.98,"unrealized_pnl":65.94000000000027,"unrealized_pct":0.45911674682991}]}
+{"provider":"model_7","open_positions":[]}
