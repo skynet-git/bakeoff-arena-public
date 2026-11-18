@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[{"shadow_fill_id":13943,"entry_ts":"2026-11-18T12:01:41.425000","symbol":"AEM","direction":"LONG","entry_price":158.53,"shares":30,"notional":4755.9,"invalidation":157.1,"take_profit_price":161.5,"take_profit_trailing_pct":null,"decision_id":200571,"stop_unguarded":false,"current_price":160.985,"mark_ts":"2026-11-18T20:20:09.729487+00:00","mark_basis":"nbbo_mid","mark_bid":160.9,"mark_ask":161.07,"unrealized_pnl":73.65000000000038,"unrealized_pct":1.548602788115822}]}
+{"provider":"model_4","open_positions":[]}
