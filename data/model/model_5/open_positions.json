@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[{"shadow_fill_id":13729,"entry_ts":"2026-11-18T10:12:38.134628","symbol":"GLNG","direction":"SHORT","entry_price":40.57,"shares":100,"notional":4057.0,"invalidation":40.81,"take_profit_price":null,"take_profit_trailing_pct":0.5,"decision_id":197565,"stop_unguarded":false,"current_price":40.68,"mark_ts":"2026-11-18T15:15:09.047484+00:00","mark_basis":"nbbo_mid","mark_bid":40.62,"mark_ask":40.74,"unrealized_pnl":-10.999999999999943,"unrealized_pct":-0.27113630761646396}]}
+{"provider":"model_5","open_positions":[]}
