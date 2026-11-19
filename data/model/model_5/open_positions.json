@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[{"shadow_fill_id":14173,"entry_ts":"2026-11-19T09:33:50.721271","symbol":"IREN","direction":"LONG","entry_price":16.27,"shares":229,"notional":3725.83,"invalidation":15.9,"take_profit_price":null,"take_profit_trailing_pct":1.5,"decision_id":204450,"stop_unguarded":false,"current_price":16.189999999999998,"mark_ts":"2026-11-19T14:40:15.035345+00:00","mark_basis":"nbbo_mid","mark_bid":16.18,"mark_ask":16.2,"unrealized_pnl":-18.320000000000423,"unrealized_pct":-0.4917025199754262}]}
+{"provider":"model_5","open_positions":[]}
