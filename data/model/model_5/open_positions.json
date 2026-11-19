@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":14290,"entry_ts":"2026-11-19T10:12:37.937810","symbol":"NVS","direction":"LONG","entry_price":151.75,"shares":24,"notional":3642.0,"invalidation":151.05,"take_profit_price":null,"take_profit_trailing_pct":0.3,"decision_id":205361,"stop_unguarded":false,"current_price":151.98000000000002,"mark_ts":"2026-11-19T15:20:14.687716+00:00","mark_basis":"nbbo_mid","mark_bid":151.96,"mark_ask":152.0,"unrealized_pnl":5.520000000000437,"unrealized_pct":0.15156507413510262}]}
