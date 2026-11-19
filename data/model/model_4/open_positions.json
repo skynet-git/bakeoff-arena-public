@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[{"shadow_fill_id":14672,"entry_ts":"2026-11-19T15:08:24.182910","symbol":"WSM","direction":"LONG","entry_price":222.88,"shares":21,"notional":4680.48,"invalidation":219.0,"take_profit_price":228.4,"take_profit_trailing_pct":null,"decision_id":211712,"stop_unguarded":false,"current_price":222.555,"mark_ts":"2026-11-19T20:15:12.411698+00:00","mark_basis":"nbbo_mid","mark_bid":222.4,"mark_ask":222.71,"unrealized_pnl":-6.824999999999761,"unrealized_pct":-0.1458183776022921}]}
+{"provider":"model_4","open_positions":[]}
