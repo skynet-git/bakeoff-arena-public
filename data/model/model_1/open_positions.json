@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[{"shadow_fill_id":14687,"entry_ts":"2026-11-19T15:25:15.250140","symbol":"BIPC","direction":"SHORT","entry_price":41.33,"shares":8,"notional":330.64,"invalidation":41.55,"take_profit_price":41.05,"take_profit_trailing_pct":null,"decision_id":211965,"stop_unguarded":false,"current_price":41.305,"mark_ts":"2026-11-19T20:45:08.699350+00:00","mark_basis":"nbbo_mid","mark_bid":41.3,"mark_ask":41.31,"unrealized_pnl":0.19999999999998863,"unrealized_pct":0.06048874909266533}]}
+{"provider":"model_1","open_positions":[]}
