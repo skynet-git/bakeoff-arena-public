@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":14144,"entry_ts":"2026-11-19T09:31:27.054872","symbol":"SLS","direction":"LONG","entry_price":15.42,"shares":242,"notional":3731.64,"invalidation":15.25,"take_profit_price":null,"take_profit_trailing_pct":1.5,"decision_id":204302,"stop_unguarded":false,"current_price":16.095,"mark_ts":"2026-11-19T14:35:13.324694+00:00","mark_basis":"nbbo_mid","mark_bid":16.08,"mark_ask":16.11,"unrealized_pnl":163.34999999999974,"unrealized_pct":4.377431906614779}]}

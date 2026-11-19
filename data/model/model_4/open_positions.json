@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[]}
+{"provider":"model_4","open_positions":[{"shadow_fill_id":14154,"entry_ts":"2026-11-19T09:32:38.032507","symbol":"WMT","direction":"LONG","entry_price":124.59,"shares":37,"notional":4609.83,"invalidation":123.2,"take_profit_price":125.4,"take_profit_trailing_pct":null,"decision_id":204361,"stop_unguarded":false,"current_price":124.205,"mark_ts":"2026-11-19T14:34:12.055579+00:00","mark_basis":"last_trade","mark_bid":null,"mark_ask":null,"unrealized_pnl":-14.24500000000019,"unrealized_pct":-0.30901356449153633}]}
