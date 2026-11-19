@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[]}
+{"provider":"model_3","open_positions":[{"shadow_fill_id":14262,"entry_ts":"2026-11-19T10:04:33.206292","symbol":"BBWI","direction":"LONG","entry_price":18.79,"shares":161,"notional":3025.19,"invalidation":18.55,"take_profit_price":19.05,"take_profit_trailing_pct":null,"decision_id":205042,"stop_unguarded":false,"current_price":18.905,"mark_ts":"2026-11-19T15:10:11.328303+00:00","mark_basis":"nbbo_mid","mark_bid":18.89,"mark_ask":18.92,"unrealized_pnl":18.51500000000032,"unrealized_pct":0.6120276742948483}]}
