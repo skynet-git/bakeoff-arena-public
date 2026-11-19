@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[{"shadow_fill_id":14296,"entry_ts":"2026-11-19T10:14:33.519097","symbol":"SNY","direction":"LONG","entry_price":45.9,"shares":14,"notional":642.6,"invalidation":45.7,"take_profit_price":46.6,"take_profit_trailing_pct":null,"decision_id":205431,"stop_unguarded":false,"current_price":45.79,"mark_ts":"2026-11-19T15:20:10.534659+00:00","mark_basis":"nbbo_mid","mark_bid":45.78,"mark_ask":45.8,"unrealized_pnl":-1.539999999999992,"unrealized_pct":-0.2396514161220031}]}
+{"provider":"model_1","open_positions":[]}
