@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":14569,"entry_ts":"2026-11-19T13:15:34.293314","symbol":"ABVX","direction":"SHORT","entry_price":82.86,"shares":18,"notional":1491.48,"invalidation":83.25,"take_profit_price":82.4,"take_profit_trailing_pct":null,"decision_id":209427,"stop_unguarded":false,"current_price":82.94,"mark_ts":"2026-11-19T18:20:00.734236+00:00","mark_basis":"nbbo_mid","mark_bid":82.82,"mark_ask":83.06,"unrealized_pnl":-1.4399999999999693,"unrealized_pct":-0.09654839488293301}]}
