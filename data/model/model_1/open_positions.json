@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[{"shadow_fill_id":14706,"entry_ts":"2026-11-19T15:52:41.394284","symbol":"GAP","direction":"LONG","entry_price":18.84,"shares":17,"notional":320.28,"invalidation":18.78,"take_profit_price":19.0,"take_profit_trailing_pct":null,"decision_id":212351,"stop_unguarded":false,"current_price":18.855,"mark_ts":"2026-11-19T20:55:08.171997+00:00","mark_basis":"nbbo_mid","mark_bid":18.85,"mark_ask":18.86,"unrealized_pnl":0.25500000000000966,"unrealized_pct":0.0796178343949075}]}
+{"provider":"model_1","open_positions":[]}
