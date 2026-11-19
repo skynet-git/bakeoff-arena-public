@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[{"shadow_fill_id":14602,"entry_ts":"2026-11-19T13:51:36.003665","symbol":"CG","direction":"SHORT","entry_price":38.07,"shares":7,"notional":266.49,"invalidation":38.21,"take_profit_price":37.6,"take_profit_trailing_pct":null,"decision_id":210034,"stop_unguarded":false,"current_price":38.099999999999994,"mark_ts":"2026-11-19T19:00:13.665352+00:00","mark_basis":"nbbo_mid","mark_bid":38.08,"mark_ask":38.12,"unrealized_pnl":-0.20999999999995822,"unrealized_pct":-0.07880220646176525}]}
+{"provider":"model_6","open_positions":[]}

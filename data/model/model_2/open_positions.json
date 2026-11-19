@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":14604,"entry_ts":"2026-11-19T13:55:55.573320","symbol":"AMBA","direction":"SHORT","entry_price":59.01,"shares":35,"notional":2065.35,"invalidation":59.7,"take_profit_price":null,"take_profit_trailing_pct":0.5,"decision_id":210077,"stop_unguarded":false,"current_price":59.3,"mark_ts":"2026-11-19T18:59:59.014308+00:00","mark_basis":"nbbo_mid","mark_bid":59.22,"mark_ask":59.38,"unrealized_pnl":-10.14999999999997,"unrealized_pct":-0.49144212845280316}]}
+{"provider":"model_2","open_positions":[]}
