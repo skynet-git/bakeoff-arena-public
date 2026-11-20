@@ -1,1 +1,1 @@
-{"provider":"model_3","open_positions":[{"shadow_fill_id":14730,"entry_ts":"2026-11-20T09:32:55.540212","symbol":"PYPL","direction":"LONG","entry_price":54.24,"shares":37,"notional":2006.88,"invalidation":53.31,"take_profit_price":null,"take_profit_trailing_pct":1.2,"decision_id":212481,"stop_unguarded":false,"current_price":54.120000000000005,"mark_ts":"2026-11-20T14:40:12.828463+00:00","mark_basis":"nbbo_mid","mark_bid":54.1,"mark_ask":54.14,"unrealized_pnl":-4.439999999999905,"unrealized_pct":-0.2212389380530926}]}
+{"provider":"model_3","open_positions":[]}
