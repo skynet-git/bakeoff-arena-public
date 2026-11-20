@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":15342,"entry_ts":"2026-11-20T13:44:30.095742","symbol":"GLOB","direction":"SHORT","entry_price":40.75,"shares":237,"notional":9657.75,"invalidation":41.05,"take_profit_price":39.5,"take_profit_trailing_pct":null,"decision_id":220356,"stop_unguarded":false,"current_price":40.675,"mark_ts":"2026-11-20T18:49:42.424978+00:00","mark_basis":"nbbo_mid","mark_bid":40.59,"mark_ask":40.76,"unrealized_pnl":17.775000000000674,"unrealized_pct":0.1840490797546082}]}
