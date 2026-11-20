@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[{"shadow_fill_id":14984,"entry_ts":"2026-11-20T11:01:38.747710","symbol":"BJ","direction":"LONG","entry_price":107.59,"shares":42,"notional":4518.78,"invalidation":106.8,"take_profit_price":109.3,"take_profit_trailing_pct":null,"decision_id":214927,"stop_unguarded":false,"current_price":107.815,"mark_ts":"2026-11-20T17:30:12.807761+00:00","mark_basis":"nbbo_mid","mark_bid":107.71,"mark_ask":107.92,"unrealized_pnl":9.449999999999761,"unrealized_pct":0.20912724230875948}]}
+{"provider":"model_4","open_positions":[]}
