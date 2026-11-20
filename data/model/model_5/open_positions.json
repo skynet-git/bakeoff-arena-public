@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":15361,"entry_ts":"2026-11-20T14:01:06.523704","symbol":"BXDC","direction":"LONG","entry_price":15.61,"shares":223,"notional":3481.0299999999997,"invalidation":15.48,"take_profit_price":null,"take_profit_trailing_pct":0.5,"decision_id":220720,"stop_unguarded":false,"current_price":15.65,"mark_ts":"2026-11-20T19:05:05.771995+00:00","mark_basis":"nbbo_mid","mark_bid":15.64,"mark_ask":15.66,"unrealized_pnl":8.920000000000206,"unrealized_pct":0.256245996156316}]}
