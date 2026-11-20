@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[{"shadow_fill_id":15451,"entry_ts":"2026-11-20T15:10:32.658756","symbol":"ICHR","direction":"LONG","entry_price":26.92,"shares":38,"notional":1022.96,"invalidation":26.75,"take_profit_price":null,"take_profit_trailing_pct":0.5,"decision_id":222238,"stop_unguarded":false,"current_price":26.945,"mark_ts":"2026-11-20T20:15:11.842156+00:00","mark_basis":"nbbo_mid","mark_bid":26.89,"mark_ask":27.0,"unrealized_pnl":0.949999999999946,"unrealized_pct":0.09286775631500215}]}
+{"provider":"model_5","open_positions":[]}
