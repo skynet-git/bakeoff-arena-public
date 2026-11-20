@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[]}
+{"provider":"model_4","open_positions":[{"shadow_fill_id":15227,"entry_ts":"2026-11-20T12:35:01.250607","symbol":"ESTC","direction":"LONG","entry_price":74.2,"shares":61,"notional":4526.2,"invalidation":73.4,"take_profit_price":76.0,"take_profit_trailing_pct":null,"decision_id":218165,"stop_unguarded":false,"current_price":73.79499999999999,"mark_ts":"2026-11-20T17:39:53.376181+00:00","mark_basis":"nbbo_mid","mark_bid":73.71,"mark_ask":73.88,"unrealized_pnl":-24.705000000000936,"unrealized_pct":-0.5458221024258967}]}
