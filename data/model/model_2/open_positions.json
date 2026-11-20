@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":14750,"entry_ts":"2026-11-20T09:36:06.568780","symbol":"BIDU","direction":"SHORT","entry_price":64.32,"shares":45,"notional":2894.3999999999996,"invalidation":64.75,"take_profit_price":63.85,"take_profit_trailing_pct":null,"decision_id":212613,"stop_unguarded":false,"current_price":64.3,"mark_ts":"2026-11-20T14:40:10.754680+00:00","mark_basis":"nbbo_mid","mark_bid":64.25,"mark_ask":64.35,"unrealized_pnl":0.8999999999998209,"unrealized_pct":0.031094527363177898}]}
