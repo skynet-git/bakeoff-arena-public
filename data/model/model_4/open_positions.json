@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[]}
+{"provider":"model_4","open_positions":[{"shadow_fill_id":15301,"entry_ts":"2026-11-20T13:20:39.217327","symbol":"ASML","direction":"LONG","entry_price":1285.41,"shares":3,"notional":3856.2300000000005,"invalidation":1277.0,"take_profit_price":1305.0,"take_profit_trailing_pct":null,"decision_id":219649,"stop_unguarded":false,"current_price":1287.565,"mark_ts":"2026-11-20T18:25:06.462156+00:00","mark_basis":"nbbo_mid","mark_bid":1286.92,"mark_ask":1288.21,"unrealized_pnl":6.464999999999918,"unrealized_pct":0.1676507884643789}]}
