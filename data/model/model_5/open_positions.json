@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[{"shadow_fill_id":15178,"entry_ts":"2026-11-20T12:13:33.432467","symbol":"MICC","direction":"LONG","entry_price":19.18,"shares":182,"notional":3490.7599999999998,"invalidation":19.13,"take_profit_price":null,"take_profit_trailing_pct":0.15,"decision_id":217578,"stop_unguarded":false,"current_price":19.195,"mark_ts":"2026-11-20T17:15:03.539324+00:00","mark_basis":"nbbo_mid","mark_bid":19.19,"mark_ask":19.2,"unrealized_pnl":2.7300000000001035,"unrealized_pct":0.07820646506778191}]}
+{"provider":"model_5","open_positions":[]}
