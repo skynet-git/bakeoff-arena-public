@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[{"shadow_fill_id":16149,"entry_ts":"2026-11-23T15:34:14.103444","symbol":"BSP","direction":"SHORT","entry_price":45.61,"shares":70,"notional":3192.7,"invalidation":46.05,"take_profit_price":null,"take_profit_trailing_pct":0.3,"decision_id":231609,"stop_unguarded":false,"current_price":45.39,"mark_ts":"2026-11-23T20:40:12.385187+00:00","mark_basis":"nbbo_mid","mark_bid":45.38,"mark_ask":45.4,"unrealized_pnl":15.39999999999992,"unrealized_pct":0.48235036176276885}]}
+{"provider":"model_5","open_positions":[]}
