@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":15867,"entry_ts":"2026-11-23T12:27:22.687558","symbol":"MT","direction":"LONG","entry_price":59.01,"shares":54,"notional":3186.54,"invalidation":58.88,"take_profit_price":null,"take_profit_trailing_pct":0.3,"decision_id":226983,"stop_unguarded":false,"current_price":58.99,"mark_ts":"2026-11-23T17:30:10.812924+00:00","mark_basis":"nbbo_mid","mark_bid":58.95,"mark_ask":59.03,"unrealized_pnl":-1.0799999999997851,"unrealized_pct":-0.0338925605829453}]}
