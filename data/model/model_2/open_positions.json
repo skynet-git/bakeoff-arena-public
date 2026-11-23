@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[{"shadow_fill_id":15550,"entry_ts":"2026-11-23T09:39:17.833860","symbol":"HZO","direction":"LONG","entry_price":52.95,"shares":49,"notional":2594.55,"invalidation":52.92,"take_profit_price":null,"take_profit_trailing_pct":0.15,"decision_id":223147,"stop_unguarded":false,"current_price":52.945,"mark_ts":"2026-11-23T14:53:44.874641+00:00","mark_basis":"nbbo_mid","mark_bid":52.94,"mark_ask":52.95,"unrealized_pnl":-0.24500000000012534,"unrealized_pct":-0.009442870632677163}]}
+{"provider":"model_2","open_positions":[]}
