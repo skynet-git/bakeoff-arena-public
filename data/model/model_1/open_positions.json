@@ -1,1 +1,1 @@
-{"provider":"model_1","open_positions":[]}
+{"provider":"model_1","open_positions":[{"shadow_fill_id":15543,"entry_ts":"2026-11-23T09:38:03.439962","symbol":"UNH","direction":"LONG","entry_price":323.65,"shares":8,"notional":2589.2,"invalidation":320.5,"take_profit_price":329.5,"take_profit_trailing_pct":null,"decision_id":223130,"stop_unguarded":false,"current_price":326.725,"mark_ts":"2026-11-23T14:45:12.277367+00:00","mark_basis":"nbbo_mid","mark_bid":326.49,"mark_ask":326.96,"unrealized_pnl":24.600000000000364,"unrealized_pct":0.9501004171172704}]}
