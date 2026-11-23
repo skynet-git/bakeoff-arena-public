@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[]}
+{"provider":"model_4","open_positions":[{"shadow_fill_id":15920,"entry_ts":"2026-11-23T13:03:30.498870","symbol":"CRWD","direction":"LONG","entry_price":206.94,"shares":21,"notional":4345.74,"invalidation":205.5,"take_profit_price":210.5,"take_profit_trailing_pct":null,"decision_id":227859,"stop_unguarded":false,"current_price":206.435,"mark_ts":"2026-11-23T18:05:08.472624+00:00","mark_basis":"nbbo_mid","mark_bid":206.4,"mark_ask":206.47,"unrealized_pnl":-10.604999999999905,"unrealized_pct":-0.24403208659514616}]}

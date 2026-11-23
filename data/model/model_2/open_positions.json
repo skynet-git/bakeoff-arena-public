@@ -1,1 +1,1 @@
-{"provider":"model_2","open_positions":[]}
+{"provider":"model_2","open_positions":[{"shadow_fill_id":15927,"entry_ts":"2026-11-23T13:02:06.109716","symbol":"VOR","direction":"SHORT","entry_price":20.33,"shares":115,"notional":2337.95,"invalidation":20.52,"take_profit_price":20.0,"take_profit_trailing_pct":null,"decision_id":227869,"stop_unguarded":false,"current_price":20.25,"mark_ts":"2026-11-23T18:05:08.472624+00:00","mark_basis":"nbbo_mid","mark_bid":20.22,"mark_ask":20.28,"unrealized_pnl":9.199999999999804,"unrealized_pct":0.3935071323167649}]}
