@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":15826,"entry_ts":"2026-11-23T11:53:42.752409","symbol":"PDD","direction":"LONG","entry_price":86.57,"shares":36,"notional":3116.5199999999995,"invalidation":86.25,"take_profit_price":null,"take_profit_trailing_pct":0.3,"decision_id":226273,"stop_unguarded":false,"current_price":86.64500000000001,"mark_ts":"2026-11-23T17:00:13.886831+00:00","mark_basis":"nbbo_mid","mark_bid":86.62,"mark_ask":86.67,"unrealized_pnl":2.700000000000614,"unrealized_pct":0.08663509298835285}]}
