@@ -1,1 +1,1 @@
-{"provider":"model_7","open_positions":[{"shadow_fill_id":16275,"entry_ts":"2026-11-24T10:03:33.670009","symbol":"BURL","direction":"LONG","entry_price":256.94,"shares":45,"notional":11562.3,"invalidation":255.0,"take_profit_price":263.5,"take_profit_trailing_pct":null,"decision_id":232606,"stop_unguarded":false,"current_price":259.3,"mark_ts":"2026-11-24T15:20:14.741870+00:00","mark_basis":"nbbo_mid","mark_bid":259.16,"mark_ask":259.44,"unrealized_pnl":106.20000000000061,"unrealized_pct":0.9185023740951249}]}
+{"provider":"model_7","open_positions":[]}
