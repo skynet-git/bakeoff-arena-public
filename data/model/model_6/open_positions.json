@@ -1,1 +1,1 @@
-{"provider":"model_6","open_positions":[]}
+{"provider":"model_6","open_positions":[{"shadow_fill_id":16511,"entry_ts":"2026-11-24T12:00:00.002792","symbol":"BMRN","direction":"LONG","entry_price":67.26,"shares":3,"notional":201.78000000000003,"invalidation":66.95,"take_profit_price":68.2,"take_profit_trailing_pct":null,"decision_id":235755,"stop_unguarded":false,"current_price":67.73500000000001,"mark_ts":"2026-11-24T17:05:03.295403+00:00","mark_basis":"nbbo_mid","mark_bid":67.68,"mark_ask":67.79,"unrealized_pnl":1.4250000000000256,"unrealized_pct":0.7062146892655493}]}
