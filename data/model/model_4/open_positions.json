@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[{"shadow_fill_id":16710,"entry_ts":"2026-11-24T15:33:13.584975","symbol":"BBY","direction":"LONG","entry_price":98.9,"shares":44,"notional":4351.6,"invalidation":98.2,"take_profit_price":100.5,"take_profit_trailing_pct":null,"decision_id":239378,"stop_unguarded":false,"current_price":98.91499999999999,"mark_ts":"2026-11-24T20:40:13.715072+00:00","mark_basis":"nbbo_mid","mark_bid":98.88,"mark_ask":98.95,"unrealized_pnl":0.6599999999993997,"unrealized_pct":0.01516683518704384}]}
+{"provider":"model_4","open_positions":[]}

@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[{"shadow_fill_id":16691,"entry_ts":"2026-11-24T15:08:14.219615","symbol":"PBR.A","direction":"SHORT","entry_price":13.74,"shares":220,"notional":3022.8,"invalidation":13.8,"take_profit_price":null,"take_profit_trailing_pct":0.3,"decision_id":239135,"stop_unguarded":false,"current_price":13.655000000000001,"mark_ts":"2026-11-24T20:40:07.432169+00:00","mark_basis":"nbbo_mid","mark_bid":13.65,"mark_ask":13.66,"unrealized_pnl":18.699999999999797,"unrealized_pct":0.6186317321688433}]}
+{"provider":"model_5","open_positions":[]}
