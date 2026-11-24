@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[]}
+{"provider":"model_4","open_positions":[{"shadow_fill_id":16243,"entry_ts":"2026-11-24T09:57:19.455048","symbol":"OTLY","direction":"LONG","entry_price":14.45,"shares":306,"notional":4421.7,"invalidation":14.05,"take_profit_price":15.2,"take_profit_trailing_pct":null,"decision_id":232451,"stop_unguarded":false,"current_price":14.585,"mark_ts":"2026-11-24T15:00:11.173502+00:00","mark_basis":"nbbo_mid","mark_bid":14.58,"mark_ask":14.59,"unrealized_pnl":41.31000000000048,"unrealized_pct":0.9342560553633327}]}
