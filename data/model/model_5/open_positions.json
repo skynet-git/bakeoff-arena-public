@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":16166,"entry_ts":"2026-11-24T09:31:32.077812","symbol":"INSM","direction":"SHORT","entry_price":170.4,"shares":17,"notional":2896.8,"invalidation":170.6,"take_profit_price":null,"take_profit_trailing_pct":0.3,"decision_id":231938,"stop_unguarded":false,"current_price":170.35500000000002,"mark_ts":"2026-11-24T14:35:13.123346+00:00","mark_basis":"nbbo_mid","mark_bid":170.35,"mark_ask":170.36,"unrealized_pnl":0.7649999999997874,"unrealized_pct":0.02640845070421801}]}
