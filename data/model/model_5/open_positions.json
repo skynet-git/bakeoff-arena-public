@@ -1,1 +1,1 @@
-{"provider":"model_5","open_positions":[]}
+{"provider":"model_5","open_positions":[{"shadow_fill_id":16574,"entry_ts":"2026-11-24T12:58:47.941401","symbol":"GPCR","direction":"SHORT","entry_price":17.47,"shares":173,"notional":3022.31,"invalidation":17.55,"take_profit_price":null,"take_profit_trailing_pct":0.8,"decision_id":236948,"stop_unguarded":false,"current_price":17.46,"mark_ts":"2026-11-24T18:00:07.639044+00:00","mark_basis":"nbbo_mid","mark_bid":17.42,"mark_ask":17.5,"unrealized_pnl":1.7299999999996558,"unrealized_pct":0.05724098454492278}]}
