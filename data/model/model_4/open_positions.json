@@ -1,1 +1,1 @@
-{"provider":"model_4","open_positions":[{"shadow_fill_id":16253,"entry_ts":"2026-11-24T10:02:00.353031","symbol":"ZTO","direction":"LONG","entry_price":19.21,"shares":229,"notional":4399.09,"invalidation":19.05,"take_profit_price":19.45,"take_profit_trailing_pct":null,"decision_id":232515,"stop_unguarded":false,"current_price":19.195,"mark_ts":"2026-11-24T15:15:11.742003+00:00","mark_basis":"nbbo_mid","mark_bid":19.19,"mark_ask":19.2,"unrealized_pnl":-3.43500000000013,"unrealized_pct":-0.07808433107756672}]}
+{"provider":"model_4","open_positions":[]}
